@@ -6,18 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
-class AdminLoginController extends Controller
+class TeacherLoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:teacher')->except('logout');
     }
 
     public function login()
     {
-        return view('auth.admin-login');
+        return view('auth.teacher-login');
     }
 
     public function authenticate(Request $request)
@@ -31,6 +30,6 @@ class AdminLoginController extends Controller
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        return redirect()->back()->withErrors(['username' => 'These credentials do not match our records.'])->withInput();
+        return "Failed to login";
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:teacher');
     }
 
     /**
@@ -25,7 +25,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin.teacher-dashboard');
     }
 
 }

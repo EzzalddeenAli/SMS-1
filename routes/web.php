@@ -1,6 +1,16 @@
 <?php
 
 Route::view('/', 'home.main')->name('home.main');
+
+Route::prefix('teacher')->group(function () {
+    //Login Controllers
+    Route::get('login', 'Auth\TeacherLoginController@login')->name('teacher.login');
+    Route::post('login', 'Auth\TeacherLoginController@authenticate')->name('teacher.authenticate');
+
+    //Home Controllers
+    Route::get('/', 'TeacherController@index')->name('teacher.dashboard');
+});
+
 Route::prefix('admin')->group(function () {
     //Login Controllers
     Route::get('login', 'Auth\AdminLoginController@login')->name('admin.login');
