@@ -1,0 +1,177 @@
+$perfect-circle: 200px;
+
+%transitions {
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+%center-links {
+  position: relative;
+  top: 14px;
+}
+
+%footer-spacing {
+  margin-top: 60px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  position: relative;
+}
+
+//CSS
+img.img-rounded-super {
+  border-radius: $perfect-circle;
+  width: $perfect-circle;
+  height: $perfect-circle;
+  min-width: $perfect-circle;
+  margin: auto;
+}
+
+div.vertical-line {
+  height: 20rem;
+  width: 1px;
+  border: solid 1px lighten(black, 70%);
+  margin: auto;
+}
+
+img.img-sponsors {
+  max-height: 100px;
+  width: 95%;
+  position: relative;
+  left: 2.5%;
+  margin-bottom: 20px;
+}
+
+img.img-footer {
+  width: 100%;
+  opacity: 0.95;
+  min-height: 500px;
+}
+
+div.container-contact {
+  @extend %footer-spacing;
+}
+
+div.container-footer {
+  height: 100px;
+  padding-top: 40px;
+}
+
+.footer-text {
+  position: absolute;
+  width: 90%;
+  top: 10%;
+  left: 5%;
+  z-index: 10;
+  color: white;
+  h1 {
+    font-size: 70px;
+  }
+}
+
+nav.navbar-transparent {
+  height: 80px;
+  background-color: transparent;
+  border-style: hidden;
+}
+
+#nav-logo, #navbar, a#nav-home, button.nav-links, .navbar-header  {
+  @extend %transitions;
+}
+
+a#nav-home, button.nav-links {
+  @extend %center-links;
+}
+
+.navbar-nav {
+  li {
+    @extend %transitions;
+    @extend %center-links;
+    background-color: white;
+  }
+}
+
+.social-buttons {
+  margin-top: -20px;
+  a {
+    font-size: 40px;
+    i {
+
+      height: 40px;
+    }
+  }
+}
+
+ul#nav-login {
+  position: relative;
+  left: -10px;
+}
+
+ul.nav-links {
+  position: relative;
+  top: 0;
+}
+
+img#nav-logo {
+  position: relative;
+  left: -5%;
+}
+
+//css medias
+@media (max-width: 768px) {
+  .col-xs-12.text-right, .col-xs-12.text-left {
+    text-align: center;
+  }
+
+  .footer-text {
+    position: absolute;
+    top: 0;
+    //left: 35%;
+    h1 {
+      font-size: 30px;
+    }
+  }
+
+  div.container-footer {
+    height: 80px;
+    padding-top: 10px;
+    div {
+      margin-bottom: 10px;
+      img {
+        margin-top: 0;
+      }
+    }
+  }
+
+  ul.nav-links {
+    top: -22px;
+  }
+
+  ul#nav-login {
+    position: relative;
+    left: 0;
+    top: -30px;
+  }
+
+  img#nav-logo {
+    left: -32%;
+  }
+
+  #nav-top-margin {
+    margin-top: 16px;
+    border-style: none;
+  }
+
+  #nav-top-first {
+    margin-top: 20px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  img#nav-logo {
+    left: -43%;
+  }
+}
