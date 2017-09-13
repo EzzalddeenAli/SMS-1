@@ -23,7 +23,10 @@ class RedirectIfAuthenticated
                     return redirect()->route('admin.dashboard');
                     break;
                 case 'teacher':
-                    return redirect()->route('admin.teacher-dashboard');
+                    return redirect()->route('teacher.dashboard');
+                    break;
+                case 'student':
+                    return redirect()->route('student.dashboard');
                     break;
                 default:
                     return redirect('/home');

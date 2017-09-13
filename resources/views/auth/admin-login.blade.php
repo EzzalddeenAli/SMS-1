@@ -39,6 +39,16 @@
                             </div>
                         </div>
 
+                        @if ($errors->has('invalid'))
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <span>
+                                    <strong class="text-danger">{{ $errors->first('invalid') }}</strong>
+                                </span>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">

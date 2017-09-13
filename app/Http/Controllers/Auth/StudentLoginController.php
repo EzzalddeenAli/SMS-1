@@ -7,16 +7,16 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TeacherLoginController extends Controller
+class StudentLoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest:teacher')->except('logout');
+        $this->middleware('guest:student')->except('logout');
     }
 
     public function login()
     {
-        return view('auth.teacher-login');
+        return view('auth.student-login');
     }
 
     public function authenticate(Request $request)
@@ -26,8 +26,8 @@ class TeacherLoginController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::guard('teacher')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
-            return redirect()->intended(route('teacher.dashboard'));
+        if(Auth::guard('student')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
+            return redirect()->intended(route('student.dashboard'));
         }
 
         return redirect()->back()
