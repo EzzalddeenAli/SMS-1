@@ -6,8 +6,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <img src="assets/img/logo.png"/>
+            <a class="navbar-brand" href="{{route('home.main')}}">
+                <img width="63px" src="{{asset('images/jilcs-logo.jpg')}}" style="margin: -15px 0 0 -15px;">
             </a>
         </div>
 

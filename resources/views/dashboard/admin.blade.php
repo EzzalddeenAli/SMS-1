@@ -21,7 +21,7 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="{{route('teacher.list')}}" title="Teachers' list">
-                    <i class="fa fa-circle-o-notch fa-5x"></i>
+                    <i class="fa fa-user-circle fa-5x fa-spin"></i>
                     <h4>Teachers</h4>
                 </a>
             </div>
