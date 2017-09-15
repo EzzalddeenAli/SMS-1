@@ -14,7 +14,7 @@ class StudentsTableSeeder extends Seeder
     {
         Student::create([
             "username" => "student1",
-            "password" => Hash::make("123456"),
+            "password" => Hash::make("12345678"),
             "first_name" => "Lorem",
             "middle_name" => "Ipsum",
             "last_name" => "Enet",

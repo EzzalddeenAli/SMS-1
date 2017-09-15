@@ -31,5 +31,6 @@ Route::prefix('admin')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/teachers', 'AdminController@teachers')->name('teacher.list');
 });
 

@@ -23,7 +23,7 @@ class TeacherLoginController extends Controller
     {
         $request->validate([
             'username' => 'required|min:5',
-            'password' => 'required'
+            'password' => 'required|min:8'
         ]);
 
         if(Auth::guard('teacher')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {

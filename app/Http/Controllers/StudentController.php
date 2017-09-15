@@ -25,7 +25,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('admin.student-dashboard');
+        return view('dashboard.student');
     }
 
 }

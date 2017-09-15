@@ -14,7 +14,7 @@ class TeachersTableSeeder extends Seeder
     {
         Teacher::create([
             "username" => "teacher1",
-            "password" => Hash::make("123456"),
+            "password" => Hash::make("12345678"),
             "first_name" => "Charlie",
             "middle_name" => "Merriam",
             "last_name" => "Dolor",
