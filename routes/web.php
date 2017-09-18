@@ -32,5 +32,7 @@ Route::prefix('admin')->group(function () {
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/teachers', 'AdminController@teachers')->name('teacher.list');
+    Route::get('/teachers/{username}', 'ResourceTeacherController@edit');
+    Route::patch('/teachers', 'ResourceTeacherController@update')->name('edit.teacher');
 });
 

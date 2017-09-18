@@ -10,10 +10,10 @@ class Teacher extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'username', 'password',
+        'username', 'password', 'first_name', 'middle_name','last_name', 'age', 'advisory',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'created_at', 'updated_at',
     ];
 }
