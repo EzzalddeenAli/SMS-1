@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,10 @@ class AdminController extends Controller
 
     public function teachers()
     {
-        return view('dashboard.admin.teachers-list');
+        $teachers = Teacher::all();
+        $index = 0;
+
+        return view('dashboard.admin.teachers-list', compact('teachers', 'index'));
     }
 
 }
