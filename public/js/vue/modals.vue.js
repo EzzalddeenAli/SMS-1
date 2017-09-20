@@ -28,6 +28,14 @@ let addModal = new Vue({
     }
 });
 
+let deleteModal = new Vue({
+    el: '#delete-modal-body',
+    data: {
+        deleteLink: "",
+        username: "",
+    }
+});
+
 let teachersTable = new Vue({
     el: '#teachers-table',
 
@@ -42,6 +50,12 @@ let teachersTable = new Vue({
 
         showAddModal() {
             $('#add-modal').modal('show');
+        },
+
+        showDeleteModal(username) {
+            deleteModal.deleteLink = '/admin/teachers/' + username;
+            deleteModal.username = username;
+            $('#delete-modal').modal('show');
         }
     },
 });

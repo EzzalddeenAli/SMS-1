@@ -50,7 +50,7 @@ class ResourceTeacherController extends Controller
             'advisory' => $request->advisory,
         ]);
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -100,7 +100,7 @@ class ResourceTeacherController extends Controller
         'advisory' => $request->advisory,
         ]);
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -109,8 +109,10 @@ class ResourceTeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($username)
     {
+        Teacher::where('username', $username)->delete();
 
+        return back();
     }
 }

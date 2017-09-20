@@ -53,7 +53,7 @@
                     <td>{{$teacher->age}}</td>
                     <td>{{$teacher->advisory}}</td>
                     <td>
-                        <button class="btn btn-danger delete-btn"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button v-on:click="showDeleteModal('{{$teacher->username}}')" class="btn btn-danger delete-btn"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>
                         <button v-on:click="showEditModal('{{$teacher->username}}')" class="btn btn-info edit-btn"><i class="fa fa-edit fa-lg"></i></button>
@@ -119,4 +119,30 @@
         </div>
     </div>
 </div><!-- /. add modal -->
+
+<!-- delete modal -->
+<div class="modal fade" id="delete-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Delete Teacher</h4>
+            </div>
+
+            <div id="delete-modal-body">
+                <form :action="deleteLink" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('delete') }}
+                    <div class="modal-body" v-text="username">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div><!-- /. delete modal -->
 @endsection

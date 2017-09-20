@@ -36,5 +36,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/teachers/{username}', 'ResourceTeacherController@edit');
     Route::patch('/teachers', 'ResourceTeacherController@update')->name('edit.teacher');
     Route::post('/teachers', 'ResourceTeacherController@store')->name('add.teacher');
+    Route::delete('/teachers/{username}', 'ResourceTeacherController@destroy');
 });
 
