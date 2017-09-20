@@ -1,5 +1,9 @@
 @extends('dashboard.layouts.main')
 
+@section('sidebar')
+    @include('dashboard.teacher.sidebar')
+@endsection
+
 @section('body')
     <div class="row">
         <div class="col-lg-12">
@@ -18,6 +22,17 @@
     </div>
     <!-- /. ROW  -->
     <div class="row text-center pad-top">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <div class="div-square">
+                <a href="blank.html">
+                    <i class="fa fa-users fa-5x"></i>
+                    <h4>See Users</h4>
+                </a>
+            </div>
+
+
+        </div>
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="blank.html">
@@ -44,16 +59,6 @@
                 <a href="blank.html">
                     <i class="fa fa-lightbulb-o fa-5x"></i>
                     <h4>New Issues</h4>
-                </a>
-            </div>
-
-
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-            <div class="div-square">
-                <a href="blank.html">
-                    <i class="fa fa-users fa-5x"></i>
-                    <h4>See Users</h4>
                 </a>
             </div>
 

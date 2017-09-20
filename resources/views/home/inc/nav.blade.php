@@ -24,7 +24,7 @@
 
         @if(!isset($inLogin))
         <ul class="nav navbar-nav navbar-right nav-links" id="nav-login">
-            <li><a href="{{route('login')}}">Login</a></li>
+            <li><a href="{{route('student.login')}}">Login</a></li>
         </ul>
         @endif
     </div><!-- /.navbar-collapse -->

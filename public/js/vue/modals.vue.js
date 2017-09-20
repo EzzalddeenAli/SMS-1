@@ -13,6 +13,21 @@ let editModal = new Vue({
 
 });
 
+let addModal = new Vue({
+    el: '#add-modal-body',
+    data: {
+        fields: {
+            username: "text",
+            password: "password",
+            first_name: "text",
+            middle_name: "text",
+            last_name: "text",
+            age: "number",
+            advisory: "number",
+        },
+    }
+});
+
 let teachersTable = new Vue({
     el: '#teachers-table',
 
@@ -20,9 +35,13 @@ let teachersTable = new Vue({
         showEditModal(username) {
             $.get('/admin/teachers/' + username, function (data) {
                 editModal.responses = data[0];
-                console.log(data);
+                editModal.responses.password = "";
             });
             $('#edit-modal').modal('show');
+        },
+
+        showAddModal() {
+            $('#add-modal').modal('show');
         }
     },
 });

@@ -22,6 +22,7 @@ Route::prefix('teacher')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'TeacherController@index')->name('teacher.dashboard');
+    Route::get('/students', 'TeacherController@students')->name('student.list');
 });
 
 Route::prefix('admin')->group(function () {
@@ -34,5 +35,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/teachers', 'AdminController@teachers')->name('teacher.list');
     Route::get('/teachers/{username}', 'ResourceTeacherController@edit');
     Route::patch('/teachers', 'ResourceTeacherController@update')->name('edit.teacher');
+    Route::post('/teachers', 'ResourceTeacherController@store')->name('add.teacher');
 });
 

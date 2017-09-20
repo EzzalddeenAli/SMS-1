@@ -13,8 +13,8 @@
 <script src="{{asset('js/vue/vue.js')}}"></script>
 <script src="{{asset('js/admin-dashboard.js')}}"></script>
 {{--<script src="{{asset('js/modals.js')}}"></script>--}}
-<script src="{{asset('js/vue/modalComponents.js')}}"></script>
-<script src="{{asset('js/vue/modals.js')}}"></script>
+<script src="{{asset('js/vue/modalComponents.vue.js')}}"></script>
+<script src="{{asset('js/vue/modals.vue.js')}}"></script>
 
 </body>
 </html>

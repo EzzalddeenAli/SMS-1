@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeTeacher;
+use App\Http\Requests\updateTeacher;
+use Illuminate\Foundation\PackageManifest;
 use Illuminate\Http\Request;
 use App\Teacher;
+use Illuminate\Support\Facades\Hash;
 
 class ResourceTeacherController extends Controller
 {
@@ -24,7 +28,7 @@ class ResourceTeacherController extends Controller
      */
     public function create()
     {
-        //
+        //Showing forms are done with Vue
     }
 
     /**
@@ -33,9 +37,9 @@ class ResourceTeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeTeacher $request)
     {
-        //
+        return "a valid request!";
     }
 
     /**
@@ -69,22 +73,22 @@ class ResourceTeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(updateTeacher $request)
     {
-        $request->validate([
-            'username' => 'min:8|alpha_num',
-            'first_name' => '',
+        $teacher = Teacher::find($request->id);
+
+        $request->password === null ? $password = $teacher->password : $password = Hash::make($request->password);
+
+        $teacher->update([
+        'username' => $request->username,
+        'password' => $password,
+        'first_name' => $request->first_name,
+        'middle_name' => $request->middle_name,
+        'last_name' => $request->last_name,
+        'age' => $request->age,
+        'advisory' => $request->advisory,
         ]);
 
-        $teacher = Teacher::find(1)
-            ->update([
-                'username' => $request->username,
-                'first_name' => $request->first_name,
-                'middle_name' => $request->middle_name,
-                'last_name' => $request->last_name,
-                'age' => $request->age,
-                'advisory' => $request->advisory,
-            ]);
         return redirect()->back();
     }
 

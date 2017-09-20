@@ -28,4 +28,9 @@ class TeacherController extends Controller
         return view('dashboard.teacher');
     }
 
+    public function students()
+    {
+        return view('dashboard.teacher.class-list');
+    }
+
 }
