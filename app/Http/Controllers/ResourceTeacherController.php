@@ -40,7 +40,7 @@ class ResourceTeacherController extends Controller
      */
     public function store(storeTeacher $request)
     {
-        $teacher = Teacher::create([
+        Teacher::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'first_name' => $request->first_name,

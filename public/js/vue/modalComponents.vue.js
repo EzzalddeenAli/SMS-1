@@ -1,10 +1,10 @@
-Vue.component('modal-edit-form', {
+Vue.component("modal-edit-form", {
     props: {
         formName: String,
         formData: [String, Number],
         isId: {
             type: Boolean,
-            default: false,
+            default: false
         }
     },
 
@@ -25,7 +25,7 @@ Vue.component('modal-edit-form', {
                 </div>`,
 });
 
-Vue.component('modal-add-form', {
+Vue.component("modal-add-form", {
     props: {
         formName: String,
         formType: String,
