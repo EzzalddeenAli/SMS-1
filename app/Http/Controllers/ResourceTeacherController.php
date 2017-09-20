@@ -7,6 +7,7 @@ use App\Http\Requests\updateTeacher;
 use Illuminate\Foundation\PackageManifest;
 use Illuminate\Http\Request;
 use App\Teacher;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 
 class ResourceTeacherController extends Controller
@@ -39,7 +40,17 @@ class ResourceTeacherController extends Controller
      */
     public function store(storeTeacher $request)
     {
-        return "a valid request!";
+        $teacher = Teacher::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'age' => $request->age,
+            'advisory' => $request->advisory,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -100,6 +111,6 @@ class ResourceTeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
