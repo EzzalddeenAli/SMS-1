@@ -1,10 +1,11 @@
 <?php
 
 Route::view('/', 'home.main')->name('home.main');
-Route::get('/home', 'HomeController@index')->name('user.dashboard');
+//Route::get('home', 'HomeController@index')->name('user.dashboard');
 
-Auth::routes();
+//Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('student')->group(function () {
     //Login Controllers
@@ -22,7 +23,10 @@ Route::prefix('teacher')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'TeacherController@index')->name('teacher.dashboard');
-    Route::get('/students', 'TeacherController@students')->name('student.list');
+    Route::get('sections', 'TeacherController@sections')->name('section.list');
+    Route::get('/{id}', 'TeacherController@section');
+    Route::get('{section_id}/{username}', 'ResourceGradeController@edit');
+    Route::patch('grade', 'ResourceGradeController@update')->name('edit.grade');
 });
 
 Route::prefix('admin')->group(function () {
@@ -32,10 +36,10 @@ Route::prefix('admin')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    Route::get('/teachers', 'AdminController@teachers')->name('teacher.list');
-    Route::get('/teachers/{username}', 'ResourceTeacherController@edit');
-    Route::patch('/teachers', 'ResourceTeacherController@update')->name('edit.teacher');
-    Route::post('/teachers', 'ResourceTeacherController@store')->name('add.teacher');
-    Route::delete('/teachers/{username}', 'ResourceTeacherController@destroy');
+    Route::get('teachers', 'AdminController@teachers')->name('teacher.list');
+    Route::get('teachers/{username}', 'ResourceTeacherController@edit');
+    Route::patch('teachers', 'ResourceTeacherController@update')->name('edit.teacher');
+    Route::post('teachers', 'ResourceTeacherController@store')->name('add.teacher');
+    Route::delete('teachers/{username}', 'ResourceTeacherController@destroy');
 });
 

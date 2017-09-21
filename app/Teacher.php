@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @property mixed $subjects
+ */
 class Teacher extends Authenticatable
 {
     use Notifiable;
@@ -16,4 +19,14 @@ class Teacher extends Authenticatable
     protected $hidden = [
         'remember_token', 'created_at', 'updated_at',
     ];
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
+    }
+
+/*  $teacher->sections
+    s
+    s*/
+
 }

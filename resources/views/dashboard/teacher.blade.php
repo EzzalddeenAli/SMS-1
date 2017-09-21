@@ -25,8 +25,8 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="blank.html">
-                    <i class="fa fa-users fa-5x"></i>
-                    <h4>See Users</h4>
+                    <i class="fa fa-list fa-5x"></i>
+                    <h4>My Classes</h4>
                 </a>
             </div>
 
@@ -86,4 +86,5 @@
         </div>
     </div>
     <!-- /. ROW  -->
+
 @endsection

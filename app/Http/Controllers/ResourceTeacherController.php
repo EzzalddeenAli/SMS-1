@@ -73,7 +73,7 @@ class ResourceTeacherController extends Controller
     public function edit($username)
     {
         if(request()->ajax()) {
-            return Teacher::where('username', $username)->get();
+            return Teacher::where('username', $username)->first();
         }
     }
 

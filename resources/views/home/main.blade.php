@@ -48,7 +48,10 @@
             <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
         </div>
 
-        <br><br>
+        <div class=" hidden-md hidden-lg">
+            <br><br>
+        </div>
+
 
         <!-- images -->
         <div class="col-sm-4">
@@ -63,7 +66,9 @@
             <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
         </div>
 
-        <br><br>
+        <div class=" hidden-md hidden-lg">
+            <br><br>
+        </div>
 
         <!-- images -->
         <div class="col-sm-4">

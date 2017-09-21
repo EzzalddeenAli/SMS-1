@@ -7,7 +7,15 @@ let editModal = new Vue({
 
     methods: {
         checkIfId(key) {
-            return key === 'id';
+            switch (key) {
+                case 'id':
+                case 'subject_id':
+                case 'student_id':
+                    return true;
+                default:
+                    return false;
+            }
+
         }
     }
 
@@ -40,10 +48,17 @@ let teachersTable = new Vue({
     el: '#teachers-table',
 
     methods: {
-        showEditModal(username) {
-            $.get('/admin/teachers/' + username, function (data) {
-                editModal.responses = data[0];
-                editModal.responses.password = "";
+        showEditModal(baseurl, username) {
+            $.get(baseurl + username, function (data) {
+                editModal.responses = data;
+
+                for (const formName of Object.keys(data)) {
+                    if (formName === "password") {
+                        editModal.responses.password = "";
+                    }
+                }
+
+                console.log(data);
             });
             $('#edit-modal').modal('show');
         },
