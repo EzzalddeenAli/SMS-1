@@ -11,4 +11,14 @@ class Grade extends Model
 {
     public $timestamps = false;
 
+    public function subject()
+    {
+        $this->belongsTo('App\Subject');
+    }
+
+    public function scopeGradeOf($query, $subject_id, $student_id)
+    {
+        return $query->where('subject_id', $subject_id)->where('student_id', $student_id->id)->first();
+    }
+
 }

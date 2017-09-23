@@ -63,7 +63,7 @@ class ResourceGradeController extends Controller
     {
         if(request()->ajax()) {
             $student_id = Student::where('username', $username)->first();
-            return Grade::where('subject_id', $subject_id)->where('student_id', $student_id->id)->first();
+            return Grade::gradeOf($subject_id, $student_id);
         }
     }
 
@@ -75,7 +75,15 @@ class ResourceGradeController extends Controller
      */
     public function update(Request $request)
     {
-        return "WE ARE ABOUT TO EDIT GRADES!";
+        $request->validate([
+            '1st' => 'bail|integer|nullable|between:60,100',
+            '2nd' => 'bail|integer|nullable|between:60,100',
+            '3rd' => 'bail|integer|nullable|between:60,100',
+            '4th' => 'bail|integer|nullable|between:60,100',
+            'subject_id' => 'bail|required|integer',
+            'student_id' => 'bail|required|integer',
+        ]);
+
     }
 
     /**

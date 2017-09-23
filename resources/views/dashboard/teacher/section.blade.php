@@ -17,37 +17,44 @@
                     </ul>
                 </div>
             @endif
-            <input type="text" class="form-control" placeholder="Search for section">
-            <br>
-            <table class="table table-bordered table-hover">
 
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Middle Name</th>
-                    <th>Last Name</th>
-                    <th colspan="10" class="text-center">Action</th>
-                </tr>
-                </thead>
+            @if(isset($subject))
+                <h4 class="text-center">{{$subject->name}} - {{$subject->section->name}}</h4>
+                <input type="text" class="form-control" placeholder="Search for student">
+                <br>
 
-                <tbody>
-                @if(isset($students))
-                    @foreach($students as $student)
+                <table class="table table-bordered table-hover">
+
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th colspan="10" class="text-center">Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    @foreach($subject->section->students as $student)
                         <tr>
                             <td>{{++$index}}</td>
                             <td>{{$student->first_name}}</td>
                             <td>{{$student->middle_name}}</td>
                             <td>{{$student->last_name}}</td>
                             <td>
-                                <button v-on:click="showEditModal('{{$section_id}}/', '{{$student->username}}')" class="btn btn-primary" title="edit grades"><i class="fa fa-graduation-cap fa-lg"></i></button>
+                                <button v-on:click="showEditModal('{{$subject->id}}/', '{{$student->username}}')"
+                                        class="btn btn-primary" title="edit grades"><i
+                                            class="fa fa-graduation-cap fa-lg"></i></button>
                             </td>
                         </tr>
                     @endforeach
-                @endif
-                </tbody>
 
-            </table>
+                    </tbody>
+
+                </table>
+            @endif
         </div>
     </div>
 
@@ -67,7 +74,8 @@
                         <div class="modal-body">
 
                             <div id="edit-modal-body">
-                                <modal-edit-form v-for="(item, key) in responses" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+                                <modal-edit-form v-for="(item, key) in responses" :form-name="key" :form-data="item"
+                                                 :is-id="checkIfId(key)"></modal-edit-form>
                             </div>
 
                         </div>

@@ -18,6 +18,7 @@ class CreateSubjectsTable extends Migration
             $table->string('name');
             $table->integer('grade_id');
             $table->integer('section_id');
+            $table->integer('teacher_id');
         });
     }
 

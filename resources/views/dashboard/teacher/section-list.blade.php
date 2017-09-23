@@ -25,20 +25,22 @@
                 <tr>
                     <th>#</th>
                     <th>Section</th>
+                    <th>Subject</th>
                     <th>Level</th>
                     <th colspan="10" class="text-center">Action</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                @if(isset($sections))
-                    @foreach($sections as $section)
+                @if(isset($teacher))
+                    @foreach($teacher->subjects as $subject)
                         <tr>
                             <td>{{++$index}}</td>
-                            <td>{{$section->name}}</td>
-                            <td>{{$section->level->name}}</td>
+                            <td>{{$subject->section->name}}</td>
+                            <td>{{$subject->name}}</td>
+                            <td>{{$subject->section->level->name}}</td>
                             <td>
-                                <a class="btn btn-default" href="{{$section->id}}" title="view students"><i class="fa fa-eye fa-lg"></i></a>
+                                <a class="btn btn-default" href="{{ route('section', ['subject_id' => $subject->id]) }}" title="view students"><i class="fa fa-eye fa-lg"></i></a>
                             </td>
                         </tr>
                     @endforeach

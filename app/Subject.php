@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed $teacher
  * @property mixed $student
  * @property mixed $level
+ * @property mixed $grade
+ * @property mixed $section
  */
 class Subject extends Model
 {
@@ -27,5 +29,10 @@ class Subject extends Model
     public function grade()
     {
         return $this->belongsTo('App\Grade');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo('App\Section');
     }
 }
