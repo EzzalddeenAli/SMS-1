@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Level;
 use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
@@ -46,6 +47,15 @@ class RegistrarController extends Controller
         $vue_modals = true;
 
         return view('dashboard.registrar.student-list', compact('students', 'index', 'vue_modals'));
+    }
+
+    public function levels()
+    {
+        $levels = Level::all()->load('sections');
+        $index = 0;
+        $vue_modals = true;
+
+        return view('dashboard.registrar.level-list', compact('levels', 'index', 'vue_modals'));
     }
 
 }

@@ -56,5 +56,7 @@ Route::prefix('registrar')->group(function () {
     Route::patch('student', 'ResourceStudentController@update')->name('edit.student');
     Route::post('student', 'ResourceStudentController@store')->name('add.student');
     Route::delete('student/{username}', 'ResourceStudentController@destroy')->name('delete.student');
+
+    Route::get('levels', 'RegistrarController@levels')->name('registrar.levels.list');
 });
 

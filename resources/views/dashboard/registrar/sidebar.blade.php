@@ -6,10 +6,10 @@
                 <a href="{{'/'.request()->segment(1)}}"><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
             </li>
             <li class="{{ request()->segment(2) === 'students' ? 'active-link' : '' }}">
-                <a href="{{ route('registrar.student.list') }}"><i class="fa fa-list "></i>Students <span class="badge">Working</span></a>
+                <a href="{{ route('registrar.student.list') }}"><i class="fa fa-users "></i>Students <span class="badge">Working</span></a>
             </li>
-            <li>
-                <a href="blank.html"><i class="fa fa-edit "></i>Blank Page</a>
+            <li class="{{ request()->segment(2) === 'levels' ? 'active-link' : '' }}">
+                <a href="{{ route('registrar.levels.list') }}"><i class="fa fa-list "></i>Levels <span class="badge">Working</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>

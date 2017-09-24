@@ -12,9 +12,12 @@ class LevelsTableSeeder extends Seeder
      */
     public function run()
     {
-        $level = new Level;
 
-        $level->name = 'Grade12';
-        $level->save();
+        for ($i = 1; $i < 13; $i++) {
+            Level::create([
+                'name' => "Grade$i",
+            ]);
+        }
+
     }
 }
