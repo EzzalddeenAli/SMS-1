@@ -35,7 +35,7 @@ class AdminController extends Controller
         $index = 0;
         $vue_modals = true;
 
-        return view('dashboard.admin.teachers-list', compact('teachers', 'index', 'vue_modals'));
+        return view('dashboard.admin.teacher-list', compact('teachers', 'index', 'vue_modals'));
     }
 
 }

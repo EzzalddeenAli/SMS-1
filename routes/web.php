@@ -36,10 +36,24 @@ Route::prefix('admin')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    Route::get('teachers', 'AdminController@teachers')->name('teacher.list');
+    Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('teachers/{username}', 'ResourceTeacherController@edit');
-    Route::patch('teachers', 'ResourceTeacherController@update')->name('edit.teacher');
-    Route::post('teachers', 'ResourceTeacherController@store')->name('add.teacher');
+    Route::patch('teacher', 'ResourceTeacherController@update')->name('edit.teacher');
+    Route::post('teacher', 'ResourceTeacherController@store')->name('add.teacher');
     Route::delete('teachers/{username}', 'ResourceTeacherController@destroy');
+});
+
+Route::prefix('registrar')->group(function () {
+    //Login Controllers
+    Route::get('login', 'Auth\RegistrarLoginController@login')->name('registrar.login');
+    Route::post('login', 'Auth\RegistrarLoginController@authenticate')->name('registrar.authenticate');
+
+    //Dashboard Controllers
+    Route::get('/', 'RegistrarController@index')->name('registrar.dashboard');
+//    Route::get('teachers', 'RegistrarController@teachers')->name('registrar.teacher.list');
+    Route::get('students', 'RegistrarController@students')->name('registrar.student.list');
+    Route::get('students/{username}', 'ResourceStudentController@edit');
+    Route::patch('student', 'ResourceStudentController@update')->name('edit.student');
+    Route::post('student', 'ResourceStudentController@store')->name('add.student');
 });
 

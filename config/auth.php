@@ -60,6 +60,11 @@ return [
             'driver' => 'session',
             'provider' => 'students',
         ],
+
+        'registrar' => [
+            'driver' => 'session',
+            'provider' => 'registrars',
+        ],
     ],
 
     /*
@@ -95,6 +100,10 @@ return [
         'students' => [
             'driver' => 'eloquent',
             'model' => App\Student::class,
+        ],
+        'registrars' => [
+            'driver' => 'eloquent',
+            'model' => App\Registrar::class,
         ],
 
         // 'users' => [

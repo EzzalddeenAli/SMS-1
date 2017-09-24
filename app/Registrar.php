@@ -11,20 +11,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
-class Student extends Authenticatable
+class Registrar extends Authenticatable
 {
     use Notifiable;
 
     protected $fillable = [
-        'username', 'password', 'first_name', 'middle_name','last_name', 'age', 'section_id',
+        'username', 'password',
     ];
 
     protected $hidden = [
-        'remember_token', 'created_at', 'updated_at',
+        'password', 'remember_token', 'created_at', 'updated_at',
     ];
-
-    public function grades()
-    {
-        return $this->hasMany('App\Grade');
-    }
 }

@@ -28,6 +28,9 @@ class RedirectIfAuthenticated
                 case 'student':
                     return redirect()->route('student.dashboard');
                     break;
+                case 'registrar':
+                    return redirect()->route('registrar.dashboard');
+                    break;
                 default:
                     return redirect('/home');
                     break;

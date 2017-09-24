@@ -3,10 +3,10 @@
         <ul class="nav" id="main-menu">
 
             <li class="{{ request()->segment(2) === null ? 'active-link' : '' }}">
-                <a href="{{'/'.request()->segment(1)}}" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
+                <a href="{{'/'.request()->segment(1)}}"><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
             </li>
-            <li class="{{ request()->segment(2) === 'teachers' ? 'active-link' : '' }}">
-                <a href="{{route('admin.teacher.list')}}"><i class="fa fa-user "></i>Teachers <span class="badge">Working</span></a>
+            <li class="{{ request()->segment(2) === 'students' ? 'active-link' : '' }}">
+                <a href="{{ route('registrar.student.list') }}"><i class="fa fa-list "></i>Students <span class="badge">Working</span></a>
             </li>
             <li>
                 <a href="blank.html"><i class="fa fa-edit "></i>Blank Page</a>
