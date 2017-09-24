@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            @if(isset($subject))
+            @isset($subject)
                 <h4 class="text-center">{{$subject->name}} - {{$subject->section->name}}</h4>
                 <input type="text" class="form-control" placeholder="Search for student">
                 <br>
@@ -54,7 +54,7 @@
                     </tbody>
 
                 </table>
-            @endif
+            @endisset
         </div>
     </div>
 

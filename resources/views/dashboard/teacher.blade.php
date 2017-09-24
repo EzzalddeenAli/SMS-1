@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.main')
 
+@section('title', 'Teacher Dashboard')
+
 @section('sidebar')
     @include('dashboard.teacher.sidebar')
 @endsection

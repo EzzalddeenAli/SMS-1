@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.main')
 
+@section('title', 'Student Dashboard')
+
 @section('sidebar')
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">

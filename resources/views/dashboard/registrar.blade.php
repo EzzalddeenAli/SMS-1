@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.main')
 
+@section('title', 'Registrar Dashboard')
+
 @section('sidebar')
     @include('dashboard.registrar.sidebar')
 @endsection

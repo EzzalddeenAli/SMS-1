@@ -5,7 +5,7 @@
             <li class="{{ request()->segment(2) === null ? 'active-link' : '' }}">
                 <a href="{{'/'.request()->segment(1)}}"><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
             </li>
-            <li class="{{ request()->segment(2) === 'classes' ? 'active-link' : '' }}">
+            <li class="{{ request()->segment(2) === 'sections' ? 'active-link' : '' }}">
                 <a href="{{ route('section.list') }}"><i class="fa fa-list "></i>Class <span class="badge">Working</span></a>
             </li>
             <li>

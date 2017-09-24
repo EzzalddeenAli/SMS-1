@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.main')
 
+@section('title', 'Admin Dashboard')
+
 @section('sidebar')
     @include('dashboard.admin.sidebar')
 @endsection
