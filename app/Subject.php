@@ -35,4 +35,9 @@ class Subject extends Model
     {
         return $this->belongsTo('App\Section');
     }
+
+    public function teacher()
+    {
+        return $this->belongsTo('App\Teacher');
+    }
 }

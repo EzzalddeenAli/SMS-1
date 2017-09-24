@@ -25,8 +25,4 @@ class Teacher extends Authenticatable
         return $this->hasMany('App\Subject');
     }
 
-/*  $teacher->sections
-    s
-    s*/
-
 }

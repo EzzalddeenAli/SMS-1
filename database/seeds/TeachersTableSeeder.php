@@ -21,5 +21,15 @@ class TeachersTableSeeder extends Seeder
             "age" => 15,
             "advisory" => 1,
         ]);
+
+        Teacher::create([
+            "username" => "teacher2",
+            "password" => Hash::make("12345678"),
+            "first_name" => "Excepteur",
+            "middle_name" => "Sint",
+            "last_name" => "Occaecat",
+            "age" => 20,
+            "advisory" => 2,
+        ]);
     }
 }

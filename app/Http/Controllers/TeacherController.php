@@ -38,19 +38,10 @@ class TeacherController extends Controller
         return view('dashboard.teacher.section-list', compact('teacher', 'index'));
     }
 
-/*    public function section(Section $id)
-    {
-        $section_id = $id->id;
-        $students =  $id->students;
-        $index = 0;
-        $vue_modals = true;
-
-        return view('dashboard.teacher.section', compact('students', 'index', 'section_id', 'vue_modals'));
-    }*/
-
     public function section($subject_id)
     {
-        $subject = Teacher::find(auth()->id())->subjects->where('id', $subject_id)->first()->load('section.students');
+        $subject = Teacher::findOrFail(auth()->id())->subjects->where('id', $subject_id)->first()->load('section.students');
+//        $subject = Teacher::findOrFail(auth()->id())->subject($subject_id)->first()->load('section.students');
 
         $index = 0;
         $vue_modals = true;

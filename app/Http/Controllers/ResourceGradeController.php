@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Grade;
 use App\Section;
 use App\Student;
+use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ResourceGradeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:teacher');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -71,7 +77,7 @@ class ResourceGradeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return bool
      */
     public function update(Request $request)
     {
@@ -83,6 +89,23 @@ class ResourceGradeController extends Controller
             'subject_id' => 'bail|required|integer',
             'student_id' => 'bail|required|integer',
         ]);
+
+        $subject = Subject::find($request->subject_id);
+
+        if (Gate::allows('update-grade', $subject)) {
+            Grade::where('subject_id', $request->subject_id)->where('student_id', $request->student_id)->update([
+                '1st' => $request->{'1st'},
+                '2nd' => $request->{'2nd'},
+                '3rd' => $request->{'3rd'},
+                '4th' => $request->{'4th'},
+            ]);
+
+            return back();
+        }
+
+        if (Gate::denies('update-grade', $subject)) {
+            return back()->withErrors(['warning' => 'You don\'t have permission to edit this grade!']);
+        }
 
     }
 
