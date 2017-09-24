@@ -40,7 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::get('teachers/{username}', 'ResourceTeacherController@edit');
     Route::patch('teacher', 'ResourceTeacherController@update')->name('edit.teacher');
     Route::post('teacher', 'ResourceTeacherController@store')->name('add.teacher');
-    Route::delete('teachers/{username}', 'ResourceTeacherController@destroy');
+    Route::delete('teacher/{username}', 'ResourceTeacherController@destroy');
 });
 
 Route::prefix('registrar')->group(function () {
@@ -55,5 +55,6 @@ Route::prefix('registrar')->group(function () {
     Route::get('students/{username}', 'ResourceStudentController@edit');
     Route::patch('student', 'ResourceStudentController@update')->name('edit.student');
     Route::post('student', 'ResourceStudentController@store')->name('add.student');
+    Route::delete('student/{username}', 'ResourceStudentController@destroy')->name('delete.student');
 });
 

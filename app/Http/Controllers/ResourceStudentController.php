@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade;
+use App\Http\Requests\storeStudent;
 use App\Http\Requests\storeTeacher;
 use App\Http\Requests\updateStudent;
 use App\Http\Requests\updateTeacher;
+use App\Section;
 use Illuminate\Foundation\PackageManifest;
 use Illuminate\Http\Request;
 use App\Student;
@@ -39,17 +42,29 @@ class ResourceStudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeTeacher $request)
+    public function store(storeStudent $request)
     {
-        Teacher::create([
+        $student_id = Student::orderBy('id', 'DESC')->first()->id;
+        Student::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
             'age' => $request->age,
-            'advisory' => $request->advisory,
+            'section_id' => $request->section_id,
+            'student_id' => ++$student_id,
         ]);
+
+        //find section's subjects then foreach grade add student
+        $section = Section::find($request->section_id);
+
+        foreach ($section->subjects as $subject) {
+            Grade::create([
+                'subject_id' => $subject->id,
+                'student_id' => ++$student_id
+            ]);
+        }
 
         return back();
     }
@@ -68,8 +83,9 @@ class ResourceStudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $username
+     * @return Student
+     * @internal param int $id
      */
     public function edit($username)
     {
@@ -81,9 +97,9 @@ class ResourceStudentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param updateStudent|Request $request
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function update(updateStudent $request)
     {
@@ -108,12 +124,13 @@ class ResourceStudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $username
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function destroy($username)
     {
-        Teacher::where('username', $username)->delete();
+        Student::where('username', $username)->delete();
 
         return back();
     }

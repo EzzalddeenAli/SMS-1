@@ -24,7 +24,9 @@ let editModal = new Vue({
 let addModal = new Vue({
     el: '#add-modal-body',
     data: {
-        fields: {
+        fields: {},
+
+        teacherFields: {
             username: "text",
             password: "password",
             first_name: "text",
@@ -32,6 +34,16 @@ let addModal = new Vue({
             last_name: "text",
             age: "number",
             advisory: "number",
+        },
+
+        studentFields: {
+            username: "text",
+            password: "password",
+            first_name: "text",
+            middle_name: "text",
+            last_name: "text",
+            age: "number",
+            section_id: "number",
         },
     }
 });
@@ -58,17 +70,34 @@ let teachersTable = new Vue({
                     }
                 }
 
-                console.log(data);
             });
             $('#edit-modal').modal('show');
         },
 
-        showAddModal() {
+        showAddModal(field) {
+            switch (field) {
+                case 'teacher':
+                    addModal.fields = addModal.teacherFields;
+                    break;
+                case 'student':
+                    addModal.fields = addModal.studentFields;
+                    break;
+            }
+
             $('#add-modal').modal('show');
         },
 
-        showDeleteModal(username) {
-            deleteModal.deleteLink = '/admin/teachers/' + username;
+        showDeleteModal(type, username) {
+            switch (type) {
+                case 'teacher':
+                    deleteModal.deleteLink = '/admin/teacher/' + username;
+                    break;
+
+                case 'student':
+                    deleteModal.deleteLink = '/registrar/student/' + username;
+                    break;
+            }
+
             deleteModal.username = username;
             $('#delete-modal').modal('show');
         }

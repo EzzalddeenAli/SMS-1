@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('sidebar')
-    @include('dashboard.admin.sidebar')
+    @include('dashboard.registrar.sidebar')
 @endsection
 
 @section('body')
@@ -20,10 +20,10 @@
 
         <!-- menu bar -->
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search for teacher">
+                <input type="text" class="form-control" placeholder="Search for student">
             </div>
             <div class="form-horizontal form-group">
-                <button v-on:click="showAddModal" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
+                <button v-on:click="showAddModal('student')" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
             </div>
         <!-- ./menu bar-->
         <div class="table-responsive">
@@ -52,7 +52,7 @@
                     <td>{{$student->last_name}}</td>
                     <td>{{$student->age}}</td>
                     <td>
-                        <button v-on:click="showDeleteModal('{{$student->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button v-on:click="showDeleteModal('student', '{{$student->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>
                         <button v-on:click="showEditModal('/registrar/students/', '{{$student->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>

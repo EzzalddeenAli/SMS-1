@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" placeholder="Search for teacher">
             </div>
             <div class="form-horizontal form-group">
-                <button v-on:click="showAddModal" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
+                <button v-on:click="showAddModal('teacher')" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
             </div>
         <!-- ./menu bar-->
         <div class="table-responsive">
@@ -53,7 +53,7 @@
                     <td>{{$teacher->age}}</td>
                     <td>{{$teacher->advisory}}</td>
                     <td>
-                        <button v-on:click="showDeleteModal('{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>
                         <button v-on:click="showEditModal('/admin/teachers/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
