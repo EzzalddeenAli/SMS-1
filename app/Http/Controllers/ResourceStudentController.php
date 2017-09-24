@@ -130,7 +130,11 @@ class ResourceStudentController extends Controller
      */
     public function destroy($username)
     {
-        Student::where('username', $username)->delete();
+        $student = Student::where('username', $username)->first();
+
+        Grade::where('student_id', $student->id)->delete();
+
+        $student->delete();
 
         return back();
     }
