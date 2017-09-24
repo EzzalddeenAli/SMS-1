@@ -24,7 +24,7 @@ class storeTeacher extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|bail|min:8|alpha_num',
+            'username' => 'required|bail|unique:teachers|min:8|alpha_num',
             'password' => 'required|bail|min:8',
             'first_name' => 'required|bail|alpha',
             'middle_name' => 'required|bail|alpha',

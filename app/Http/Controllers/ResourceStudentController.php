@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Grade;
 use App\Http\Requests\storeStudent;
-use App\Http\Requests\storeTeacher;
 use App\Http\Requests\updateStudent;
-use App\Http\Requests\updateTeacher;
 use App\Section;
+use ErrorException;
 use Illuminate\Foundation\PackageManifest;
 use Illuminate\Http\Request;
 use App\Student;
@@ -39,12 +38,21 @@ class ResourceStudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param storeStudent|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(storeStudent $request)
     {
-        $student_id = Student::orderBy('id', 'DESC')->first()->id;
+        try {
+            $student_id = Student::orderBy('id', 'DESC')->first()->id;
+        } catch (ErrorException $e) {
+            $student_id = 1;
+        }
+
+        if ($student_id !== 1) {
+            ++$student_id;
+        }
+
         Student::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -53,7 +61,7 @@ class ResourceStudentController extends Controller
             'last_name' => $request->last_name,
             'age' => $request->age,
             'section_id' => $request->section_id,
-            'student_id' => ++$student_id,
+            'student_id' => $student_id,
         ]);
 
         //find section's subjects then foreach grade add student
@@ -62,7 +70,7 @@ class ResourceStudentController extends Controller
         foreach ($section->subjects as $subject) {
             Grade::create([
                 'subject_id' => $subject->id,
-                'student_id' => ++$student_id
+                'student_id' => $student_id
             ]);
         }
 
