@@ -12,7 +12,13 @@ class LevelsTableSeeder extends Seeder
      */
     public function run()
     {
+        $preschool = ['Nursery1', 'Nursery2', 'Kinder1', 'Kinder2', 'Preparatory1', 'Preparatory2'];
 
+        foreach ($preschool as $level) {
+            Level::create([
+                'name' => $level,
+            ]);
+        }
         for ($i = 1; $i < 13; $i++) {
             Level::create([
                 'name' => "Grade$i",

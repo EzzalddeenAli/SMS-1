@@ -24,7 +24,9 @@ let editModal = new Vue({
 let addModal = new Vue({
     el: '#add-modal-body',
     data: {
-        fields: {},
+        fields: {
+            section: "select"
+        },
 
         teacherFields: {
             username: "text",
@@ -45,7 +47,19 @@ let addModal = new Vue({
             age: "number",
             section_id: "number",
         },
+
+        levelFields: {
+        },
+    },
+
+    computed: {
+        getLevelFields() {
+            console.log(this.levelFields);
+            return this.levelFields;
+        }
+
     }
+
 });
 
 let deleteModal = new Vue({
@@ -81,6 +95,13 @@ let teachersTable = new Vue({
                     break;
                 case 'student':
                     addModal.fields = addModal.studentFields;
+                    break;
+                case 'level':
+                    $.get('/registrar/levels', function (data) {
+                        for (const datum of data) {
+                            Vue.set(addModal.levelFields, datum.name, datum.id)
+                        }
+                    });
                     break;
             }
 

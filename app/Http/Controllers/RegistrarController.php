@@ -52,6 +52,11 @@ class RegistrarController extends Controller
     public function levels()
     {
         $levels = Level::all()->load('sections');
+
+        if (request()->ajax()) {
+            return $levels;
+        }
+
         $index = 0;
         $vue_modals = true;
 

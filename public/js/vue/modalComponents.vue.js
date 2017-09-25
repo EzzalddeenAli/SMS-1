@@ -28,11 +28,18 @@ Vue.component("modal-edit-form", {
 Vue.component("modal-add-form", {
     props: {
         formName: String,
-        formType: String,
+        formType: [String, Number],
+        options: Object,
     },
-    template: `<div class="form-group">
+    template: `<div class="form-group" v-if="formType !== 'select'">
                     <label :for="formName" v-text="formName"></label>
                     <input :type="formType" class="form-control" :name="formName" :id="formName" value="" :placeholder="formName">
+                </div>
+                
+                <div v-else>
+                    <select :name="formName" class="form-control">
+                        <option v-for="(value, name) in options" :value="value" v-text="name"></option>
+                    </select>
                 </div>`
 
 });

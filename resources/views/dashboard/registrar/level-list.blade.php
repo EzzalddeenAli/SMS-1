@@ -100,7 +100,7 @@
                     <div class="modal-body">
 
                         <div id="add-modal-body">
-                            <modal-add-form v-for="(type, field) in fields" :form-name="field" :form-type="type"></modal-add-form>
+                            <modal-add-form v-for="(type, field) in fields" :options="getLevelFields" :form-name="field" :form-type="type"></modal-add-form>
                         </div>
 
                     </div>
