@@ -95,12 +95,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Add Student</h4>
                 </div>
-                <form action="{{ route('add.student') }}" method="post">
+                <form action="{{ route('add.section') }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-body">
 
                         <div id="add-modal-body">
-                            <modal-add-form v-for="(type, field) in fields" :options="getLevelFields" :form-name="field" :form-type="type"></modal-add-form>
+                            <modal-add-form v-for="(type, field) in fields" :options="levelFields" :form-name="field" :form-type="type"></modal-add-form>
                         </div>
 
                     </div>

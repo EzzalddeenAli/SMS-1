@@ -40,6 +40,10 @@ Vue.component("modal-add-form", {
                     <select :name="formName" class="form-control">
                         <option v-for="(value, name) in options" :value="value" v-text="name"></option>
                     </select>
+                    <div class="form-group">
+                        <label for="section-name">Section Name</label>
+                        <input type="text" class="form-control" name="section-name" id="section-name" placeholder="Section Name">
+                    </div>
                 </div>`
 
 });

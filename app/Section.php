@@ -14,6 +14,10 @@ class Section extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = [
+        'name', 'level_id'
+    ];
+
     public function level()
     {
         return $this->belongsTo('App\Level');

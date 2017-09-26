@@ -25,7 +25,7 @@ let addModal = new Vue({
     el: '#add-modal-body',
     data: {
         fields: {
-            section: "select"
+            levelId: "select"
         },
 
         teacherFields: {
@@ -50,14 +50,6 @@ let addModal = new Vue({
 
         levelFields: {
         },
-    },
-
-    computed: {
-        getLevelFields() {
-            console.log(this.levelFields);
-            return this.levelFields;
-        }
-
     }
 
 });
