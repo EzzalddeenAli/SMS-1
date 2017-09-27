@@ -16,6 +16,10 @@ class Subject extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = [
+        'name', 'section_id', 'teacher_id',
+    ];
+
     public function student()
     {
         return $this->belongsTo('App\Student');
@@ -26,10 +30,10 @@ class Subject extends Model
         return $this->belongsTo('App\Level');
     }
 
-    public function grade()
+/*    public function grade()
     {
         return $this->belongsTo('App\Grade');
-    }
+    }*/
 
     public function section()
     {

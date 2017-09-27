@@ -32,9 +32,11 @@ Vue.component("modal-add-form", {
         options: Object,
         extraOptions: Object,
     },
-    template: `<div class="form-group" v-if="formType !== 'select'">
-                    <label :for="formName" v-text="formName"></label>
-                    <input :type="formType" class="form-control" :name="formName" :id="formName" value="" :placeholder="formName">
+    template: `<div v-if="formType !== 'select'">
+                    <div class="form-group">
+                        <label :for="formName" v-text="formName"></label>
+                        <input :type="formType" class="form-control" :name="formName" :id="formName" value="" :placeholder="formName">
+                    </div>
                 </div>
 
                 <div v-else>
@@ -47,4 +49,10 @@ Vue.component("modal-add-form", {
                     </div>
                 </div>`
 
+});
+
+Vue.component("modal-select-form", {
+    template: `<select name="formName" class="form-control">
+                    <option value="value">It's time</option>
+                </select>`
 });

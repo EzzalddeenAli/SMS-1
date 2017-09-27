@@ -14,14 +14,14 @@ class SubjectsTableSeeder extends Seeder
     {
         Subject::create([
             'name' => 'Computer',
-            'grade_id' => 1,
+//            'grade_id' => 1,
             'section_id' => 1,
             'teacher_id' => 1,
         ]);
 
         Subject::create([
             'name' => 'English',
-            'grade_id' => 1,
+//            'grade_id' => 1,
             'section_id' => 1,
             'teacher_id' => 1,
         ]);
