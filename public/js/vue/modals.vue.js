@@ -24,9 +24,7 @@ let editModal = new Vue({
 let addModal = new Vue({
     el: '#add-modal-body',
     data: {
-        fields: {
-            levelId: "select"
-        },
+        fields: {},
 
         teacherFields: {
             username: "text",
@@ -48,8 +46,9 @@ let addModal = new Vue({
             section_id: "number",
         },
 
-        levelFields: {
-        },
+        levelFields: {},
+
+        subjectFields: {}
     }
 
 });
@@ -89,9 +88,19 @@ let teachersTable = new Vue({
                     addModal.fields = addModal.studentFields;
                     break;
                 case 'level':
+                    addModal.fields = {levelId: "select"};
                     $.get('/registrar/levels', function (data) {
                         for (const datum of data) {
                             Vue.set(addModal.levelFields, datum.name, datum.id)
+                        }
+                    });
+                    break;
+                case 'subject':
+                    addModal.fields = {teacherId: "select"};
+                    $.get('/registrar/teachers', function (data) {
+                        console.log(data);
+                        for (const datum of data) {
+                            Vue.set(addModal.subjectFields, (datum.first_name + ' ' + datum.middle_name + ' ' + datum.last_name), datum.id)
                         }
                     });
                     break;

@@ -14,7 +14,7 @@ class SectionsTableSeeder extends Seeder
     {
         $section = new Section;
         $section->name = 'Gentlemen';
-        $section->level_id = 1;
+        $section->level_id = 18;
         $section->save();
     }
 }

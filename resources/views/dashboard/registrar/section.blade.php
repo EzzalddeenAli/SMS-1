@@ -25,39 +25,40 @@
                 <input type="text" class="form-control" placeholder="Search level">
             </div>
             <div class="form-horizontal form-group">
-                <button v-on:click="showAddModal('level')" class="btn btn-default" title="add section"><i class="fa fa-plus fa-lg"></i></button>
+                <button v-on:click="showAddModal('subject')" class="btn btn-default" title="add section"><i class="fa fa-plus fa-lg"></i></button>
             </div>
         <!-- ./menu bar-->
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
 
-                <thead>
-                <tr>
-                    <th class="text-center">Sections</th>
-                    <th colspan="10" class="text-center">Action</th>
-                </tr>
-                </thead>
+        @isset($subjects)
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
 
-                <tbody>
-                @isset($levels)
-                    @foreach($levels as $level)
+                    <thead>
                     <tr>
-                        <td colspan="10" class="text-center text-info h4"><b>{{$level->name}}</b></td>
+                        <th>#</th>
+                        <th class="text-center">Subjects</th>
+                        <th class="text-center">Teacher</th>
+                        <th colspan="10" class="text-center">Action</th>
                     </tr>
-                        @foreach($level->sections as $section)
+                    </thead>
+
+                    <tbody>
+
+                        @foreach($subjects as $subject)
                             <tr>
-                                <td class="text-center" colspan="2">{{ $section->name }}</td>
+                                <td>{{++$index}}</td>
+                                <td>{{$subject->name}}</td>
+                                <td>{{$subject->teacher->first_name}} {{$subject->teacher->middle_name}} {{$subject->teacher->last_name}}</td>
                                 <td>
-                                    <a class="btn btn-default" href="{{ route('registrar.section', ['id' => $section->id]) }}"><i class="fa fa-eye"></i></a>
+                                    <button class="btn btn-info" ><i class="fa fa-edit fa-lg"></i></button>
                                 </td>
                             </tr>
                         @endforeach
-                    @endforeach
-                @endisset
-                </tbody>
+                    </tbody>
 
-            </table>
-        </div>
+                </table>
+            </div>
+        @endisset
     </div>
 </div>
 
@@ -95,14 +96,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Add Section</h4>
+                    <h4 class="modal-title">Add Student</h4>
                 </div>
                 <form action="{{ route('add.section') }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-body">
 
                         <div id="add-modal-body">
-                            <modal-add-form v-for="(type, field) in fields" :options="levelFields" :extra-options="{'section-name': 'text'}" :form-name="field" :form-type="type"></modal-add-form>
+                            <modal-add-form v-for="(type, field) in fields" :options="subjectFields" :extra-options="{'subject-name': 'text'}" :form-name="field" :form-type="type"></modal-add-form>
                         </div>
 
                     </div>

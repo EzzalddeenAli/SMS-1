@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Level;
+use App\Section;
 use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
@@ -31,14 +32,18 @@ class RegistrarController extends Controller
         return view('dashboard.registrar');
     }
 
-/*    public function teachers()
+    public function teachers()
     {
         $teachers = Teacher::all();
+
+        if (request()->ajax()) {
+            return $teachers;
+        }
         $index = 0;
         $vue_modals = true;
 
         return view('dashboard.registrar.teacher-list', compact('teachers', 'index', 'vue_modals'));
-    }*/
+    }
 
     public function students()
     {
@@ -61,6 +66,15 @@ class RegistrarController extends Controller
         $vue_modals = true;
 
         return view('dashboard.registrar.level-list', compact('levels', 'index', 'vue_modals'));
+    }
+
+    public function section(Section $id)
+    {
+        $subjects = $id->subjects->load('teacher');
+        $index = 0;
+        $vue_modals = true;
+
+        return view('dashboard.registrar.section', compact('index', 'vue_modals', 'subjects'));
     }
 
 }

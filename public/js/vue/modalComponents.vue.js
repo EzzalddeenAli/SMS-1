@@ -30,19 +30,20 @@ Vue.component("modal-add-form", {
         formName: String,
         formType: [String, Number],
         options: Object,
+        extraOptions: Object,
     },
     template: `<div class="form-group" v-if="formType !== 'select'">
                     <label :for="formName" v-text="formName"></label>
                     <input :type="formType" class="form-control" :name="formName" :id="formName" value="" :placeholder="formName">
                 </div>
-                
+
                 <div v-else>
                     <select :name="formName" class="form-control">
                         <option v-for="(value, name) in options" :value="value" v-text="name"></option>
                     </select>
-                    <div class="form-group">
-                        <label for="section-name">Section Name</label>
-                        <input type="text" class="form-control" name="section-name" id="section-name" placeholder="Section Name">
+                    <div class="form-group" v-for="(type, field) in extraOptions">
+                        <label :for="field" v-text="field"></label>
+                        <input :type="type" class="form-control" :name="field" :id="field" value="" :placeholder="field">
                     </div>
                 </div>`
 
