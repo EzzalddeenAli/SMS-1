@@ -60,5 +60,7 @@ Route::prefix('registrar')->group(function () {
 
     Route::post('section', 'ResourceSectionController@store')->name('add.section');
     Route::get('section/{id}', 'RegistrarController@section')->name('registrar.section');
+    Route::post('subject', 'ResourceSubjectController@store')->name('add.subject');
+
 });
 
