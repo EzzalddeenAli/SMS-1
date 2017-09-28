@@ -10,11 +10,16 @@ class ResourceSectionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response|static[]
      */
     public function index()
     {
-        //
+        if (request()->ajax()) {
+            return Section::all();
+        }
+
+        return back();
+
     }
 
     /**

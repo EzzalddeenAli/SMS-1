@@ -84,7 +84,7 @@
                     <div class="modal-body">
 
                         <div id="edit-modal-body">
-                            <modal-edit-form v-for="(item, key) in responses" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+                            <modal-edit-form v-for="(item, key, index) in responses" :key="index" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
                         </div>
 
                     </div>
@@ -110,7 +110,7 @@
                     <div class="modal-body">
 
                         <div id="add-modal-body">
-                            <modal-add-form v-for="(type, field) in fields" :form-name="field" :form-type="type"></modal-add-form>
+                            <modal-add-form v-for="(type, field, index) in fields" :key="index" :form-name="field" :form-type="type"></modal-add-form>
                             <teacher-select-form></teacher-select-form>
                         </div>
 
