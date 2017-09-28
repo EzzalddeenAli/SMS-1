@@ -23,7 +23,7 @@ Route::prefix('teacher')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'TeacherController@index')->name('teacher.dashboard');
-    Route::get('sections', 'TeacherController@sections')->name('section.list');
+    Route::get('sections', 'TeacherController@sections')->name('teacher.section.list');
     Route::get('/section/{subject_id}', 'TeacherController@section')->name('section');
     Route::get('/section/{section_id}/{username}', 'ResourceGradeController@edit');
     Route::patch('grade', 'ResourceGradeController@update')->name('edit.grade');
@@ -62,5 +62,9 @@ Route::prefix('registrar')->group(function () {
     Route::get('section/{id}', 'RegistrarController@section')->name('registrar.section');
     Route::post('subject', 'ResourceSubjectController@store')->name('add.subject');
 
+});
+
+Route::prefix('resource')->group(function () {
+    Route::get('sections', 'ResourceSectionController@index')->name('section.list');
 });
 

@@ -57,18 +57,37 @@ Vue.component("modal-add-form", {
 });
 
 Vue.component("teacher-select-form", {
+    props: {
+        fields: Object,
+    },
+
+    data() {
+        return {
+            sections: {}
+        }
+    },
+
+    methods: {
+        alert(text) {
+            alert(text);
+        }
+    },
+
+    created() {
+        axios.get('/resource/sections', {
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        }).then(response => {
+            for (const datum of response.data) {
+                Vue.set(this.sections, datum.name, datum.level_id)
+            }
+        });
+    },
+
     template: `<div>
                     <div class="form-group">
                         <label>Advisory</label>
-                        <select name="formName" class="form-control">
-                            <option value="value">It's time</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Advisory</label>
-                        <select name="formName" class="form-control">
-                            <option value="value">It's time</option>
+                        <select name="formName" class="form-control" @change="alert('I have changed')">
+                            <option  v-for="(id, name) in sections" :value="id" v-text="name"></option>
                         </select>
                     </div>
                </div>`
