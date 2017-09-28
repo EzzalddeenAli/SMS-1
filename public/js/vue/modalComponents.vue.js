@@ -32,8 +32,14 @@ Vue.component("modal-add-form", {
         options: Object,
         extraOptions: Object,
     },
+
+    computed: {
+        excluded() {
+            return this.formName === "advisory";
+        }
+    },
     template: `<div v-if="formType !== 'select'">
-                    <div class="form-group">
+                    <div class="form-group" v-if="!excluded">
                         <label :for="formName" v-text="formName"></label>
                         <input :type="formType" class="form-control" :name="formName" :id="formName" value="" :placeholder="formName">
                     </div>
@@ -48,11 +54,22 @@ Vue.component("modal-add-form", {
                         <input :type="type" class="form-control" :name="field" :id="field" value="" :placeholder="field">
                     </div>
                 </div>`
-
 });
 
-Vue.component("modal-select-form", {
-    template: `<select name="formName" class="form-control">
-                    <option value="value">It's time</option>
-                </select>`
+Vue.component("teacher-select-form", {
+    template: `<div>
+                    <div class="form-group">
+                        <label>Advisory</label>
+                        <select name="formName" class="form-control">
+                            <option value="value">It's time</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Advisory</label>
+                        <select name="formName" class="form-control">
+                            <option value="value">It's time</option>
+                        </select>
+                    </div>
+               </div>`
 });

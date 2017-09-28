@@ -66,15 +66,11 @@ let teachersTable = new Vue({
 
     methods: {
         showEditModal(baseurl, username) {
-            $.get(baseurl + username, function (data) {
-                editModal.responses = data;
-
-                for (const formName of Object.keys(data)) {
-                    if (formName === "password") {
-                        editModal.responses.password = "";
-                    }
-                }
-
+            axios.get(baseurl + username, {
+                headers: {'X-Requested-With': 'XMLHttpRequest'}
+            }).then(function (response) {
+                editModal.responses = response.data;
+                editModal.responses.password = "";
             });
             $('#edit-modal').modal('show');
         },
@@ -89,17 +85,20 @@ let teachersTable = new Vue({
                     break;
                 case 'level':
                     addModal.fields = {levelId: "select"};
-                    $.get('/registrar/levels', function (data) {
-                        for (const datum of data) {
+                    axios.get('/registrar/levels', {
+                        headers: {'X-Requested-With': 'XMLHttpRequest'}
+                    }).then(function (response) {
+                        for (const datum of response.data) {
                             Vue.set(addModal.levelFields, datum.name, datum.id)
                         }
                     });
                     break;
                 case 'subject':
                     addModal.fields = {teacherId: "select"};
-                    $.get('/registrar/teachers', function (data) {
-                        console.log(data);
-                        for (const datum of data) {
+                    axios.get('/registrar/teachers', {
+                        headers: {'X-Requested-With': 'XMLHttpRequest'}
+                    }).then(function (response) {
+                        for (const datum of response.data) {
                             Vue.set(addModal.subjectFields, (datum.first_name + ' ' + datum.middle_name + ' ' + datum.last_name), datum.id)
                         }
                     });
