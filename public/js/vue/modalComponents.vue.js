@@ -90,9 +90,11 @@ Vue.component("teacher-select-form", {
 Vue.component("assign-tab", {
     data() {
         return {
-            elem: {},
-            junior: {},
-            senior: {},
+            levels: {
+                elem: {},
+                junior: {},
+                senior: {},
+            }
         }
     },
 
@@ -100,9 +102,9 @@ Vue.component("assign-tab", {
         axios.get('/admin/teachers', {
             headers: {'X-Requested-With': 'XMLHttpRequest'}
         }).then(response => {
+            console.log(response.data);
             let tab = 1;
             for (const datum of response.data) {
-                console.log(datum);
                 switch (datum.name) {
                     case 'Grade7':
                         tab = 2;
@@ -115,13 +117,13 @@ Vue.component("assign-tab", {
 
                 switch (tab) {
                     case 1:
-                        Vue.set(this.elem, datum.name, datum);
+                        Vue.set(this.levels.elem, datum.name, datum);
                         break;
                     case 2:
-                        Vue.set(this.junior, datum.name, datum);
+                        Vue.set(this.levels.junior, datum.name, datum);
                         break;
                     case 3:
-                        Vue.set(this.senior, datum.name, datum);
+                        Vue.set(this.levels.senior, datum.name, datum);
                         break;
                 }
             }
@@ -143,40 +145,35 @@ Vue.component("assign-tab", {
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <!--elementary tab-->
-                    <div class="tab-pane active" id="elem">
-                        <div class="panel panel-default" v-for="(obj, name) in elem">
-                           <div class="panel-heading">
-                             <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
-                           </div>
-                          
-                           <div class="panel-body collapse" :id="'panel' + obj.id">
-                               <div v-for="(item, key) in obj.subjects">
-                               {{item}}
-                               </div>
-                           </div>
-                        </div>
-                    </div>
-                    <!--High school tab-->
-                    <div class="tab-pane" id="junior">
-                        <div class="panel panel-default" v-for="(obj, name) in junior">
-                           <div class="panel-heading">
-                             <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
-                           </div>
-                          
-                           <div class="panel-body collapse" :id="'panel' + obj.id">Panel Body</div>
-                        </div>
-                    </div>
-                    <!--Senior High school tab-->
-                    <div class="tab-pane" id="senior">
-                        <div class="panel panel-default" v-for="(obj, name) in senior">
-                           <div class="panel-heading">
-                             <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
-                           </div>
-                          
-                           <div class="panel-body collapse" :id="'panel' + obj.id">Panel Body</div>
-                        </div>
+                    <div class="tab-pane active" :id="level" v-for="(obj, level) in levels">
+                        <assign-tab-panel :level="obj"></assign-tab-panel>
                     </div>
                 </div>
               </div>`
+});
+
+Vue.component("assign-tab-panel", {
+    props: {
+        level: Object,
+    },
+    template: `<div>
+                 <div class="panel panel-default" v-for="(obj, name) in level">
+                  <div class="panel-heading">
+                    <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
+                  </div>
+                          
+                  <div class="panel-body collapse" :id="'panel' + obj.id">
+                     <div v-for="(section, key) in obj.sections">
+                        <p>{{section.name}}</p>
+                        
+                        <div class="form-group">
+                        	<label for="inputID" class="col-sm-2 control-label">Label:</label>
+                        	<div class="col-sm-10">
+                        		<input class="form-control" type="checkbox" name="subjects[]" :id="inputID" :value="subject.id" v-for="(subject, key) in section.subjects">
+                        	</div>
+                        </div>
+                     </div>
+                  </div>
+                 </div>
+               </div>`
 });
