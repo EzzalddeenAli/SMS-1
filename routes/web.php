@@ -66,5 +66,6 @@ Route::prefix('registrar')->group(function () {
 
 Route::prefix('resource')->group(function () {
     Route::get('sections', 'ResourceSectionController@index')->name('section.list');
+//    Route::get('subjects', 'ResourceSubjectController@index')->name('subject.list');
 });
 

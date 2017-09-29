@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Level;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,10 @@ class AdminController extends Controller
 
     public function teachers()
     {
+        if (request()->ajax()) {
+            return Level::with(['sections', 'sections.subjects'])->get();
+        }
+
         $teachers = Teacher::all();
         $index = 0;
         $vue_modals = true;

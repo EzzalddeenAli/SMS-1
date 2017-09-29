@@ -61,6 +61,13 @@ let deleteModal = new Vue({
     }
 });
 
+let assignModal = new Vue({
+    el: '#assign-modal-body',
+    data: {
+
+    }
+});
+
 let teachersTable = new Vue({
     el: '#teachers-table',
 
@@ -121,6 +128,11 @@ let teachersTable = new Vue({
 
             deleteModal.username = username;
             $('#delete-modal').modal('show');
+        },
+
+        showAssignModal() {
+            $('#assign-modal').modal('show');
         }
     },
 });
+$('#assign-modal').modal('show');

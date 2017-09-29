@@ -55,10 +55,13 @@
                     <td>{{$teacher->age}}</td>
                     <td>{{$teacher->advisory_name($teacher->advisory)}}</td>
                     <td>
-                        <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button v-on:click="showAssignModal('/admin/teachers/', '{{$teacher->username}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                     <td>
                         <button v-on:click="showEditModal('/admin/teachers/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
+                    </td>
+                    <td>
+                        <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                 </tr>
                 @endforeach
@@ -151,5 +154,30 @@
         </div>
     </div><!-- /. delete modal -->
 
+    <!-- delete modal -->
+    <div class="modal fade" id="assign-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Assign Teacher subjects</h4>
+                </div>
+
+                <div id="assign-modal-body">
+                    <form action="#" method="post">
+                        {{ csrf_field() }}
+                        <div id="assign-modal-body">
+                            <assign-tab></assign-tab>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /. assign modal -->
 </div>
 @endsection
