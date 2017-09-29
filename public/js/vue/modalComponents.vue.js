@@ -165,13 +165,10 @@ Vue.component("assign-tab-panel", {
                   <div class="panel-body collapse" :id="'panel' + obj.id">
                      <div v-for="(section, key) in obj.sections">
                         <p>{{section.name}}</p>
-                        
-                        <div class="form-group">
-                        	<label for="inputID" class="col-sm-2 control-label">Label:</label>
-                        	<div class="col-sm-10">
-                        		<input class="form-control" type="checkbox" name="subjects[]" :id="inputID" :value="subject.id" v-for="(subject, key) in section.subjects">
-                        	</div>
-                        </div>
+                        <label class="checkbox-inline" v-for="(subject, key) in section.subjects">
+                            <input type="checkbox" name="subjects[]" :value="subject.id">{{subject.name}}
+                        </label>
+                        <hr>
                      </div>
                   </div>
                  </div>
