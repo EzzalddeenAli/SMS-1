@@ -15,10 +15,14 @@ Vue.component("modal-edit-form", {
 
         ifPassword() {
             return this.formName === "password" ? "Update password (Optional)" : this.formName;
+        },
+
+        excluded() {
+            return this.formName === "advisory";
         }
     },
     template: `<div>
-                    <div class="form-group">
+                    <div class="form-group" v-if="!excluded">
                         <label :for="formName" v-text="formName" v-if="!isId"></label>
                         <input :type="getType" class="form-control" :name="formName" :id="formName" :value="formData" :placeholder="ifPassword">
                     </div>
@@ -59,7 +63,7 @@ Vue.component("modal-add-form", {
 Vue.component("teacher-select-form", {
     data() {
         return {
-            sections: {}
+            sections: {none: ''}
         }
     },
 
