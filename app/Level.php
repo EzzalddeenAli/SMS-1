@@ -17,4 +17,9 @@ class Level extends Model
     {
         return $this->hasMany('App\Section');
     }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
+    }
 }

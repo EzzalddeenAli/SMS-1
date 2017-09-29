@@ -90,7 +90,9 @@ Vue.component("teacher-select-form", {
 Vue.component("assign-tab", {
     data() {
         return {
-            levels: {}
+            elem: {},
+            junior: {},
+            senior: {},
         }
     },
 
@@ -98,13 +100,30 @@ Vue.component("assign-tab", {
         axios.get('/admin/teachers', {
             headers: {'X-Requested-With': 'XMLHttpRequest'}
         }).then(response => {
-/*            for (const datum of response.data) {
-                console.log(datum);
-                this.levels.push(datum);
-                Vue.set(this.levels, datum.name, datum.id);
-            }*/
-            console.log(response.data);
-            this.levels = response.data;
+            let tab = 1;
+            for (const datum of response.data) {
+                switch (datum.name) {
+                    case 'Grade7':
+                        tab = 2;
+                        break;
+
+                    case 'Grade11':
+                        tab = 3;
+                        break;
+                }
+
+                switch (tab) {
+                    case 1:
+                        Vue.set(this.elem, datum.name, datum.id);
+                        break;
+                    case 2:
+                        Vue.set(this.junior, datum.name, datum.id);
+                        break;
+                    case 3:
+                        Vue.set(this.senior, datum.name, datum.id);
+                        break;
+                }
+            }
         });
     },
 
@@ -116,27 +135,43 @@ Vue.component("assign-tab", {
 
     template:`<div>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-level="elem" href="#">Elementary</a></li>
-                    <li><a data-level="high" href="#">Highschool</a></li>
-                    <li><a data-level="senior" href="#">Senior High</a></li>
+                    <li class="active"><a href="#elem">Elementary</a></li>
+                    <li><a href="#junior">Junior High</a></li>
+                    <li><a href="#senior">Senior High</a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!--elementary tab-->
                     <div class="tab-pane active" id="elem">
-                        <div class="panel panel-default" v-for="(section, id) in levels">
-                        	  <div class="panel-heading">
-                        	    <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="section.name" @click="console(levels)"></a>
-                        	  </div>
-                        	  
-                        	  <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
+                        <div class="panel panel-default" v-for="(id, name) in elem">
+                           <div class="panel-heading">
+                             <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="name"></a>
+                           </div>
+                          
+                           <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
                         </div>
                     </div>
                     <!--High school tab-->
-                    <div class="tab-pane" id="high"></div>
+                    <div class="tab-pane" id="junior">
+                        <div class="panel panel-default" v-for="(id, name) in junior">
+                           <div class="panel-heading">
+                             <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="name"></a>
+                           </div>
+                          
+                           <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
+                        </div>
+                    </div>
                     <!--Senior High school tab-->
-                    <div class="tab-pane" id="senior"></div>
+                    <div class="tab-pane" id="senior">
+                        <div class="panel panel-default" v-for="(id, name) in senior">
+                           <div class="panel-heading">
+                             <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="name"></a>
+                           </div>
+                          
+                           <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
+                        </div>
+                    </div>
                 </div>
               </div>`
 });

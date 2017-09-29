@@ -17,11 +17,20 @@ class LevelsTableSeeder extends Seeder
         foreach ($preschool as $level) {
             Level::create([
                 'name' => $level,
+                'department_id' => 1,
             ]);
         }
-        for ($i = 1; $i < 13; $i++) {
+        for ($i = 1; $i < 11; $i++) {
             Level::create([
                 'name' => "Grade$i",
+                'department_id' => 2,
+            ]);
+        }
+
+        for ($i = 11; $i < 13; $i++) {
+            Level::create([
+                'name' => "Grade$i",
+                'department_id' => 3,
             ]);
         }
 

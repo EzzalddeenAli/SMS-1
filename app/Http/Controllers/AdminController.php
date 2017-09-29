@@ -32,7 +32,7 @@ class AdminController extends Controller
     public function teachers()
     {
         if (request()->ajax()) {
-            return Level::with(['sections', 'sections.subjects'])->get();
+            return Level::with(['sections', 'sections.subjects', 'department'])->get();
         }
 
         $teachers = Teacher::all();

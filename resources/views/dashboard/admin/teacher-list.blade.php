@@ -154,7 +154,7 @@
         </div>
     </div><!-- /. delete modal -->
 
-    <!-- delete modal -->
+    <!-- assign modal -->
     <div class="modal fade" id="assign-modal">
         <div class="modal-dialog">
             <div class="modal-content">
