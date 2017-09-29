@@ -102,6 +102,7 @@ Vue.component("assign-tab", {
         }).then(response => {
             let tab = 1;
             for (const datum of response.data) {
+                console.log(datum);
                 switch (datum.name) {
                     case 'Grade7':
                         tab = 2;
@@ -114,13 +115,13 @@ Vue.component("assign-tab", {
 
                 switch (tab) {
                     case 1:
-                        Vue.set(this.elem, datum.name, datum.id);
+                        Vue.set(this.elem, datum.name, datum);
                         break;
                     case 2:
-                        Vue.set(this.junior, datum.name, datum.id);
+                        Vue.set(this.junior, datum.name, datum);
                         break;
                     case 3:
-                        Vue.set(this.senior, datum.name, datum.id);
+                        Vue.set(this.senior, datum.name, datum);
                         break;
                 }
             }
@@ -135,41 +136,45 @@ Vue.component("assign-tab", {
 
     template:`<div>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#elem">Elementary</a></li>
-                    <li><a href="#junior">Junior High</a></li>
-                    <li><a href="#senior">Senior High</a></li>
+                    <li class="active"><a href="#elem" data-toggle="tab">Elementary</a></li>
+                    <li><a href="#junior" data-toggle="tab">Junior High</a></li>
+                    <li><a href="#senior" data-toggle="tab">Senior High</a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!--elementary tab-->
                     <div class="tab-pane active" id="elem">
-                        <div class="panel panel-default" v-for="(id, name) in elem">
+                        <div class="panel panel-default" v-for="(obj, name) in elem">
                            <div class="panel-heading">
-                             <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="name"></a>
+                             <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
                            </div>
                           
-                           <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
+                           <div class="panel-body collapse" :id="'panel' + obj.id">
+                               <div v-for="(item, key) in obj.subjects">
+                               {{item}}
+                               </div>
+                           </div>
                         </div>
                     </div>
                     <!--High school tab-->
                     <div class="tab-pane" id="junior">
-                        <div class="panel panel-default" v-for="(id, name) in junior">
+                        <div class="panel panel-default" v-for="(obj, name) in junior">
                            <div class="panel-heading">
-                             <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="name"></a>
+                             <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
                            </div>
                           
-                           <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
+                           <div class="panel-body collapse" :id="'panel' + obj.id">Panel Body</div>
                         </div>
                     </div>
                     <!--Senior High school tab-->
                     <div class="tab-pane" id="senior">
-                        <div class="panel panel-default" v-for="(id, name) in senior">
+                        <div class="panel panel-default" v-for="(obj, name) in senior">
                            <div class="panel-heading">
-                             <a class="panel-title" :href="'#panel' + id" data-toggle="collapse" v-text="name"></a>
+                             <a class="panel-title" :href="'#panel' + obj.id" data-toggle="collapse" v-text="name"></a>
                            </div>
                           
-                           <div class="panel-body collapse" :id="'panel' + id">Panel Body</div>
+                           <div class="panel-body collapse" :id="'panel' + obj.id">Panel Body</div>
                         </div>
                     </div>
                 </div>
