@@ -167,8 +167,10 @@ Vue.component("assign-tab-panel", {
                   </div>
                           
                   <div class="panel-body collapse" :id="'panel' + obj.id">
+                  <p class="help-block" v-if="obj.sections.length === 0">No sections found</p>
                      <div v-for="(section, key) in obj.sections">
-                        <p>{{section.name}}</p>
+                        <p class="text-success">{{section.name}}</p>
+                        <p class="help-block" v-if="section.subjects.length === 0">No subjects found</p>
                         <label class="checkbox-inline" v-for="(subject, key) in section.subjects">
                             <input type="checkbox" name="subjects[]" :value="subject.id">{{subject.name}}
                         </label>

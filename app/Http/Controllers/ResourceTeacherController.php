@@ -67,8 +67,9 @@ class ResourceTeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param $username
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function edit($username)
     {
@@ -80,9 +81,9 @@ class ResourceTeacherController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param updateTeacher|Request $request
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function update(updateTeacher $request)
     {

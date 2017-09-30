@@ -79,30 +79,3 @@ Route::prefix('resource')->group(function () {
     Route::get('/{section_id}/{username}', 'ResourceGradeController@edit')->name('edit.grade');
     Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
