@@ -55,10 +55,6 @@ Route::prefix('registrar')->group(function () {
 //@todo add layer of protection here asap
 //Resource
 Route::prefix('resource')->group(function () {
-    //Resource Grade...
-    Route::get('/{section_id}/{username}', 'ResourceGradeController@edit')->name('edit.grade');
-    Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
-
     //Resource Section...
     Route::get('sections', 'ResourceSectionController@index')->name('section.list');
     Route::post('section', 'ResourceSectionController@store')->name('add.section');
@@ -78,5 +74,9 @@ Route::prefix('resource')->group(function () {
     Route::post('teacher', 'ResourceTeacherController@store')->name('add.teacher');
     Route::get('teacher/{username}', 'ResourceTeacherController@edit')->name('edit.teacher');
     Route::delete('teacher/{username}', 'ResourceTeacherController@destroy')->name('destroy.teacher');
+
+    //Resource Grade...
+    Route::get('/{section_id}/{username}', 'ResourceGradeController@edit')->name('edit.grade');
+    Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
 });
 
