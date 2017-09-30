@@ -102,7 +102,6 @@ Vue.component("assign-tab", {
         axios.get('/admin/teachers', {
             headers: {'X-Requested-With': 'XMLHttpRequest'}
         }).then(response => {
-            console.log(response.data);
             let tab = 1;
             for (const datum of response.data) {
                 switch (datum.name) {
@@ -145,7 +144,7 @@ Vue.component("assign-tab", {
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" :id="level" v-for="(obj, level) in levels">
+                    <div :class="{'tab-pane': true, 'active': (index === 0)}" :id="level" v-for="(obj, level, index) in levels">
                         <assign-tab-panel :level="obj"></assign-tab-panel>
                     </div>
                 </div>
