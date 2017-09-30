@@ -88,6 +88,10 @@ Vue.component("teacher-select-form", {
 });
 
 Vue.component("assign-tab", {
+    props: {
+        teacherId: [String, Number],
+    },
+
     data() {
         return {
             levels: {
@@ -144,6 +148,7 @@ Vue.component("assign-tab", {
 
                 <!-- Tab panes -->
                 <div class="tab-content">
+                    <input type="hidden" name="teacherId" :value="teacherId">
                     <div :class="{'tab-pane': true, 'active': (index === 0)}" :id="level" v-for="(obj, level, index) in levels">
                         <assign-tab-panel :level="obj"></assign-tab-panel>
                     </div>

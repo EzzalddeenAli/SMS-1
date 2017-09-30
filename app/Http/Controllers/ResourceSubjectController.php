@@ -80,9 +80,23 @@ class ResourceSubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'teacherId' => 'bail|required|numeric',
+            'subjects' => 'bail|required|array',
+            'subjects.*' => 'numeric',
+        ]);
+
+        foreach ($request->subjects as $subject_id) {
+            $subject = Subject::find($subject_id);
+
+            $subject->update([
+                'teacher_id' => $request->teacherId
+            ]);
+        }
+
+        return back();
     }
 
     /**

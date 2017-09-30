@@ -63,6 +63,9 @@ let deleteModal = new Vue({
 
 let assignModal = new Vue({
     el: '#assign-modal-body',
+    data: {
+        id: 3,
+    }
 });
 
 let teachersTable = new Vue({
@@ -133,7 +136,8 @@ let teachersTable = new Vue({
             $('#delete-modal').modal('show');
         },
 
-        showAssignModal() {
+        showAssignModal(id) {
+            assignModal.id = id;
             $('#assign-modal').modal('show');
         }
     },

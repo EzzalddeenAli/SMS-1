@@ -80,3 +80,29 @@ Route::prefix('resource')->group(function () {
     Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
