@@ -63,9 +63,6 @@ let deleteModal = new Vue({
 
 let assignModal = new Vue({
     el: '#assign-modal-body',
-    data: {
-
-    }
 });
 
 let teachersTable = new Vue({
@@ -73,11 +70,14 @@ let teachersTable = new Vue({
 
     methods: {
         showEditModal(baseurl, username) {
+            console.log(baseurl+username);
             axios.get(baseurl + username, {
                 headers: {'X-Requested-With': 'XMLHttpRequest'}
             }).then(function (response) {
                 editModal.responses = response.data;
                 editModal.responses.password = "";
+            }).catch(function (error) {
+                console.log(error);
             });
             $('#edit-modal').modal('show');
         },
@@ -92,12 +92,14 @@ let teachersTable = new Vue({
                     break;
                 case 'level':
                     addModal.fields = {levelId: "select"};
-                    axios.get('/registrar/levels', {
+                    axios.get('/resource/levels', {
                         headers: {'X-Requested-With': 'XMLHttpRequest'}
                     }).then(function (response) {
                         for (const datum of response.data) {
                             Vue.set(addModal.levelFields, datum.name, datum.id)
                         }
+                    }).catch(function (error) {
+                        console.log(error);
                     });
                     break;
                 case 'subject':
@@ -108,6 +110,8 @@ let teachersTable = new Vue({
                         for (const datum of response.data) {
                             Vue.set(addModal.subjectFields, (datum.first_name + ' ' + datum.middle_name + ' ' + datum.last_name), datum.id)
                         }
+                    }).catch(function (error) {
+                        console.log(error);
                     });
                     break;
             }
@@ -118,11 +122,11 @@ let teachersTable = new Vue({
         showDeleteModal(type, username) {
             switch (type) {
                 case 'teacher':
-                    deleteModal.deleteLink = '/admin/teacher/' + username;
+                    deleteModal.deleteLink = '/resource/teacher/' + username;
                     break;
 
                 case 'student':
-                    deleteModal.deleteLink = '/registrar/student/' + username;
+                    deleteModal.deleteLink = '/resource/student/' + username;
                     break;
             }
 
@@ -135,4 +139,4 @@ let teachersTable = new Vue({
         }
     },
 });
-$('#assign-modal').modal('show');
+// $('#assign-modal').modal('show');

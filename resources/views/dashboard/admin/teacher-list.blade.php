@@ -55,10 +55,10 @@
                     <td>{{$teacher->age}}</td>
                     <td>{{$teacher->advisory_name($teacher->advisory)}}</td>
                     <td>
-                        <button v-on:click="showAssignModal('/admin/teachers/', '{{$teacher->username}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
+                        <button v-on:click="showAssignModal()" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                     <td>
-                        <button v-on:click="showEditModal('/admin/teachers/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
+                        <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                     <td>
                         <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
@@ -81,7 +81,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Edit Teacher</h4>
                 </div>
-                <form action="{{ route('edit.teacher') }}" method="post">
+                <form action="{{ route('update.teacher') }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="modal-body">
@@ -164,7 +164,7 @@
                 </div>
 
                 <div id="assign-modal-body">
-                    <form action="#" method="post">
+                    <form action="{{ route('update.subjects') }}" method="post">
                         {{ csrf_field() }}
                         <div id="assign-modal-body">
                             <assign-tab></assign-tab>

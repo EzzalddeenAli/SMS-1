@@ -44,7 +44,7 @@
                             <td>{{$student->middle_name}}</td>
                             <td>{{$student->last_name}}</td>
                             <td>
-                                <button v-on:click="showEditModal('{{$subject->id}}/', '{{$student->username}}')"
+                                <button v-on:click="showEditModal('/resource/{{$subject->id}}/', '{{$student->username}}')"
                                         class="btn btn-primary" title="edit grades"><i
                                             class="fa fa-graduation-cap fa-lg"></i></button>
                             </td>
@@ -68,7 +68,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Edit Student Grades</h4>
                     </div>
-                    <form action="{{ route('edit.grade') }}" method="post">
+                    <form action="{{ route('update.grade') }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         <div class="modal-body">

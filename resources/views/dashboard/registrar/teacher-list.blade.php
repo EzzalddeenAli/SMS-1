@@ -56,7 +56,7 @@
                         <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>
-                        <button v-on:click="showEditModal('/admin/teachers/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
+                        <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                 </tr>
                 @endforeach
@@ -76,7 +76,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Edit Teacher</h4>
                 </div>
-                <form action="{{ route('edit.teacher') }}" method="post">
+                <form action="{{ route('update.teacher') }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="modal-body">

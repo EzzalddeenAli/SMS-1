@@ -25,8 +25,6 @@ Route::prefix('teacher')->group(function () {
     Route::get('/', 'TeacherController@index')->name('teacher.dashboard');
     Route::get('sections', 'TeacherController@sections')->name('teacher.section.list');
     Route::get('/section/{subject_id}', 'TeacherController@section')->name('section');
-    Route::get('/section/{section_id}/{username}', 'ResourceGradeController@edit');
-    Route::patch('grade', 'ResourceGradeController@update')->name('edit.grade');
 });
 
 Route::prefix('admin')->group(function () {
@@ -37,10 +35,6 @@ Route::prefix('admin')->group(function () {
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
-    Route::get('teachers/{username}', 'ResourceTeacherController@edit');
-    Route::patch('teacher', 'ResourceTeacherController@update')->name('edit.teacher');
-    Route::post('teacher', 'ResourceTeacherController@store')->name('add.teacher');
-    Route::delete('teacher/{username}', 'ResourceTeacherController@destroy');
 });
 
 Route::prefix('registrar')->group(function () {
@@ -52,20 +46,37 @@ Route::prefix('registrar')->group(function () {
     Route::get('/', 'RegistrarController@index')->name('registrar.dashboard');
     Route::get('teachers', 'RegistrarController@teachers')->name('registrar.teacher.list');
     Route::get('students', 'RegistrarController@students')->name('registrar.student.list');
-    Route::get('students/{username}', 'ResourceStudentController@edit');
-    Route::patch('student', 'ResourceStudentController@update')->name('edit.student');
-    Route::post('student', 'ResourceStudentController@store')->name('add.student');
-    Route::delete('student/{username}', 'ResourceStudentController@destroy')->name('delete.student');
+    Route::get('section/{id}', 'RegistrarController@section')->name('registrar.section');
     Route::get('levels', 'RegistrarController@levels')->name('registrar.levels.list');
 
-    Route::post('section', 'ResourceSectionController@store')->name('add.section');
-    Route::get('section/{id}', 'RegistrarController@section')->name('registrar.section');
-    Route::post('subject', 'ResourceSubjectController@store')->name('add.subject');
 
 });
 
+//@todo add layer of protection here asap
+//Resource
 Route::prefix('resource')->group(function () {
+    //Resource Grade...
+    Route::get('/{section_id}/{username}', 'ResourceGradeController@edit')->name('edit.grade');
+    Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
+
+    //Resource Section...
     Route::get('sections', 'ResourceSectionController@index')->name('section.list');
-//    Route::get('subjects', 'ResourceSubjectController@index')->name('subject.list');
+    Route::post('section', 'ResourceSectionController@store')->name('add.section');
+
+    //Resource Subject...
+    Route::patch('subjects', 'ResourceSubjectController@update')->name('update.subjects');
+    Route::post('subject', 'ResourceSubjectController@store')->name('add.subject');
+
+    //Resource Student...
+    Route::get('students/{username}', 'ResourceStudentController@edit')->name('edit.student');
+    Route::patch('student', 'ResourceStudentController@update')->name('update.student');
+    Route::post('student', 'ResourceStudentController@store')->name('add.student');
+    Route::delete('student/{username}', 'ResourceStudentController@destroy')->name('delete.student');
+
+    //Resource Teacher...
+    Route::patch('teacher', 'ResourceTeacherController@update')->name('update.teacher');
+    Route::post('teacher', 'ResourceTeacherController@store')->name('add.teacher');
+    Route::get('teacher/{username}', 'ResourceTeacherController@edit')->name('edit.teacher');
+    Route::delete('teacher/{username}', 'ResourceTeacherController@destroy')->name('destroy.teacher');
 });
 

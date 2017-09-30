@@ -57,7 +57,7 @@
                         <button v-on:click="showDeleteModal('student', '{{$student->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>
-                        <button v-on:click="showEditModal('/registrar/students/', '{{$student->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
+                        <button v-on:click="showEditModal('/resource/students/', '{{$student->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                 </tr>
                 @endforeach
@@ -77,7 +77,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Edit Student</h4>
                 </div>
-                <form action="{{ route('edit.student') }}" method="post">
+                <form action="{{ route('update.student') }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="modal-body">
@@ -148,5 +148,6 @@
         </div>
     </div><!-- /. delete modal -->
 
+    <div id="assign-modal-body"></div>
 </div>
 @endsection

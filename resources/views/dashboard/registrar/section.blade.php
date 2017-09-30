@@ -71,7 +71,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Edit Student</h4>
                 </div>
-                <form action="{{ route('edit.student') }}" method="post">
+                <form action="{{ route('update.student') }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('patch') }}
                     <div class="modal-body">

@@ -22,8 +22,8 @@ Vue.component("modal-edit-form", {
         }
     },
     template: `<div>
-                    <div class="form-group" v-if="!excluded && !isId">
-                        <label :for="formName" v-text="formName"></label>
+                    <div class="form-group" v-if="!excluded">
+                        <label :for="formName" v-text="formName" v-if="!isId"></label>
                         <input :type="getType" class="form-control" :name="formName" :id="formName" :value="formData" :placeholder="ifPassword">
                     </div>
                 </div>`,
