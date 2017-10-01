@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int $id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property mixed $section
  */
 class Student extends Authenticatable
 {
@@ -26,5 +27,10 @@ class Student extends Authenticatable
     public function grades()
     {
         return $this->hasMany('App\Grade');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo('App\Section');
     }
 }

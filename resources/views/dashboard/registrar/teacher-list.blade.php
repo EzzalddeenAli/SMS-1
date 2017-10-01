@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('sidebar')
-    @include('dashboard.admin.sidebar')
+    @include('dashboard.registrar.sidebar')
 @endsection
 
 @section('body')

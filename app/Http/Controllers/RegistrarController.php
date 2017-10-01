@@ -47,7 +47,7 @@ class RegistrarController extends Controller
 
     public function students()
     {
-        $students = Student::all();
+        $students = Student::with('section')->get();
         $index = 0;
         $vue_modals = true;
 

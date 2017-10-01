@@ -39,7 +39,7 @@
                     <th>Middle Name</th>
                     <th>Last Name</th>
                     <th>Age</th>
-                    <th>Advisory</th>
+                    <th>Section</th>
                     <th colspan="10" class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -53,11 +53,12 @@
                     <td>{{$student->middle_name}}</td>
                     <td>{{$student->last_name}}</td>
                     <td>{{$student->age}}</td>
+                    <td>{{$student->section->name}}</td>
                     <td>
-                        <button v-on:click="showDeleteModal('student', '{{$student->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button v-on:click="showDeleteModal('student', '{{$student->username}}')" class="btn btn-danger delete-btn" title="Delete Student"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>
-                        <button v-on:click="showEditModal('/resource/students/', '{{$student->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
+                        <button v-on:click="showEditModal('/resource/students/', '{{$student->username}}')" class="btn btn-info edit-btn" title="Edit Student"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                 </tr>
                 @endforeach
