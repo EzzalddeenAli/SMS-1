@@ -55,6 +55,10 @@ Route::prefix('registrar')->group(function () {
 //@todo add layer of protection here asap
 //Resource
 Route::prefix('resource')->group(function () {
+    //Resource Level...
+    Route::get('levels', 'ResourceLevelController@index')->name('level.list');
+    Route::get('level/{id}', 'ResourceLevelController@sections')->name('level.sections');
+
     //Resource Section...
     Route::get('sections', 'ResourceSectionController@index')->name('section.list');
     Route::post('section', 'ResourceSectionController@store')->name('add.section');

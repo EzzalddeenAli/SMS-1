@@ -55,7 +55,7 @@
                     <td>{{$teacher->age}}</td>
                     <td>{{$teacher->advisory_name($teacher->advisory)}}</td>
                     <td>
-                        <button v-on:click="showAssignModal('{{$teacher->id}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
+                        <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
                     </td>
                     <td>
                         <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
@@ -88,7 +88,7 @@
 
                         <div id="edit-modal-body">
                             <modal-edit-form v-for="(item, key, index) in responses" :key="index" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
-                            <teacher-select-form></teacher-select-form>
+                            <modal-select-form :user-type="'teacher'"></modal-select-form>
                         </div>
 
                     </div>
@@ -115,7 +115,7 @@
 
                         <div id="add-modal-body">
                             <modal-add-form v-for="(type, field, index) in fields" :key="index" :form-name="field" :form-type="type"></modal-add-form>
-                            <teacher-select-form></teacher-select-form>
+                            <modal-select-form :user-type="'teacher'"></modal-select-form>
                         </div>
 
                     </div>
