@@ -113,7 +113,6 @@ Vue.component("modal-select-form", {
                         <select name="advisory" class="form-control" v-model="levelValue" @change="levelSelected()">
                             <option v-for="(id, name) in levels" :value="id" v-text="name"></option>
                         </select>
-                        <label></label>
                         <select name="advisory" class="form-control">
                             <option  v-for="(id, name) in sections" :value="id" v-text="name"></option>
                         </select>

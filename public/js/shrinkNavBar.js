@@ -1,12 +1,13 @@
 $(document).ready(function () {
     $(window).scroll(function () {
-        var $scrollDistance = $('body').scrollTop();
-        var $navLogo = $("#nav-logo");
-        var $navLinks = $("ul.navbar-nav > li");
-        var centerCss = {"position:" : "relative", "top": "14px"};
-        var $btn = $("button.nav-links");
-        var resetCss = {"top": "0"};
+        let $scrollDistance = $(document).scrollTop();
+        let $navLogo = $("#nav-logo");
+        let $navLinks = $("ul.navbar-nav > li");
+        let centerCss = {"position:" : "relative", "top": "14px"};
+        let $btn = $("button.nav-links");
+        let resetCss = {"top": "0"};
 
+        console.log($scrollDistance);
         if($scrollDistance > 70) {
             $("#navbar, .navbar-header").css("height", "50px");
             $navLogo.css({"height": "100%", "margin": "0 auto auto 15px"});
