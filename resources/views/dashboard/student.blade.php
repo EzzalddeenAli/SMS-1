@@ -11,7 +11,7 @@
                     <a href="{{'/'.request()->segment(1)}}" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
                 </li>
                 <li class="{{ request()->segment(2) === 'grades' ? 'active-link' : '' }}">
-                    <a href="{{route('teacher.list')}}"><i class="fa fa-user "></i>Grades <span class="badge">Working</span></a>
+                    <a href="#"><i class="fa fa-user "></i>Grades <span class="badge">Working</span></a>
                 </li>
                 <li>
                     <a href="blank.html"><i class="fa fa-edit "></i>Blank Page</a>

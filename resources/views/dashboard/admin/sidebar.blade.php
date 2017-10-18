@@ -8,8 +8,8 @@
             <li class="{{ request()->segment(2) === 'teachers' ? 'active-link' : '' }}">
                 <a href="{{route('admin.teacher.list')}}"><i class="fa fa-user "></i>Teachers <span class="badge">Working</span></a>
             </li>
-            <li>
-                <a href="blank.html"><i class="fa fa-edit "></i>Blank Page</a>
+            <li class="{{ request()->segment(2) === 'students' ? 'active-link' : '' }}">
+                <a href="{{route('admin.student.list')}}"><i class="fa fa-user "></i>Students <span class="badge">Working</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>

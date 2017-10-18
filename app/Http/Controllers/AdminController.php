@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Level;
+use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,15 @@ class AdminController extends Controller
         $vue_modals = true;
 
         return view('dashboard.admin.teacher-list', compact('teachers', 'index', 'vue_modals'));
+    }
+
+    public function students()
+    {
+        $students = Student::all();
+        $index = 0;
+        $vue_modals = true;
+
+        return view('dashboard.admin.student-list', compact('students', 'index', 'vue_modals'));
     }
 
 }

@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function () {
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
+    Route::get('students', 'AdminController@students')->name('admin.student.list');
 });
 
 Route::prefix('registrar')->group(function () {
@@ -83,3 +84,20 @@ Route::prefix('resource')->group(function () {
     Route::get('/{section_id}/{username}', 'ResourceGradeController@edit')->name('edit.grade');
     Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
 });
+
+//for roulette api, don't use
+
+/*Route::get('/callback', function (Illuminate\Http\Request $request) {
+    $http = new \GuzzleHttp\Client;
+
+    $response = $http->post('127.0.0.1:8000/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'authorization_code',
+            'client_id' => 4,
+            'client_secret' => 'vfNdl6bCaKvLWpt78ahZMwq4OslWZJWKN0F6EZq8',
+            'redirect_uri' => '127.0.0.1:8001/callback',
+            'code' => $request->code,
+        ],
+    ]);
+    return json_decode((string) $response->getBody(), true);
+});*/

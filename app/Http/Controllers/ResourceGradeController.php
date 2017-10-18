@@ -13,7 +13,7 @@ class ResourceGradeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:teacher');
+        return "GRADE CONTROLLER!";
     }
     /**
      * Display a listing of the resource.

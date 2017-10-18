@@ -13,3 +13,4 @@ yarn-error.log
 /.env
 !/vendor/laravel/framework/src/Illuminate/Auth/AuthenticationException.php
 !/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+/_ide_helper.php
