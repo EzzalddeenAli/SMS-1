@@ -14,6 +14,8 @@ Route::prefix('student')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'StudentController@index')->name('student.dashboard');
+    Route::get('/grades', 'StudentController@grades')->name('student.grades');
+    Route::get('/grades/download', 'StudentController@gradesDownload');
 });
 
 Route::prefix('teacher')->group(function () {
@@ -86,7 +88,6 @@ Route::prefix('resource')->group(function () {
 });
 
 //for roulette api, don't use
-
 /*Route::get('/callback', function (Illuminate\Http\Request $request) {
     $http = new \GuzzleHttp\Client;
 

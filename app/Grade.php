@@ -17,7 +17,7 @@ class Grade extends Model
 
     public function subject()
     {
-        $this->belongsTo('App\Subject');
+        return $this->belongsTo('App\Subject');
     }
 
     public function scopeGradeOf($query, $subject_id, $student_id)

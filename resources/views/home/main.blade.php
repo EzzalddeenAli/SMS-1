@@ -1,7 +1,7 @@
 @extends('home.layouts.body')
 
 @section('slide-shows')
-    <div class="row carousel-row" style="margin-top: 80px;">
+    <div class="row carousel-row" style="margin-top: 80px">
         <div class="slide-row">
             <div class="carousel slide slide-carousel" id="carousel-1" data-ride="carousel">
                 <!-- Indicators -->
@@ -13,14 +13,14 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="{{asset('images/1.jpg')}}" alt="Image">
+                    <div class="item active" style="max-height: 630px">
+                        <img class="img-responsive" src="{{asset('images/sports/athletics.png')}}" alt="Image">
                     </div>
-                    <div class="item">
-                        <img src="{{asset('images/1.jpg')}}" alt="Image">
+                    <div class="item" style="max-height: 630px">
+                        <img class="img-responsive" src="{{asset('images/sports/badminton elem.png')}}" alt="Image">
                     </div>
-                    <div class="item">
-                        <img src="{{asset('images/1.jpg')}}" alt="Image">
+                    <div class="item" style="max-height: 630px">
+                        <img class="img-responsive" src="{{asset('images/sports/football.png')}}" alt="Image">
                     </div>
                 </div>
             </div>
