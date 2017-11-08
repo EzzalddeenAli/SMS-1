@@ -16,6 +16,7 @@ Route::prefix('student')->group(function () {
     Route::get('/', 'StudentController@index')->name('student.dashboard');
     Route::get('/grades', 'StudentController@grades')->name('student.grades');
     Route::get('/grades/download', 'StudentController@gradesDownload');
+    Route::get('/permit', 'StudentController@permit')->name('student.permit');
 });
 
 Route::prefix('teacher')->group(function () {
