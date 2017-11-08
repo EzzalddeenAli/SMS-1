@@ -37,6 +37,7 @@ class StudentController extends Controller
         return view('dashboard.student.grades', compact('student', 'divisor'));
     }
 
+    //@todo remove or modify after pdf test
     public function gradesDownload()
     {
         $data = [
@@ -46,5 +47,10 @@ class StudentController extends Controller
 
         $pdf = PDF::loadView('pdf.test', $data);
         return $pdf->stream('invoice.pdf');
+    }
+
+    public function permit()
+    {
+        return view('dashboard.student.permit');
     }
 }
