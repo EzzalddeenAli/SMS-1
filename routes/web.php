@@ -1,6 +1,6 @@
 <?php
 
-Route::view('/', 'home.main')->name('home.main');
+Route::get('/', 'HomeController@index')->name('home.main');
 //Route::get('home', 'HomeController@index')->name('user.dashboard');
 
 //Auth::routes();
@@ -92,12 +92,12 @@ Route::prefix('resource')->group(function () {
 /*Route::get('/callback', function (Illuminate\Http\Request $request) {
     $http = new \GuzzleHttp\Client;
 
-    $response = $http->post('127.0.0.1:8000/oauth/token', [
+    $response = $http->post('192.168.1.7:8000/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
-            'client_id' => 4,
-            'client_secret' => 'vfNdl6bCaKvLWpt78ahZMwq4OslWZJWKN0F6EZq8',
-            'redirect_uri' => '127.0.0.1:8001/callback',
+            'client_id' => 3,
+            'client_secret' => 'AWQbbwrrDSr5Z5FV7eQKvQfAFtVYtPGgYC8Waw05',
+            'redirect_uri' => '192.168.1.7:8080/callback',
             'code' => $request->code,
         ],
     ]);

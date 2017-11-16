@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -21,8 +21,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+/*    public function index()
     {
         return view('home');
+    }*/
+    public function index()
+    {
+        $carousel = [
+            'images/school/pexels-photo.jpg',
+            'images/sports/badminton elem.png',
+            'images/sports/football.png',
+        ];
+
+        $sponsors = [
+            'images/sponsors/creative-market.jpg',
+            'images/sponsors/designmodo.jpg',
+            'images/sponsors/envato.jpg',
+            'images/sponsors/themeforest.jpg',
+        ];
+
+        return view('home.main', compact('carousel', 'sponsors'));
     }
 }

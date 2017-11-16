@@ -6,22 +6,18 @@
             <div class="carousel slide slide-carousel" id="carousel-1" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-1" data-slide-to="1"></li>
-                    <li data-target="#carousel-1" data-slide-to="2"></li>
+                    @foreach($carousel as $ind=>$img)
+                    <li data-target="#carousel-1" data-slide-to="{{ $ind }}" class="{{ $ind === 0 ? 'active' : '' }}"></li>
+                    @endforeach
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    <div class="item active" style="max-height: 630px">
-                        <img class="img-responsive" src="{{asset('images/sports/athletics.png')}}" alt="Image">
+                    @foreach($carousel as $ind=>$img)
+                    <div class="item {{ $ind === 0 ? 'active' : '' }}" style="max-height: 630px; height: 630px;">
+                        <img class="img-responsive" src="{{asset($img)}}" alt="Image" style="min-width: 100%; height: 100%">
                     </div>
-                    <div class="item" style="max-height: 630px">
-                        <img class="img-responsive" src="{{asset('images/sports/badminton elem.png')}}" alt="Image">
-                    </div>
-                    <div class="item" style="max-height: 630px">
-                        <img class="img-responsive" src="{{asset('images/sports/football.png')}}" alt="Image">
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -38,7 +34,7 @@
         <!-- images -->
         <div class="col-sm-4">
             <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/2.png")}}"
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/character.png")}}"
                                  alt="Image"></a>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
@@ -56,7 +52,7 @@
         <!-- images -->
         <div class="col-sm-4">
             <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/2.png")}}"
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/driven.png")}}"
                                  alt="Image"></a>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
@@ -73,7 +69,7 @@
         <!-- images -->
         <div class="col-sm-4">
             <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/2.png")}}"
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/leaders.png")}}"
                                  alt="Image"></a>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
@@ -245,21 +241,11 @@
 @section('sponsors')
     <br><br><br><br>
     <div class="row">
+        @foreach($sponsors as $img)
         <div class="col-sm-3">
-            <img class="img-sponsors" src="{{asset('images/6.jpg')}}" alt="">
+            <img class="img-sponsors" src="{{asset($img)}}">
         </div>
-
-        <div class="col-sm-3">
-            <img class="img-sponsors" src="{{asset('images/6.jpg')}}" alt="">
-        </div>
-
-        <div class="col-sm-3">
-            <img class="img-sponsors" src="{{asset('images/6.jpg')}}" alt="">
-        </div>
-
-        <div class="col-sm-3">
-            <img class="img-sponsors" src="{{asset('images/6.jpg')}}" alt="">
-        </div>
+        @endforeach
     </div>
 @endsection
 
@@ -315,7 +301,7 @@
 
             </div>
 
-            <img class="img-footer" src="{{asset("images/6.jpg")}}" alt="image">
+            <img class="img-footer" src="{{asset("images/school/feedback.jpeg")}}" alt="image">
 
         </div>
     </div>
