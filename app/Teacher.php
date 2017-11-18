@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Section;
+use willvincent\Rateable\Rateable;
+use willvincent\Rateable\Rating;
 
 /**
  * @property mixed $subjects
@@ -14,7 +15,7 @@ use App\Section;
  */
 class Teacher extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Rateable;
 
     protected $fillable = [
         'username', 'password', 'first_name', 'middle_name','last_name', 'age', 'advisory',
@@ -34,6 +35,12 @@ class Teacher extends Authenticatable
         $section = Section::where('level_id', $id)->first();
 
         return isset($section->name) ? $section->name : $id;
+    }
+
+    public function Rated($student_id, $subject_id)
+    {
+        $rating = Rating::where('student_id', $student_id)->where('subject_id', $subject_id)->first();
+        return $rating->rating;
     }
 
 }

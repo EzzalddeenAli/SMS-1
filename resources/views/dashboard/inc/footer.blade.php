@@ -15,7 +15,11 @@
 <script src="{{asset('js/admin-dashboard.js')}}"></script>
 <script src="{{asset('js/vue/modalComponents.vue.js')}}"></script>
 @if(isset($vue_modals))
-<script src="{{asset('js/vue/modals.vue.js')}}"></script>
+    <script src="{{asset('js/vue/modals.vue.js')}}"></script>
+@endif
+@if(isset($vue_rating))
+    <script src="{{asset('js/vue/heart-rating.js')}}"></script>
+    <script src="{{asset('js/vue/rating.vue.js')}}"></script>
 @endif
 
 </body>

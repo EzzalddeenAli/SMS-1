@@ -16,10 +16,11 @@
     <hr/>
     <div class="row">
         <div class="col-lg-12 ">
-            <div class="alert alert-info">
-                <strong>Welcome Jhon Doe ! </strong> You Have No pending Task For Today.
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                You are who you are today because of the choices you made yesterday.
             </div>
-
         </div>
     </div>
     <!-- /. ROW  -->

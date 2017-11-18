@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Teacher;
 use Barryvdh\DomPDF\Facade as PDF;;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Student;
+use willvincent\Rateable\Rating;
 
 class StudentController extends Controller
 {
@@ -37,6 +39,34 @@ class StudentController extends Controller
         return view('dashboard.student.grades', compact('student', 'divisor'));
     }
 
+    public function permit()
+    {
+        return view('dashboard.student.permit');
+    }
+
+    public function teachers()
+    {
+        $student = Student::with('section.subjects.teacher')->find(auth()->id());
+        $vue_rating = true;
+        return view('dashboard.student.rate', compact('student', 'vue_rating'));
+    }
+
+    public function rate(Request $request)
+    {
+        Rating::updateOrCreate(
+            [
+                'rateable_id' => $request->teacherId,
+                'rateable_type' => 'App\Teacher',
+                'student_id' => auth()->id(),
+                'subject_id' => $request->subjectId
+            ],
+
+            ['rating' => $request->rating]
+        );
+
+        return $request;
+    }
+
     //@todo remove or modify after pdf test
     public function gradesDownload()
     {
@@ -49,8 +79,4 @@ class StudentController extends Controller
         return $pdf->stream('invoice.pdf');
     }
 
-    public function permit()
-    {
-        return view('dashboard.student.permit');
-    }
 }

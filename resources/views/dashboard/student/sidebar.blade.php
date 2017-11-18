@@ -18,16 +18,16 @@
                 <a href="#"><i class="fa fa-qrcode "></i>Reports</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-user"></i>Canteen</a>
+                <a href="#"><i class="fa fa-asl-interpreting"></i>Canteen</a>
+            </li>
+            <li class="{{ request()->segment(2) === 'teachers' ? 'active-link' : '' }}">
+                <a href="{{ route('student.teachers') }}"><i class="fa fa-check "></i>Teacher <span class="badge">Working</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-edit "></i>My Link Three </a>
+                <a href="#"><i class="fa fa-table "></i>Events</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-table "></i>My Link Four</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
+                <a href="#"><i class="fa fa-weixin "></i>Forums</a>
             </li
         </ul>
     </div>

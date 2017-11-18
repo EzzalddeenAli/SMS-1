@@ -10,6 +10,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::prefix('student')->group(function () {
     //Login Controllers
     Route::get('login', 'Auth\StudentLoginController@login')->name('student.login');
+//    Route::get('login', 'Auth\StudentLoginController@login')->name('login');
     Route::post('login', 'Auth\StudentLoginController@authenticate')->name('student.authenticate');
 
     //Dashboard Controllers
@@ -17,6 +18,8 @@ Route::prefix('student')->group(function () {
     Route::get('/grades', 'StudentController@grades')->name('student.grades');
     Route::get('/grades/download', 'StudentController@gradesDownload');
     Route::get('/permit', 'StudentController@permit')->name('student.permit');
+    Route::get('/teachers', 'StudentController@teachers')->name('student.teachers');
+    Route::post('/rate', 'StudentController@rate')->name('student.rate');
 });
 
 Route::prefix('teacher')->group(function () {
