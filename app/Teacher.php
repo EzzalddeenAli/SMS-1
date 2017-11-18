@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use willvincent\Rateable\Rateable;
-use willvincent\Rateable\Rating;
+use App\Traits\Rateable;
 
 /**
  * @property mixed $subjects

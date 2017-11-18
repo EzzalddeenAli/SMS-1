@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Teacher;
 use Barryvdh\DomPDF\Facade as PDF;;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Student;
-use willvincent\Rateable\Rating;
+use App\Rating;
 
 class StudentController extends Controller
 {
