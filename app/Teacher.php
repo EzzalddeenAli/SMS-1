@@ -39,6 +39,9 @@ class Teacher extends Authenticatable
     public function Rated($student_id, $subject_id)
     {
         $rating = Rating::where('student_id', $student_id)->where('subject_id', $subject_id)->first();
+        if ($rating === null) {
+            return 0;
+        }
         return $rating->rating;
     }
 

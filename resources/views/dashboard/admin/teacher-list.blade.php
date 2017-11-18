@@ -40,6 +40,7 @@
                     <th>Last Name</th>
                     <th>Age</th>
                     <th>Advisory</th>
+                    <th>Rating</th>
                     <th colspan="10" class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -47,13 +48,20 @@
                 <tbody>
                 @foreach($teachers as $teacher)
                 <tr>
+                    @php
+                    $advisory = $teacher->advisory_name($teacher->advisory);
+                    $rating = $teacher->averageRating;
+                    @endphp
                     <td>{{++$index}}</td>
                     <td>{{$teacher->username}}</td>
                     <td>{{$teacher->first_name}}</td>
                     <td>{{$teacher->middle_name}}</td>
                     <td>{{$teacher->last_name}}</td>
                     <td>{{$teacher->age}}</td>
-                    <td>{{$teacher->advisory_name($teacher->advisory)}}</td>
+                    <td>{{$advisory !== null ? $advisory : 'None'}}</td>
+                    <td class="{{ $rating >= 3.5 ? 'text-success' : ($rating >= 2.5 ? 'text-primary' : ($rating > 0 ? 'text-danger' : '')) }}">
+                        {{ $rating !== null ? $rating : 'None' }}
+                    </td>
                     <td>
                         <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
                     </td>

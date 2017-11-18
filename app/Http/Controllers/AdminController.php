@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Level;
 use App\Student;
 use App\Teacher;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,7 +29,20 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('dashboard.admin');
+
+        $http = new Client;
+        try {
+            $response = $http->get('https://favqs.com/api/qotd');
+            if ($response->getStatusCode() === 200) {
+                $response_array = json_decode((string) $response->getBody(), true);
+                $quote['author'] = $response_array['quote']['author'];
+                $quote['body'] = $response_array['quote']['body'];
+            }
+        } catch (ConnectException $e) {
+            return view('dashboard.admin');
+        }
+
+        return view('dashboard.admin', compact('quote'));
     }
 
     public function teachers()
