@@ -73,7 +73,7 @@ Vue.component("modal-select-form", {
             }).then(response => {
                 this.sections = response.data.length > 0 ? {'Please select level first': ''} : {'No levels found': ''};
                 for (const datum of response.data) {
-                    Vue.set(this.sections, datum.name, datum.level_id)
+                    Vue.set(this.sections, datum.name, datum.id)
                 }
             }).catch(error => {
                 console.log(error);
@@ -87,6 +87,7 @@ Vue.component("modal-select-form", {
             sections: {'Please select level first': ''},
             user: "",
             levelValue: 1,
+            formName: '',
         }
     },
 
@@ -103,6 +104,11 @@ Vue.component("modal-select-form", {
         switch (this.userType) {
             case "teacher":
                 this.user = "Advisory";
+                this.formName = 'advisory';
+                break;
+            case "student":
+                this.user = "Section";
+                this.formName = 'section_id';
                 break;
         }
     },
@@ -110,10 +116,10 @@ Vue.component("modal-select-form", {
     template: `<div>
                     <div class="form-group">
                         <label>{{ user }}</label>
-                        <select name="advisory" class="form-control" v-model="levelValue" @change="levelSelected()">
+                        <select :name="formName" class="form-control" v-model="levelValue" @change="levelSelected()">
                             <option v-for="(id, name) in levels" :value="id" v-text="name"></option>
                         </select>
-                        <select name="advisory" class="form-control">
+                        <select :name="formName" class="form-control">
                             <option  v-for="(id, name) in sections" :value="id" v-text="name"></option>
                         </select>
                     </div>
