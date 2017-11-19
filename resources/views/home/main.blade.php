@@ -28,7 +28,7 @@
 @section('why-jil')
     <div class="row text-center">
         <br><br>
-
+        <p>THIS SITE IS CURRENTLY UNDER DEVELOPMENT</p>
         <h1>Why JIL?</h1>
         <br><br>
         <!-- images -->
