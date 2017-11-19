@@ -34,9 +34,8 @@
                     <h4>Teachers</h4>
                 </a>
             </div>
-
-
         </div>
+
 
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
@@ -45,9 +44,8 @@
                     <h4>Mail Box</h4>
                 </a>
             </div>
-
-
         </div>
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="blank.html">
@@ -55,9 +53,8 @@
                     <h4>New Issues</h4>
                 </a>
             </div>
-
-
         </div>
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="blank.html">
@@ -65,9 +62,8 @@
                     <h4>See Users</h4>
                 </a>
             </div>
-
-
         </div>
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="blank.html">
@@ -75,9 +71,8 @@
                     <h4>Admin </h4>
                 </a>
             </div>
-
-
         </div>
+
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
             <div class="div-square">
                 <a href="blank.html">
@@ -85,9 +80,8 @@
                     <h4>Support</h4>
                 </a>
             </div>
-
-
         </div>
+
     </div>
     <!-- /. ROW  -->
 

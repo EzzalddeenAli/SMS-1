@@ -67,7 +67,7 @@ Vue.component("modal-select-form", {
 
     methods: {
         levelSelected() {
-            console.log("resource/level/" + this.levelValue);
+            // console.log("resource/level/" + this.levelValue);
             axios.get("/resource/level/" + this.levelValue, {
                 headers: {"X-Requested-With": "XMLHttpRequest"}
             }).then(response => {
