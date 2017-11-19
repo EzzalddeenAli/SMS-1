@@ -43,7 +43,6 @@ let addModal = new Vue({
             middle_name: "text",
             last_name: "text",
             age: "number",
-            section_id: "number",
         },
 
         levelFields: {},
