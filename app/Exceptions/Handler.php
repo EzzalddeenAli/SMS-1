@@ -48,6 +48,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof AuthenticationException) {
+            $guard = array_get($exception->guards(), 0);
+            switch ($guard) {
+                case 'admin':
+                    $login = 'admin.login';
+                    break;
+                case 'teacher':
+                    $login = 'teacher.login';
+                    break;
+                case 'student':
+                    $login = 'student.login';
+                    break;
+                default:
+                    $login = 'home.main';
+            }
+
+            return redirect()->guest(route($login));
+        }
+
         return parent::render($request, $exception);
     }
 }
