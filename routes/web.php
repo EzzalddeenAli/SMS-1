@@ -60,8 +60,8 @@ Route::prefix('registrar')->group(function () {
 
 });
 
-//@todo add layer of protection here asap
 //Resource
+/* Don't make a resource that retrieves all data from model */
 Route::prefix('resource')->group(function () {
     //Resource Level...
     Route::get('levels', 'ResourceLevelController@index')->name('level.list');
