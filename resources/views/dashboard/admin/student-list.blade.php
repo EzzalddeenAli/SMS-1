@@ -136,6 +136,7 @@
 
                             <div id="add-modal-body">
                                 <modal-add-form v-for="(type, field) in fields" :form-name="field" :form-type="type"></modal-add-form>
+                                <modal-select-form :user-type="'student'"></modal-select-form>
                             </div>
 
                         </div>

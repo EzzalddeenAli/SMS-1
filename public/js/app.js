@@ -895,11 +895,198 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(64));
+Vue.component('modal-edit-form', __webpack_require__(37));
+Vue.component('modal-add-form', __webpack_require__(40));
+Vue.component('modal-select-form', __webpack_require__(43));
+Vue.component('assign-tab', __webpack_require__(46));
+Vue.component('assign-tab-panel', __webpack_require__(49));
 
-var app = new Vue({
-  el: '#app'
+var editModal = new Vue({
+    el: '#edit-modal-body',
+    data: {
+        message: 'Hello Vue',
+        responses: []
+    },
+
+    methods: {
+        checkIfId: function checkIfId(key) {
+            switch (key) {
+                case 'id':
+                case 'subject_id':
+                case 'student_id':
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+
 });
+
+var addModal = new Vue({
+    el: '#add-modal-body',
+    data: {
+        fields: {},
+
+        teacherFields: {
+            username: "text",
+            password: "password",
+            first_name: "text",
+            middle_name: "text",
+            last_name: "text",
+            age: "number",
+            advisory: "number"
+        },
+
+        studentFields: {
+            username: "text",
+            password: "password",
+            first_name: "text",
+            middle_name: "text",
+            last_name: "text",
+            age: "number"
+        },
+
+        levelFields: {},
+
+        subjectFields: {}
+    }
+
+});
+
+var deleteModal = new Vue({
+    el: '#delete-modal-body',
+    data: {
+        deleteLink: "",
+        username: ""
+    }
+});
+
+var assignModal = new Vue({
+    el: '#assign-modal-body',
+    data: {
+        id: 3
+    }
+});
+
+var teachersTable = new Vue({
+    el: '#teachers-table',
+
+    methods: {
+        showEditModal: function showEditModal(baseurl, username) {
+            axios.get(baseurl + username, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            }).then(function (response) {
+                editModal.responses = response.data;
+                editModal.responses.password !== undefined ? editModal.responses.password = "" : "";
+            }).catch(function (error) {
+                console.log(error);
+            });
+            $('#edit-modal').modal('show');
+        },
+        showAddModal: function showAddModal(field) {
+            switch (field) {
+                case 'teacher':
+                    addModal.fields = addModal.teacherFields;
+                    break;
+                case 'student':
+                    addModal.fields = addModal.studentFields;
+                    break;
+                case 'level':
+                    addModal.fields = { levelId: "select" };
+                    axios.get('/resource/levels', {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    }).then(function (response) {
+                        var _iteratorNormalCompletion = true;
+                        var _didIteratorError = false;
+                        var _iteratorError = undefined;
+
+                        try {
+                            for (var _iterator = response.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                var datum = _step.value;
+
+                                Vue.set(addModal.levelFields, datum.name, datum.id);
+                            }
+                        } catch (err) {
+                            _didIteratorError = true;
+                            _iteratorError = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+                            } finally {
+                                if (_didIteratorError) {
+                                    throw _iteratorError;
+                                }
+                            }
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                    break;
+                case 'subject':
+                    addModal.fields = { teacherId: "select" };
+                    axios.get('/registrar/teachers', {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    }).then(function (response) {
+                        var _iteratorNormalCompletion2 = true;
+                        var _didIteratorError2 = false;
+                        var _iteratorError2 = undefined;
+
+                        try {
+                            for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                var datum = _step2.value;
+
+                                Vue.set(addModal.subjectFields, datum.first_name + ' ' + datum.middle_name + ' ' + datum.last_name, datum.id);
+                            }
+                        } catch (err) {
+                            _didIteratorError2 = true;
+                            _iteratorError2 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
+                                }
+                            } finally {
+                                if (_didIteratorError2) {
+                                    throw _iteratorError2;
+                                }
+                            }
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                    break;
+            }
+
+            $('#add-modal').modal('show');
+        },
+        showDeleteModal: function showDeleteModal(type, username) {
+            switch (type) {
+                case 'teacher':
+                    deleteModal.deleteLink = '/resource/teacher/' + username;
+                    break;
+
+                case 'student':
+                    deleteModal.deleteLink = '/resource/student/' + username;
+                    break;
+            }
+
+            deleteModal.username = username;
+            $('#delete-modal').modal('show');
+        },
+
+
+        //just logging the type for now
+        showAssignModal: function showAssignModal(type, id) {
+            console.log(type);
+            assignModal.id = id;
+            $('#assign-modal').modal('show');
+        }
+    }
+});
+// $('#assign-modal').modal('show');
 
 /***/ }),
 /* 11 */
@@ -41882,52 +42069,15 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(65),
+  __webpack_require__(38),
   /* template */
-  __webpack_require__(66),
+  __webpack_require__(39),
   /* styles */
   null,
   /* scopeId */
@@ -41935,9 +42085,9 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\JILCS55\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\JILCS55\\resources\\assets\\js\\components\\modalEditForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] modalEditForm.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -41946,9 +42096,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1bb2e855", Component.options)
+    hotAPI.createRecord("data-v-4ed28ff4", Component.options)
   } else {
-    hotAPI.reload("data-v-1bb2e855", Component.options)
+    hotAPI.reload("data-v-4ed28ff4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -41959,7 +42109,122 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 65 */
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        formName: String,
+        formData: [String, Number],
+        isId: {
+            type: Boolean,
+            default: false
+        }
+    },
+
+    computed: {
+        getType: function getType() {
+            return this.isId === false ? "text" : "hidden";
+        },
+        ifPassword: function ifPassword() {
+            return this.formName === "password" ? "Update password (Optional)" : this.formName;
+        },
+        excluded: function excluded() {
+            return this.formName === "advisory";
+        }
+    }
+});
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [(!_vm.excluded) ? _c('div', {
+    staticClass: "form-group"
+  }, [(!_vm.isId) ? _c('label', {
+    attrs: {
+      "for": _vm.formName
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.formName)
+    }
+  }) : _vm._e(), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": _vm.getType,
+      "name": _vm.formName,
+      "id": _vm.formName,
+      "placeholder": _vm.ifPassword
+    },
+    domProps: {
+      "value": _vm.formData
+    }
+  })]) : _vm._e()])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4ed28ff4", module.exports)
+  }
+}
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(41),
+  /* template */
+  __webpack_require__(42),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\xampp\\htdocs\\JILCS55\\resources\\assets\\js\\components\\modalAddForm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] modalAddForm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-07df72c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-07df72c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41980,41 +42245,661 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+    props: {
+        formName: String,
+        formType: [String, Number],
+        options: Object,
+        extraOptions: Object
+    },
+
+    computed: {
+        excluded: function excluded() {
+            return this.formName === "advisory";
+        }
     }
 });
 
 /***/ }),
-/* 66 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
+  return (_vm.formType !== 'select') ? _c('div', [(!_vm.excluded) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": _vm.formName
+    },
+    domProps: {
+      "textContent": _vm._s(_vm.formName)
+    }
+  }), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": _vm.formType,
+      "name": _vm.formName,
+      "id": _vm.formName,
+      "value": "",
+      "placeholder": _vm.formName
+    }
+  })]) : _vm._e()]) : _c('div', [_c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": _vm.formName
+    }
+  }, _vm._l((_vm.options), function(value, name) {
+    return _c('option', {
+      domProps: {
+        "value": value,
+        "textContent": _vm._s(name)
+      }
+    })
+  })), _vm._v(" "), _vm._l((_vm.extraOptions), function(type, field) {
+    return _c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      attrs: {
+        "for": field
+      },
+      domProps: {
+        "textContent": _vm._s(field)
+      }
+    }), _vm._v(" "), _c('input', {
+      staticClass: "form-control",
+      attrs: {
+        "type": type,
+        "name": field,
+        "id": field,
+        "value": "",
+        "placeholder": field
+      }
+    })])
+  })], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-07df72c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(44),
+  /* template */
+  __webpack_require__(45),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\xampp\\htdocs\\JILCS55\\resources\\assets\\js\\components\\modalSelectForm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] modalSelectForm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4846ccf8", Component.options)
+  } else {
+    hotAPI.reload("data-v-4846ccf8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        userType: String
+    },
+
+    methods: {
+        levelSelected: function levelSelected() {
+            var _this = this;
+
+            // console.log("resource/level/" + this.levelValue);
+            axios.get("/resource/level/" + this.levelValue, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            }).then(function (response) {
+                _this.sections = response.data.length > 0 ? { 'Please select level first': '' } : { 'No levels found': '' };
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = response.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var datum = _step.value;
+
+                        Vue.set(_this.sections, datum.name, datum.id);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    data: function data() {
+        return {
+            levels: {},
+            sections: { 'Please select level first': '' },
+            user: "",
+            levelValue: 1,
+            formName: ''
+        };
+    },
+    created: function created() {
+        var _this2 = this;
+
+        this.levelSelected();
+        axios.get("/resource/levels", {
+            headers: { "X-Requested-With": "XMLHttpRequest" }
+        }).then(function (response) {
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var datum = _step2.value;
+
+                    Vue.set(_this2.levels, datum.name, datum.id);
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        });
+
+        switch (this.userType) {
+            case "teacher":
+                this.user = "Advisory";
+                this.formName = 'advisory';
+                break;
+            case "student":
+                this.user = "Section";
+                this.formName = 'section_id';
+                break;
+        }
+    }
+});
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v(_vm._s(_vm.user))]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.levelValue),
+      expression: "levelValue"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": _vm.formName
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.levelValue = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        _vm.levelSelected()
+      }]
+    }
+  }, _vm._l((_vm.levels), function(id, name) {
+    return _c('option', {
+      domProps: {
+        "value": id,
+        "textContent": _vm._s(name)
+      }
+    })
+  })), _vm._v(" "), _c('select', {
+    staticClass: "form-control",
+    attrs: {
+      "name": _vm.formName
+    }
+  }, _vm._l((_vm.sections), function(id, name) {
+    return _c('option', {
+      domProps: {
+        "value": id,
+        "textContent": _vm._s(name)
+      }
+    })
+  }))])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4846ccf8", module.exports)
+  }
+}
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(47),
+  /* template */
+  __webpack_require__(48),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\xampp\\htdocs\\JILCS55\\resources\\assets\\js\\components\\assignTab.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] assignTab.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0579671e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0579671e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        teacherId: [String, Number]
+    },
+
+    data: function data() {
+        return {
+            levels: {
+                elem: {},
+                junior: {},
+                senior: {}
+            }
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/admin/teachers', {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        }).then(function (response) {
+            var tab = 1;
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = response.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var datum = _step.value;
+
+                    switch (datum.name) {
+                        case 'Grade7':
+                            tab = 2;
+                            break;
+
+                        case 'Grade11':
+                            tab = 3;
+                            break;
+                    }
+
+                    switch (tab) {
+                        case 1:
+                            Vue.set(_this.levels.elem, datum.name, datum);
+                            break;
+                        case 2:
+                            Vue.set(_this.levels.junior, datum.name, datum);
+                            break;
+                        case 3:
+                            Vue.set(_this.levels.senior, datum.name, datum);
+                            break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        });
+    },
+
+
+    methods: {
+        console: function (_console) {
+            function console(_x) {
+                return _console.apply(this, arguments);
+            }
+
+            console.toString = function () {
+                return _console.toString();
+            };
+
+            return console;
+        }(function (text) {
+            console.log(text);
+        })
+    }
+});
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "tab-content"
+  }, [_c('input', {
+    attrs: {
+      "type": "hidden",
+      "name": "teacherId"
+    },
+    domProps: {
+      "value": _vm.teacherId
+    }
+  }), _vm._v(" "), _vm._l((_vm.levels), function(obj, level, index) {
+    return _c('div', {
+      class: {
+        'tab-pane': true, 'active': (index === 0)
+      },
+      attrs: {
+        "id": level
+      }
+    }, [_c('assign-tab-panel', {
+      attrs: {
+        "level": obj
+      }
+    })], 1)
+  })], 2)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
+  return _c('ul', {
+    staticClass: "nav nav-tabs"
+  }, [_c('li', {
+    staticClass: "active"
+  }, [_c('a', {
+    attrs: {
+      "href": "#elem",
+      "data-toggle": "tab"
+    }
+  }, [_vm._v("Elementary")])]), _vm._v(" "), _c('li', [_c('a', {
+    attrs: {
+      "href": "#junior",
+      "data-toggle": "tab"
+    }
+  }, [_vm._v("Junior High")])]), _vm._v(" "), _c('li', [_c('a', {
+    attrs: {
+      "href": "#senior",
+      "data-toggle": "tab"
+    }
+  }, [_vm._v("Senior High")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1bb2e855", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-0579671e", module.exports)
   }
 }
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(50),
+  /* template */
+  __webpack_require__(51),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "C:\\xampp\\htdocs\\JILCS55\\resources\\assets\\js\\components\\assignTabPanel.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] assignTabPanel.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-051ae043", Component.options)
+  } else {
+    hotAPI.reload("data-v-051ae043", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        level: Object
+    }
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', _vm._l((_vm.level), function(obj, name) {
+    return _c('div', {
+      staticClass: "panel panel-default"
+    }, [_c('div', {
+      staticClass: "panel-heading"
+    }, [_c('a', {
+      staticClass: "panel-title",
+      attrs: {
+        "href": '#panel' + obj.id,
+        "data-toggle": "collapse"
+      },
+      domProps: {
+        "textContent": _vm._s(name)
+      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body collapse",
+      attrs: {
+        "id": 'panel' + obj.id
+      }
+    }, [(obj.sections.length === 0) ? _c('p', {
+      staticClass: "help-block"
+    }, [_vm._v("No sections found")]) : _vm._e(), _vm._v(" "), _vm._l((obj.sections), function(section, key) {
+      return _c('div', [_c('p', {
+        staticClass: "text-success"
+      }, [_vm._v(_vm._s(section.name))]), _vm._v(" "), (section.subjects.length === 0) ? _c('p', {
+        staticClass: "help-block"
+      }, [_vm._v("No subjects found")]) : _vm._e(), _vm._v(" "), _vm._l((section.subjects), function(subject, key) {
+        return _c('label', {
+          staticClass: "checkbox-inline"
+        }, [_c('input', {
+          attrs: {
+            "type": "checkbox",
+            "name": "subjects[]"
+          },
+          domProps: {
+            "value": subject.id
+          }
+        }), _vm._v(_vm._s(subject.name) + "\r\n                        ")])
+      }), _vm._v(" "), _c('hr')], 2)
+    })], 2)])
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-051ae043", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -52,7 +52,7 @@ Route::prefix('registrar')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'RegistrarController@index')->name('registrar.dashboard');
-//    Route::get('teachers', 'RegistrarController@teachers')->name('registrar.teacher.list');
+    Route::get('teachers', 'RegistrarController@teachers')->name('registrar.teacher.list');
     Route::get('students', 'RegistrarController@students')->name('registrar.student.list');
     Route::get('section/{id}', 'RegistrarController@section')->name('registrar.section');
     Route::get('levels', 'RegistrarController@levels')->name('registrar.levels.list');
