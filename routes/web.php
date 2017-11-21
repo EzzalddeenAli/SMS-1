@@ -42,6 +42,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('students', 'AdminController@students')->name('admin.student.list');
+    Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
 });
 
 Route::prefix('registrar')->group(function () {
