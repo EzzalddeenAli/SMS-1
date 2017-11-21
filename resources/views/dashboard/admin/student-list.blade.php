@@ -18,16 +18,41 @@
                         @endforeach
                     </ul>
                 </div>
-        @endif
+            @endif
+
+            @if(session('status'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    {{ session('status') }}
+                </div>
+            @endif
 
         <!-- menu bar -->
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search for student">
             </div>
             <div class="form-horizontal form-group">
-                <button v-on:click="showAddModal('student')" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
+                <div class="col-sm-1">
+                    <button v-on:click="showAddModal('student')" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
+                </div>
+
+                <div class="col-sm-3">
+                    <form action="{{ route('admin.card.publish') }}" method="post">
+                        {{ csrf_field() }}
+                        <select name="status" class="form-control" onchange="this.form.submit()">
+                            <option value="0">Report Cards</option>
+                            <option value="0"> Hide Report Cards</option>
+                            <option value="1"> Show Report Cards</option>
+                        </select>
+                    </form>
+                </div>
+
             </div>
-            <!-- ./menu bar-->
+
+            <div class="clearfix"></div>
+                <br>
+                <!-- ./menu bar-->
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
 

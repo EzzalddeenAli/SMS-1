@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Level;
 use App\Student;
 use App\Teacher;
@@ -65,6 +66,25 @@ class AdminController extends Controller
         $vue_modals = true;
 
         return view('dashboard.admin.student-list', compact('students', 'index', 'vue_modals'));
+    }
+
+    //change report card publish status
+    public function publish(Request $request)
+    {
+        $request->validate([
+            'status' => 'required|boolean'
+        ]);
+
+        $admin = Admin::first();
+        $admin->card_publish = $request->status;
+        $admin->save();
+
+        if ($request->status == 1) {
+            $status = 'Grades Published';
+        } else {
+            $status = 'Grades Unpublished';
+        }
+        return back()->with('status', $status);
     }
 
 }
