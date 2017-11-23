@@ -22,7 +22,6 @@ class CreateStudentsTable extends Migration
             $table->string('last_name');
             $table->integer('age');
             $table->integer('section_id');
-            $table->integer('student_id');
             $table->rememberToken();
             $table->timestamps();
         });
