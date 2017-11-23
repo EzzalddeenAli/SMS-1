@@ -19,7 +19,23 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = bcrypt('12345678'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Student::class, function (Faker $faker) {
+    static $password;
+
+    return [
+        "username" => $faker->name,
+        "password" => $password ?: $password = bcrypt('12345678'),
+        "first_name" => $faker->name,
+        "middle_name" => $faker->name,
+        "last_name" => $faker->name,
+        "age" => $faker->numberBetween(0, 30),
+        "section_id" => function () {
+            return factory(App\Section::class)->create()->id;
+        },
     ];
 });
