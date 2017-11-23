@@ -43,17 +43,8 @@ class ResourceStudentController extends Controller
      */
     public function store(storeStudent $request)
     {
-        try {
-            $student_id = Student::orderBy('id', 'DESC')->first()->id;
-        } catch (ErrorException $e) {
-            $student_id = 1;
-        }
 
-        if ($student_id !== 1) {
-            ++$student_id;
-        }
-
-        Student::create([
+        $student = Student::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'first_name' => $request->first_name,
@@ -61,7 +52,6 @@ class ResourceStudentController extends Controller
             'last_name' => $request->last_name,
             'age' => $request->age,
             'section_id' => $request->section_id,
-            'student_id' => $student_id,
         ]);
 
         //find section's subjects then foreach grade add student
@@ -70,7 +60,7 @@ class ResourceStudentController extends Controller
         foreach ($section->subjects as $subject) {
             Grade::create([
                 'subject_id' => $subject->id,
-                'student_id' => $student_id
+                'student_id' => $student->id,
             ]);
         }
 
@@ -123,7 +113,7 @@ class ResourceStudentController extends Controller
         'last_name' => $request->last_name,
         'age' => $request->age,
         'advisory' => $request->advisory,
-        'section_id' => $request->section_id,
+//        'section_id' => $request->section_id,
         ]);
 
         return back();

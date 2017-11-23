@@ -20,7 +20,6 @@ class StudentsTableSeeder extends Seeder
             "last_name" => "Enet",
             "age" => 15,
             "section_id" => 1,
-            "student_id" => 1,
         ]);
 
         Student::create([
@@ -31,7 +30,6 @@ class StudentsTableSeeder extends Seeder
             "last_name" => "Bulsor",
             "age" => 16,
             "section_id" => 1,
-            "student_id" => 2,
         ]);
 
         Student::create([
@@ -42,7 +40,6 @@ class StudentsTableSeeder extends Seeder
             "last_name" => "Isad",
             "age" => 18,
             "section_id" => 1,
-            "student_id" => 3,
         ]);
     }
 }
