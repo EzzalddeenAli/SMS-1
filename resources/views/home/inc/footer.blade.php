@@ -17,8 +17,7 @@
 
     </div>
 </div>
-<script src="{{asset('Bstrap/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('Bstrap/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/shrinkNavBar.js')}}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/shrinkNavBar.js') }}"></script>
 </body>
 </html>
