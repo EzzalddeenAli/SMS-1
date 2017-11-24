@@ -1,7 +1,7 @@
 @extends('home.layouts.body')
 
 @section('slide-shows')
-    <div class="row carousel-row" style="margin-top: 80px" id="home">
+    <div class="row carousel-row" style="margin-top: 80px">
         <div class="slide-row">
             <div class="carousel slide slide-carousel" id="carousel-1" data-ride="carousel">
                 <!-- Indicators -->
