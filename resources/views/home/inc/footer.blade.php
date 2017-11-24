@@ -18,6 +18,7 @@
     </div>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/smoothScroll.js') }}"></script>
 <script src="{{ asset('js/shrinkNavBar.js') }}"></script>
 </body>
 </html>
