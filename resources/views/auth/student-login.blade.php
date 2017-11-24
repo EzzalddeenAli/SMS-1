@@ -51,6 +51,12 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                                <a href="https://www.facebook.com/jilcssf/">No account yet? Message Us</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
