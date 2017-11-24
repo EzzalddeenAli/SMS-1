@@ -8,15 +8,8 @@
     </div>
 </div>
 
-<script src="{{asset('js/vue/axios.min.js')}}"></script>
-<script src="{{asset('js/vue/vue.js')}}"></script>
-<script src="{{asset('Bstrap/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('Bstrap/bootstrap.min.js')}}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{asset('js/admin-dashboard.js')}}"></script>
-<script src="{{asset('js/vue/modalComponents.vue.js')}}"></script>
-@if(isset($vue_modals))
-    <script src="{{asset('js/vue/modals.vue.js')}}"></script>
-@endif
 @if(isset($vue_rating))
     <script src="{{asset('js/vue/heart-rating.js')}}"></script>
     <script src="{{asset('js/vue/rating.vue.js')}}"></script>
