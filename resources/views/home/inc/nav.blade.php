@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a id="nav-home" class="navbar-brand" href="/#">Home</a>
+        <a id="nav-home" class="navbar-brand" href="#home">Home</a>
     </div>
 
     <div class="navbar-brand" style="position: absolute;left: 47%; bottom: 1px; padding: 0;">
