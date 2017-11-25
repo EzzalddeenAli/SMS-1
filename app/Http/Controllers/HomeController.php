@@ -44,7 +44,9 @@ class HomeController extends Controller
             'Stem' => 'images/tracks/stem.jpg',
             'Abm' => 'images/tracks/abm.jpg',
             'Ict' => 'images/tracks/ict.jpg',
-            'Humms' => 'images/tracks/humms.jpg',
+            'Stems' => 'images/tracks/stem.jpg',
+            'Abms' => 'images/tracks/abm.jpg',
+            'Icts' => 'images/tracks/ict.jpg',
         ];
 
         return view('home.main', compact('carousel', 'sponsors', 'tracks'));

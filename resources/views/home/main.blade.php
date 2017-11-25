@@ -95,10 +95,13 @@
         <div class="col-sm-4">
             <p><a href="#"><img class="img-responsive" src="{{ asset($img) }}" alt="Image"></a></p>
             <div class="col-sm-10 col-sm-offset-1">
-                <a href="#">Track1</a>
-                <p>{{ $title }}</p>
+                <a href="#">{{ $title }}</a>
+                {{--<p>{{ $title }}</p>--}}
             </div>
         </div>
+            @if($title === 'Ict')
+                <div class="clearfix"></div>
+            @endif
         @endforeach
 
     </div>
