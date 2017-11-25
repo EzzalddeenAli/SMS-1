@@ -40,6 +40,13 @@ class HomeController extends Controller
             'images/sponsors/themeforest.jpg',
         ];
 
-        return view('home.main', compact('carousel', 'sponsors'));
+        $tracks = [
+            'Stem' => 'images/tracks/stem.jpg',
+            'Abm' => 'images/tracks/abm.jpg',
+            'Ict' => 'images/tracks/ict.jpg',
+            'Humms' => 'images/tracks/humms.jpg',
+        ];
+
+        return view('home.main', compact('carousel', 'sponsors', 'tracks'));
     }
 }
