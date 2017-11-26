@@ -1,5 +1,5 @@
 <?php
-
+Route::view('/lte', 'dashboard.test');
 Route::get('/', 'HomeController@index')->name('home.main');
 //Route::get('home', 'HomeController@index')->name('user.dashboard');
 
