@@ -20,18 +20,18 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="#"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
+            <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="{{'/'.request()->segment(1) }}"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
             <li class="{{ request()->segment(2) === null ? 'assignments' : '' }}"><a href="#"><i class="fa fa-edit"></i> <span>Assignments</span></a></li>
 
-            <li class="treeview">
+            <li class="treeview {{ (request()->segment(2) === 'grades') || (request()->segment(2) === 'permit') ? 'active-link' : '' }}">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span>Grades</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Report Card</a></li>
-                    <li><a href="#">Permit</a></li>
+                    <li><a href="{{ route('student.grades') }}">Report Card</a></li>
+                    <li><a href="{{ route('student.permit') }}">Permit</a></li>
                 </ul>
             </li>
 
@@ -44,6 +44,17 @@
                 <ul class="treeview-menu">
                     <li><a href="#">Records</a></li>
                     <li><a href="#">Incident Report</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-chain"></i> <span>Teachers</span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('student.teachers') }}">Rate</a></li>
                 </ul>
             </li>
 

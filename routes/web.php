@@ -18,7 +18,7 @@ Route::prefix('student')->group(function () {
     Route::get('/grades', 'StudentController@grades')->name('student.grades');
     Route::get('/grades/download', 'StudentController@gradesDownload');
     Route::get('/permit', 'StudentController@permit')->name('student.permit');
-    Route::get('/teachers', 'StudentController@teachers')->name('student.teachers');
+    Route::get('/teachers/rate', 'StudentController@teachers')->name('student.teachers');
     Route::post('/rate', 'StudentController@rate')->name('student.rate');
 });
 
