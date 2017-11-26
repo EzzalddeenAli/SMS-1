@@ -8,6 +8,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+//sparkline for generating line graphs
+window.Sparkline = require('jquery-sparkline');
+//chart.js for generating charts
+window.Chart = require('chart.js');
+
+require('./pie-chart');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
