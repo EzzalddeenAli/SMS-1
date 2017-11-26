@@ -3,7 +3,7 @@
         <ul class="nav" id="main-menu">
 
             <li class="{{ request()->segment(2) === null ? 'active-link' : '' }}">
-                <a href="{{'/'.request()->segment(1)}}" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
+                <a href="{{'/'.request()->segment(1) }}" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Working</span></a>
             </li>
             <li class="{{ request()->segment(2) === 'grades' ? 'active-link' : '' }}">
                 <a href="{{ route('student.grades') }}"><i class="fa fa-bar-chart-o "></i>Grades <span class="badge">Working</span></a>
@@ -28,7 +28,7 @@
             </li>
             <li>
                 <a href="#"><i class="fa fa-weixin "></i>Forums</a>
-            </li
+            </li>
         </ul>
     </div>
 </nav>
