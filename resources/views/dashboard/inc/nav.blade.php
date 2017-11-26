@@ -121,7 +121,7 @@
                         <!-- The user image in the navbar-->
                         <img src="{{ asset('images/avatars/avatar.png') }}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Mang Juan</span>
+                        <span class="hidden-xs">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
@@ -129,7 +129,7 @@
                             <img src="{{ asset('images/avatars/avatar.png') }}" class="img-circle" alt="User Image">
 
                             <p>
-                                Mang Juan - Web Developer
+                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
