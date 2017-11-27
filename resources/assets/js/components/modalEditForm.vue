@@ -29,7 +29,8 @@
             },
 
             excluded() {
-                return this.formName === "advisory";
+                let excluded = ["advisory", "section_id"];
+                return excluded.includes(this.formName);
             }
         },
     }

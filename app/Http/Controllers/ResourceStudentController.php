@@ -113,7 +113,7 @@ class ResourceStudentController extends Controller
         'last_name' => $request->last_name,
         'age' => $request->age,
         'advisory' => $request->advisory,
-//        'section_id' => $request->section_id,
+        'section_id' => $request->section_id,
         ]);
 
         return back();

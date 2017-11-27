@@ -17,6 +17,9 @@ class CreateAdminsTable extends Migration
             $table->increments('id');
             $table->string('username')->unique;
             $table->string('password');
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
             $table->boolean('card_publish')->default(0);
             $table->rememberToken();
             $table->timestamps();
