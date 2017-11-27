@@ -4,7 +4,7 @@ Route::get('/', 'HomeController@index')->name('home.main');
 //Route::get('home', 'HomeController@index')->name('user.dashboard');
 
 //Auth::routes();
-Route::get('logout', 'Auth\LoginController@logout');
+//Route::get('logout', 'Auth\LoginController@logout');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('student')->group(function () {
@@ -54,7 +54,7 @@ Route::prefix('registrar')->group(function () {
     Route::get('/', 'RegistrarController@index')->name('registrar.dashboard');
     Route::get('teachers', 'RegistrarController@teachers')->name('registrar.teacher.list');
     Route::get('students', 'RegistrarController@students')->name('registrar.student.list');
-    Route::get('section/{id}', 'RegistrarController@section')->name('registrar.section');
+    Route::get('section/{id}/subjects', 'RegistrarController@section')->name('registrar.section.subjects');
     Route::get('levels', 'RegistrarController@levels')->name('registrar.levels.list');
 
 
