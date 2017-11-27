@@ -95,6 +95,7 @@
 
                                 <div id="edit-modal-body">
                                     <modal-edit-form v-for="(item, key) in responses" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+                                    <modal-select-form :user-type="'student'"></modal-select-form>
                                 </div>
 
                             </div>

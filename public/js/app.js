@@ -75484,7 +75484,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.formName === "password" ? "Update password (Optional)" : this.formName;
         },
         excluded: function excluded() {
-            return this.formName === "advisory";
+            var excluded = ["advisory", "section_id"];
+            return excluded.includes(this.formName);
         }
     }
 });
