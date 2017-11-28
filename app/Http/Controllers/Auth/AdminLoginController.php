@@ -16,7 +16,10 @@ class AdminLoginController extends Controller
 
     public function login()
     {
-        return view('auth.admin-login');
+        return view('auth.login', [
+            'route' => 'admin.authenticate',
+            'header' => 'Admin'
+            ]);
     }
 
     public function authenticate(Request $request)

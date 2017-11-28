@@ -16,7 +16,10 @@ class StudentLoginController extends Controller
 
     public function login()
     {
-        return view('auth.student-login');
+        return view('auth.login', [
+            'route' => 'student.authenticate',
+            'header' => 'Student'
+        ]);
     }
 
     public function authenticate(Request $request)
