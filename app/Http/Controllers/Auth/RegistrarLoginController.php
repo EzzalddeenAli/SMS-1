@@ -16,7 +16,10 @@ class RegistrarLoginController extends Controller
 
     public function login()
     {
-        return view('auth.registrar-login');
+        return view('auth.login', [
+            'route' => 'registrar.authenticate',
+            'header' => 'Registrar'
+        ]);
     }
 
     public function authenticate(Request $request)

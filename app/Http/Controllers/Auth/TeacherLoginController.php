@@ -16,7 +16,10 @@ class TeacherLoginController extends Controller
 
     public function login()
     {
-        return view('auth.teacher-login');
+        return view('auth.login', [
+            'route' => 'teacher.authenticate',
+            'header' => 'Teacher'
+        ]);
     }
 
     public function authenticate(Request $request)
