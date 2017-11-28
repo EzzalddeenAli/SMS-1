@@ -15,7 +15,7 @@
                 <div class="carousel-inner">
                     @foreach($slideshow as $ind=>$img)
                     <div class="item {{ $ind === 0 ? 'active' : '' }}" style="max-height: 630px; height: 630px;">
-                        <img class="img-responsive" src="{{asset($img->full_path)}}" alt="Image" style="min-width: 100%; height: 100%">
+                        <img class="img-responsive" src="{{asset($img->path)}}" alt="Image" style="min-width: 100%; height: 100%">
                     </div>
                     @endforeach
                 </div>
@@ -32,14 +32,14 @@
         <h1>Why JIL?</h1>
         <br><br>
         <!-- images -->
-        @foreach($whyJil as $img)
         <div class="col-sm-4">
             <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset($img->full_path)}}"
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/character.png")}}"
                                  alt="Image"></a>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
-                <p>{{ $img->description }}</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.</p>
             </div>
             <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
         </div>
@@ -47,7 +47,37 @@
         <div class=" hidden-md hidden-lg">
             <br><br>
         </div>
-        @endforeach
+
+
+        <!-- images -->
+        <div class="col-sm-4">
+            <div class="form-group">
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/driven.png")}}"
+                                 alt="Image"></a>
+            </div>
+            <div class="col-sm-10 col-sm-offset-1">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.</p>
+            </div>
+            <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+
+        <div class=" hidden-md hidden-lg">
+            <br><br>
+        </div>
+
+        <!-- images -->
+        <div class="col-sm-4">
+            <div class="form-group">
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/leaders.png")}}"
+                                 alt="Image"></a>
+            </div>
+            <div class="col-sm-10 col-sm-offset-1">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.</p>
+            </div>
+            <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
 
     </div>
 @endsection
@@ -61,15 +91,15 @@
         <br><br>
 
         <!-- images -->
-        @foreach($tracks as $track)
+        @foreach($tracks as $title=>$img)
         <div class="col-sm-4">
-            <p><a href="#"><img class="img-responsive" src="{{ asset($track->full_path) }}" alt="Image"></a></p>
+            <p><a href="#"><img class="img-responsive" src="{{ asset($img) }}" alt="Image"></a></p>
             <div class="col-sm-10 col-sm-offset-1">
-                <a href="#">{{ $track->title }}</a>
+                <a href="#">{{ $title }}</a>
                 {{--<p>{{ $title }}</p>--}}
             </div>
         </div>
-            @if($track->title === 'Ict')
+            @if($title === 'Ict')
                 <div class="clearfix"></div>
             @endif
         @endforeach

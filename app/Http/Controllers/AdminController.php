@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\Level;
+use App\Registrar;
 use App\Student;
 use App\Teacher;
 use GuzzleHttp\Client;
@@ -85,6 +86,28 @@ class AdminController extends Controller
             $status = 'Grades Unpublished';
         }
         return back()->with('status', $status);
+    }
+
+    public function layout(Request $request, $area)
+    {
+        switch ($area) {
+            case 'slideshow':
+
+                break;
+            case 'whyJil':
+
+                break;
+            case 'tracks':
+
+                break;
+            case 'about':
+
+                break;
+            default:
+                $images = '';
+        }
+
+        return view('dashboard.admin.layout');
     }
 
 }
