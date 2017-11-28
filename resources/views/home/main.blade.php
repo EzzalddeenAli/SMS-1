@@ -6,16 +6,16 @@
             <div class="carousel slide slide-carousel" id="carousel-1" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    @foreach($carousel as $ind=>$img)
+                    @foreach($slideshow as $ind=>$img)
                     <li data-target="#carousel-1" data-slide-to="{{ $ind }}" class="{{ $ind === 0 ? 'active' : '' }}"></li>
                     @endforeach
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    @foreach($carousel as $ind=>$img)
+                    @foreach($slideshow as $ind=>$img)
                     <div class="item {{ $ind === 0 ? 'active' : '' }}" style="max-height: 630px; height: 630px;">
-                        <img class="img-responsive" src="{{asset($img)}}" alt="Image" style="min-width: 100%; height: 100%">
+                        <img class="img-responsive" src="{{asset($img->path)}}" alt="Image" style="min-width: 100%; height: 100%">
                     </div>
                     @endforeach
                 </div>

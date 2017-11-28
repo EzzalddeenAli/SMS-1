@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Layout;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,11 +28,13 @@ class HomeController extends Controller
     }*/
     public function index()
     {
-        $carousel = [
+/*        $carousel = [
             'images/school/pexels-photo.jpg',
             'images/sports/badminton elem.png',
             'images/sports/football.png',
-        ];
+        ];*/
+
+        $slideshow = Layout::where('type', 'slideshow')->orderBy('position', 'asc')->get();
 
         $sponsors = [
             'images/sponsors/creative-market.jpg',
@@ -49,6 +52,6 @@ class HomeController extends Controller
             'Icts' => 'images/tracks/ict.jpg',
         ];
 
-        return view('home.main', compact('carousel', 'sponsors', 'tracks'));
+        return view('home.main', compact('slideshow', 'sponsors', 'tracks'));
     }
 }

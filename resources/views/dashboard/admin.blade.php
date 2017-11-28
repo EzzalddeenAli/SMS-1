@@ -14,6 +14,13 @@
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Dashboard</li>
         </ol>
+
+        @if(isset($quote))
+            <div class="alert alert-info" style="margin: 12px 0 0 0">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ $quote['body'] }} - {{ $quote['author'] }}
+            </div>
+        @endif
     </section>
 @endsection
 

@@ -24,16 +24,19 @@
             <li class="{{ request()->segment(2) === 'teachers' ? 'active' : '' }}"><a href="{{ route('admin.teacher.list') }}"><i class="ion ion-ios-people"></i> <span>Teachers</span></a></li>
             <li class="{{ request()->segment(2) === 'students' ? 'active' : '' }}"><a href="{{ route('admin.student.list') }}"><i class="fa fa-users"></i> <span>Students</span></a></li>
 
-{{--            <li class="treeview">
-                <a href="#"><i class="fa fa-chain"></i> <span>Students</span>
+            <li class="treeview" title="Edit website pictures">
+                <a href="#"><i class="fa fa-globe"></i> <span>Website</span>
                     <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('student.teachers') }}">Nothing Here</a></li>
+                    <li><a href="{{ route('admin.layout', ['slideshow']) }}">Slideshow</a></li>
+                    <li><a href="{{ route('admin.layout', ['whyJil']) }}">Why Jil?</a></li>
+                    <li><a href="{{ route('admin.layout', ['tracks']) }}">Offered Tracks</a></li>
+                    <li><a href="{{ route('admin.layout', ['about']) }}">About Us</a></li>
                 </ul>
-            </li>--}}
+            </li>
 
         </ul>
         <!-- /.sidebar-menu -->
