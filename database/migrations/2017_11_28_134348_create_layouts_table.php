@@ -16,6 +16,7 @@ class CreateLayoutsTable extends Migration
         Schema::create('layouts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path');
+            $table->string('ext');
             $table->string('type');
             $table->string('title')->default('');
             $table->string('description')->default('');

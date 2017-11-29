@@ -101,11 +101,13 @@ let teachersTable = new Vue({
 
     methods: {
         showEditModal(baseurl, username) {
+            console.log(baseurl + username);
             axios.get(baseurl + username, {
                 headers: {'X-Requested-With': 'XMLHttpRequest'}
             }).then(function (response) {
                 editModal.responses = response.data;
                 editModal.responses.password !== undefined ? editModal.responses.password = "" : "";
+                console.log('success');
             }).catch(function (error) {
                 console.log(error);
             });

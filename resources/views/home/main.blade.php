@@ -32,14 +32,14 @@
         <h1>Why JIL?</h1>
         <br><br>
         <!-- images -->
+        @foreach($whyJil as $img)
         <div class="col-sm-4">
             <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/character.png")}}"
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset($img->path)}}"
                                  alt="Image"></a>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
+                <p>{{ $img->description }}</p>
             </div>
             <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
         </div>
@@ -47,37 +47,7 @@
         <div class=" hidden-md hidden-lg">
             <br><br>
         </div>
-
-
-        <!-- images -->
-        <div class="col-sm-4">
-            <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/driven.png")}}"
-                                 alt="Image"></a>
-            </div>
-            <div class="col-sm-10 col-sm-offset-1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
-            </div>
-            <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
-        </div>
-
-        <div class=" hidden-md hidden-lg">
-            <br><br>
-        </div>
-
-        <!-- images -->
-        <div class="col-sm-4">
-            <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset("images/why/leaders.png")}}"
-                                 alt="Image"></a>
-            </div>
-            <div class="col-sm-10 col-sm-offset-1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
-            </div>
-            <p><a class="btn btn-info" href="#" role="button">Learn more &raquo;</a></p>
-        </div>
+        @endforeach
 
     </div>
 @endsection
@@ -91,15 +61,15 @@
         <br><br>
 
         <!-- images -->
-        @foreach($tracks as $title=>$img)
+        @foreach($tracks as $track)
         <div class="col-sm-4">
-            <p><a href="#"><img class="img-responsive" src="{{ asset($img) }}" alt="Image"></a></p>
+            <p><a href="#"><img class="img-responsive" src="{{ asset($track->path) }}" alt="Image"></a></p>
             <div class="col-sm-10 col-sm-offset-1">
-                <a href="#">{{ $title }}</a>
+                <a href="#">{{ $track->title }}</a>
                 {{--<p>{{ $title }}</p>--}}
             </div>
         </div>
-            @if($title === 'Ict')
+            @if($track->title === 'Ict')
                 <div class="clearfix"></div>
             @endif
         @endforeach

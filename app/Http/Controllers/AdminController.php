@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Layout;
 use App\Level;
 use App\Registrar;
 use App\Student;
@@ -92,22 +93,22 @@ class AdminController extends Controller
     {
         switch ($area) {
             case 'slideshow':
-
-                break;
-            case 'whyJil':
-
+                $images = Layout::where('type', 'slideshow')->orderBy('position', 'asc')->get();
                 break;
             case 'tracks':
-
+                $images = Layout::where('type', 'tracks')->orderBy('position', 'asc')->get();
+                break;
+            case 'whyJil':
+                $images = Layout::where('type', 'whyJil')->orderBy('position', 'asc')->get();
                 break;
             case 'about':
-
+                $images = null;
                 break;
             default:
-                $images = '';
+                $images = null;
         }
 
-        return view('dashboard.admin.layout');
+        return view('dashboard.admin.layout', compact('images'));
     }
 
 }
