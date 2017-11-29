@@ -28,12 +28,6 @@ class HomeController extends Controller
     }*/
     public function index()
     {
-/*        $carousel = [
-            'images/school/pexels-photo.jpg',
-            'images/sports/badminton elem.png',
-            'images/sports/football.png',
-        ];*/
-
         $slideshow = Layout::where('type', 'slideshow')->orderBy('position', 'asc')->get();
 
         $sponsors = [
@@ -43,15 +37,10 @@ class HomeController extends Controller
             'images/sponsors/themeforest.jpg',
         ];
 
-        $tracks = [
-            'Stem' => 'images/tracks/stem.jpg',
-            'Abm' => 'images/tracks/abm.jpg',
-            'Ict' => 'images/tracks/ict.jpg',
-            'Stems' => 'images/tracks/stem.jpg',
-            'Abms' => 'images/tracks/abm.jpg',
-            'Icts' => 'images/tracks/ict.jpg',
-        ];
+        $tracks = Layout::where('type', 'tracks')->orderBy('position', 'asc')->get();
 
-        return view('home.main', compact('slideshow', 'sponsors', 'tracks'));
+        $whyJil = Layout::where('type', 'whyJil')->orderBy('position', 'asc')->get();
+
+        return view('home.main', compact('slideshow', 'sponsors', 'tracks', 'whyJil'));
     }
 }

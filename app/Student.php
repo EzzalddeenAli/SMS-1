@@ -33,4 +33,10 @@ class Student extends Authenticatable
     {
         return $this->belongsTo('App\Section');
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
+    }
+
 }

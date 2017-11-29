@@ -11,6 +11,7 @@ use App\Traits\Rateable;
  * @property \Carbon\Carbon $created_at
  * @property int $id
  * @property \Carbon\Carbon $updated_at
+ * @property string $full_name
  */
 class Teacher extends Authenticatable
 {
@@ -43,6 +44,11 @@ class Teacher extends Authenticatable
             return 0;
         }
         return $rating->rating;
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
     }
 
 }

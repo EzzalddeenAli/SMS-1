@@ -88,9 +88,15 @@ Route::prefix('resource')->group(function () {
     Route::get('teacher/{username}', 'ResourceTeacherController@edit')->name('edit.teacher');
     Route::delete('teacher/{username}', 'ResourceTeacherController@destroy')->name('destroy.teacher');
 
+    //Resource Images
+    Route::get('image', 'ResourceImageController@edit')->name('edit.image');
+
+    //PUT THIS TO BOTTOM!
     //Resource Grade...
     Route::get('/{section_id}/{username}', 'ResourceGradeController@edit')->name('edit.grade');
     Route::patch('grade', 'ResourceGradeController@update')->name('update.grade');
+    //MAKE SURE NOTHING IS BELOW HERE!
+
 });
 
 //for roulette api, don't use

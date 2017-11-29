@@ -12,26 +12,61 @@ class LayoutTableSeeder extends Seeder
      */
     public function run()
     {
+        //slideshow
         Layout::create([
-            'path' => 'images/school/pexels-photo.jpg',
+            'path' => 'images/school/pexels-photo',
+            'ext' => 'jpg',
             'type' => 'slideshow',
             'position' => '1'
         ]);
 
         Layout::create([
-            'path' => 'images/sports/badminton elem.png',
+            'path' => 'images/sports/badminton elem',
+            'ext' => 'png',
             'type' => 'slideshow',
             'position' => '2'
         ]);
 
         Layout::create([
-            'path' => 'images/sports/football.png',
+            'path' => 'images/sports/football',
+            'ext' => 'png',
             'type' => 'slideshow',
             'position' => '3'
         ]);
 
+        //whyJil
+
         Layout::create([
-            'path' => 'images/tracks/stem.jpg',
+            'path' => 'images/why/character',
+            'ext' => 'png',
+            'type' => 'whyJil',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.',
+            'position' => '1'
+        ]);
+
+        Layout::create([
+            'path' => 'images/why/driven',
+            'ext' => 'png',
+            'type' => 'whyJil',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.',
+            'position' => '2'
+        ]);
+
+        Layout::create([
+            'path' => 'images/why/leaders',
+            'ext' => 'png',
+            'type' => 'whyJil',
+            'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.',
+            'position' => '3'
+        ]);
+
+        //tracks
+        Layout::create([
+            'path' => 'images/tracks/stem',
+            'ext' => 'jpg',
             'type' => 'tracks',
             'title' => 'Stem',
             'description' => 'Stem',
@@ -39,7 +74,8 @@ class LayoutTableSeeder extends Seeder
         ]);
 
         Layout::create([
-            'path' => 'images/tracks/abm.jpg',
+            'path' => 'images/tracks/abm',
+            'ext' => 'jpg',
             'type' => 'tracks',
             'title' => 'Abm',
             'description' => 'Abm',
@@ -47,7 +83,8 @@ class LayoutTableSeeder extends Seeder
         ]);
 
         Layout::create([
-            'path' => 'images/tracks/ict.jpg',
+            'path' => 'images/tracks/ict',
+            'ext' => 'jpg',
             'type' => 'tracks',
             'title' => 'Ict',
             'description' => 'Ict',
@@ -55,7 +92,8 @@ class LayoutTableSeeder extends Seeder
         ]);
 
         Layout::create([
-            'path' => 'images/tracks/stem.jpg',
+            'path' => 'images/tracks/stem',
+            'ext' => 'jpg',
             'type' => 'tracks',
             'title' => 'Stems',
             'description' => 'Stems',
@@ -63,7 +101,8 @@ class LayoutTableSeeder extends Seeder
         ]);
 
         Layout::create([
-            'path' => 'images/tracks/abm.jpg',
+            'path' => 'images/tracks/abm',
+            'ext' => 'jpg',
             'type' => 'tracks',
             'title' => 'Abms',
             'description' => 'Abms',
@@ -71,7 +110,8 @@ class LayoutTableSeeder extends Seeder
         ]);
 
         Layout::create([
-            'path' => 'images/tracks/ict.jpg',
+            'path' => 'images/tracks/ict',
+            'ext' => 'jpg',
             'type' => 'tracks',
             'title' => 'Icts',
             'description' => 'Icts',
