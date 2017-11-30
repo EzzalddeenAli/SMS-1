@@ -90,6 +90,7 @@ Route::prefix('resource')->group(function () {
 
     //Resource Images
     Route::get('image', 'ResourceImageController@edit')->name('edit.image');
+    Route::patch('image', 'ResourceImageController@update')->name('update.image');
 
     //PUT THIS TO BOTTOM!
     //Resource Grade...

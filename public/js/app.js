@@ -75467,6 +75467,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -75485,9 +75489,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ifPassword: function ifPassword() {
             return this.formName === "password" ? "Update password (Optional)" : this.formName;
         },
+        isImage: function isImage() {
+            var image = ["path"];
+            return image.includes(this.formName); //return true if formName has a match in array
+        },
         excluded: function excluded() {
-            var excluded = ["advisory", "section_id"];
-            return excluded.includes(this.formName);
+            var excluded = ["advisory", "section_id", "path", "ext"];
+            return excluded.includes(this.formName); //return true if formName has a match in array
         }
     }
 });
@@ -75516,6 +75524,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     domProps: {
       "value": _vm.formData
+    }
+  })]) : _vm._e(), _vm._v(" "), (_vm.isImage) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": _vm.formName
+    }
+  }, [_vm._v("Photo "), _c('span', {
+    staticClass: "inline help-block"
+  }, [_vm._v("format: .png, .jpeg, .jpg")])]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "file",
+      "name": _vm.formName,
+      "id": _vm.formName
     }
   })]) : _vm._e()])
 },staticRenderFns: []}
@@ -75775,6 +75798,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        getFields: function getFields(url) {
+            var _this2 = this;
+
+            axios.get(url, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            }).then(function (response) {
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+                    for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var datum = _step2.value;
+
+                        Vue.set(_this2.levels, datum.name, datum.id);
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+            });
         }
     },
 
@@ -75782,53 +75837,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             levels: {},
             sections: { 'Please select level first': '' },
-            user: "",
+            formTitle: "",
             levelValue: 1,
             formName: ''
         };
     },
     created: function created() {
-        var _this2 = this;
-
         this.levelSelected();
-        axios.get("/resource/levels", {
-            headers: { "X-Requested-With": "XMLHttpRequest" }
-        }).then(function (response) {
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
-
-            try {
-                for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var datum = _step2.value;
-
-                    Vue.set(_this2.levels, datum.name, datum.id);
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
-            }
-        });
-
         switch (this.userType) {
             case "teacher":
-                this.user = "Advisory";
-                this.formName = 'advisory';
+                this.getFields("/resource/levels");
+                this.formTitle = "Advisory";
+                this.formName = "advisory";
                 break;
             case "student":
-                this.user = "Section";
-                this.formName = 'section_id';
+                this.getFields("/resource/levels");
+                this.formTitle = "Section";
+                this.formName = "section_id";
                 break;
+            /*                case "adminLayout":
+                                this.formTitle = "Admin";
+                                this.formName = "Position";
+                                break;*/
         }
     }
 });
@@ -75840,7 +75870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v(_vm._s(_vm.user))]), _vm._v(" "), _c('select', {
+  }, [_c('label', [_vm._v(_vm._s(_vm.formTitle))]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",

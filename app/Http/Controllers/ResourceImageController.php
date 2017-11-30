@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Layout;
+use App\Http\Requests\updateImage;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Storage;
 
 class ResourceImageController extends Controller
 {
@@ -59,7 +61,7 @@ class ResourceImageController extends Controller
     public function edit(Request $request)
     {
         if(request()->ajax() && $request->has('path')) {
-            return Layout::where('path', $request->query('path'))->first();
+            return Image::where('path', $request->query('path'))->first();
         }
     }
 
@@ -70,9 +72,57 @@ class ResourceImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(updateImage $request)
     {
-        //
+        $request->title = ($request->title !== null) ? $request->title : '';
+        $request->description = ($request->description !== null) ? $request->description : '';
+
+        $image = Image::where('type', $request->type)
+            ->where('title', $request->title)
+            ->where('description', $request->description)
+            ->where('position', $request->position)
+            ->first();
+
+        $path = $image->path;
+        $ext = $image->ext;
+
+        switch ($request->type) {
+            case 'slideshow':
+                $folder = 'sports';
+                break;
+            case 'whyJil':
+                $folder = 'why';
+                break;
+            case 'tracks':
+                $folder = 'tracks';
+                break;
+        }
+
+        if ($request->hasFile('path')) {
+            $file = $request->file('path')->store("images/$folder", 'public');
+            $exists = Storage::disk('public')->url($file);
+//            dd($exists);
+            $segments = explode('/', $exists);
+            $noExt = explode('.', $segments[6]);
+//            dd($segments);
+            $path = $segments[4].'/'.$segments[5].'/'.$noExt[0];
+//            dd($path);
+            $ext = \File::extension($exists);
+//            dd($exists);
+        }
+
+//        return "request has no file";
+        $image->update([
+            'path' => $path,
+            'ext' => $ext,
+            'type' => $request->type,
+            'title' => $request->title,
+            'description' => $request->description,
+            'position' => $request->position,
+        ]);
+
+        return back();
+
     }
 
     /**

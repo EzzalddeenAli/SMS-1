@@ -1,9 +1,9 @@
 <?php
 
+use App\Image;
 use Illuminate\Database\Seeder;
 
-use App\Layout;
-class LayoutTableSeeder extends Seeder
+class ImagesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,21 +13,21 @@ class LayoutTableSeeder extends Seeder
     public function run()
     {
         //slideshow
-        Layout::create([
+        Image::create([
             'path' => 'images/school/pexels-photo',
             'ext' => 'jpg',
             'type' => 'slideshow',
             'position' => '1'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/sports/badminton elem',
             'ext' => 'png',
             'type' => 'slideshow',
             'position' => '2'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/sports/football',
             'ext' => 'png',
             'type' => 'slideshow',
@@ -36,7 +36,7 @@ class LayoutTableSeeder extends Seeder
 
         //whyJil
 
-        Layout::create([
+        Image::create([
             'path' => 'images/why/character',
             'ext' => 'png',
             'type' => 'whyJil',
@@ -45,7 +45,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '1'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/why/driven',
             'ext' => 'png',
             'type' => 'whyJil',
@@ -54,7 +54,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '2'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/why/leaders',
             'ext' => 'png',
             'type' => 'whyJil',
@@ -64,7 +64,7 @@ class LayoutTableSeeder extends Seeder
         ]);
 
         //tracks
-        Layout::create([
+        Image::create([
             'path' => 'images/tracks/stem',
             'ext' => 'jpg',
             'type' => 'tracks',
@@ -73,7 +73,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '1'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/tracks/abm',
             'ext' => 'jpg',
             'type' => 'tracks',
@@ -82,7 +82,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '2'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/tracks/ict',
             'ext' => 'jpg',
             'type' => 'tracks',
@@ -91,7 +91,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '3'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/tracks/stem',
             'ext' => 'jpg',
             'type' => 'tracks',
@@ -100,7 +100,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '4'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/tracks/abm',
             'ext' => 'jpg',
             'type' => 'tracks',
@@ -109,7 +109,7 @@ class LayoutTableSeeder extends Seeder
             'position' => '5'
         ]);
 
-        Layout::create([
+        Image::create([
             'path' => 'images/tracks/ict',
             'ext' => 'jpg',
             'type' => 'tracks',

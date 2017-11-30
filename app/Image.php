@@ -10,9 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @property mixed $full_path
  */
-class Layout extends Model
+class Image extends Model
 {
     public $timestamps = false;
+
+    protected $fillable = ['path', 'ext', 'type', 'title', 'description', 'position'];
 
     public function getFullPathAttribute() {
         return $this->path.'.'.$this->ext;
