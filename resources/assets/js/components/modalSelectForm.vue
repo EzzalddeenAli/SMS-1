@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="form-group">
-        <label>{{ user }}</label>
+        <label>{{ formTitle }}</label>
         <select :name="formName" class="form-control" v-model="levelValue" @change="levelSelected()">
             <option v-for="(id, name) in levels" :value="id" v-text="name"></option>
         </select>
@@ -31,6 +31,16 @@
                 }).catch(error => {
                     console.log(error);
                 });
+            },
+
+            getFields(url) {
+                axios.get(url, {
+                    headers: {"X-Requested-With": "XMLHttpRequest"}
+                }).then(response => {
+                    for (const datum of response.data) {
+                        Vue.set(this.levels, datum.name, datum.id)
+                    }
+                });
             }
         },
 
@@ -38,7 +48,7 @@
             return {
                 levels: {},
                 sections: {'Please select level first': ''},
-                user: "",
+                formTitle: "",
                 levelValue: 1,
                 formName: '',
             }
@@ -46,23 +56,21 @@
 
         created() {
             this.levelSelected();
-            axios.get("/resource/levels", {
-                headers: {"X-Requested-With": "XMLHttpRequest"}
-            }).then(response => {
-                for (const datum of response.data) {
-                    Vue.set(this.levels, datum.name, datum.id)
-                }
-            });
-
             switch (this.userType) {
                 case "teacher":
-                    this.user = "Advisory";
-                    this.formName = 'advisory';
+                    this.getFields("/resource/levels");
+                    this.formTitle = "Advisory";
+                    this.formName = "advisory";
                     break;
                 case "student":
-                    this.user = "Section";
-                    this.formName = 'section_id';
+                    this.getFields("/resource/levels");
+                    this.formTitle = "Section";
+                    this.formName = "section_id";
                     break;
+/*                case "adminLayout":
+                    this.formTitle = "Admin";
+                    this.formName = "Position";
+                    break;*/
             }
         },
     }

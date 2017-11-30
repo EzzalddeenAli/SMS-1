@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Layout;
+use App\Image;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,7 +28,7 @@ class HomeController extends Controller
     }*/
     public function index()
     {
-        $slideshow = Layout::where('type', 'slideshow')->orderBy('position', 'asc')->get();
+        $slideshow = Image::where('type', 'slideshow')->orderBy('position', 'asc')->get();
 
         $sponsors = [
             'images/sponsors/creative-market.jpg',
@@ -37,9 +37,9 @@ class HomeController extends Controller
             'images/sponsors/themeforest.jpg',
         ];
 
-        $tracks = Layout::where('type', 'tracks')->orderBy('position', 'asc')->get();
+        $tracks = Image::where('type', 'tracks')->orderBy('position', 'asc')->get();
 
-        $whyJil = Layout::where('type', 'whyJil')->orderBy('position', 'asc')->get();
+        $whyJil = Image::where('type', 'whyJil')->orderBy('position', 'asc')->get();
 
         return view('home.main', compact('slideshow', 'sponsors', 'tracks', 'whyJil'));
     }

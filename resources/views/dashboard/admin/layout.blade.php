@@ -7,16 +7,27 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            Dashboard
-            <small>1.7</small>
+            Layouts
         </h1>
 @include('dashboard.inc.breadcrumbs')
     </section>
 @endsection
 
 @section('content-main')
-
+    <br><br>
     <div id="teachers-table">
+        @if($errors->any())
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+            </div>
+
+        @endif
         @if($images !== null)
             <div class="row">
             @foreach($images as $img)
@@ -25,7 +36,7 @@
                     <a href="#" v-on:click="showEditModal('/resource/image?path=', '{{ urlencode($img->path ) }}')">
                         <img src="{{ asset($img->full_path) }}" alt="Lights" style="width:100%">
                         <div class="caption">
-                            <p>{{ $img->title }}</p>
+                            <p class="text-center">{{ $img->title }}</p>
                         </div>
                     </a>
                 </div>
@@ -42,16 +53,15 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Edit Image</h4>
+                        <h4 class="modal-title">Update Image</h4>
                     </div>
-                    <form action="{{ route('update.teacher') }}" method="post">
+                    <form action="{{ route('update.image') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('patch') }}
                         <div class="modal-body">
 
                             <div id="edit-modal-body">
                                 <modal-edit-form v-for="(item, key, index) in responses" :key="index" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
-                                <modal-select-form :user-type="'teacher'"></modal-select-form>
                             </div>
 
                         </div>
