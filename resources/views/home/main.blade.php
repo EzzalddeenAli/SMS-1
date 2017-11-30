@@ -15,7 +15,7 @@
                 <div class="carousel-inner">
                     @foreach($slideshow as $ind=>$img)
                     <div class="item {{ $ind === 0 ? 'active' : '' }}" style="max-height: 630px; height: 630px;">
-                        <img class="img-responsive" src="{{asset($img->path)}}" alt="Image" style="min-width: 100%; height: 100%">
+                        <img class="img-responsive" src="{{asset($img->full_path)}}" alt="Image" style="min-width: 100%; height: 100%">
                     </div>
                     @endforeach
                 </div>
@@ -35,7 +35,7 @@
         @foreach($whyJil as $img)
         <div class="col-sm-4">
             <div class="form-group">
-                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset($img->path)}}"
+                <a href="#"><img class="img-responsive img-rounded-super" src="{{asset($img->full_path)}}"
                                  alt="Image"></a>
             </div>
             <div class="col-sm-10 col-sm-offset-1">

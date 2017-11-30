@@ -16,22 +16,24 @@
 
 @section('content-main')
 
-    @if($images !== null)
-        <div class="row">
-        @foreach($images as $img)
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <a href="#" v-on:click="showEditModal('/resource/image?path=', '{{ urlencode($img->path ) }}')">
-                    <img src="{{ asset($img->full_path) }}" alt="Lights" style="width:100%">
-                    <div class="caption">
-                        <p>{{ $img->title }}</p>
-                    </div>
-                </a>
+    <div id="teachers-table">
+        @if($images !== null)
+            <div class="row">
+            @foreach($images as $img)
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <a href="#" v-on:click="showEditModal('/resource/image?path=', '{{ urlencode($img->path ) }}')">
+                        <img src="{{ asset($img->full_path) }}" alt="Lights" style="width:100%">
+                        <div class="caption">
+                            <p>{{ $img->title }}</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-        @endforeach
-        </div>
-    @endif
+            @endforeach
+            </div>
+        @endif
+    </div>
 
     <div>
         <!--edit modal-->
@@ -40,7 +42,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Edit Teacher</h4>
+                        <h4 class="modal-title">Edit Image</h4>
                     </div>
                     <form action="{{ route('update.teacher') }}" method="post">
                         {{ csrf_field() }}
@@ -49,6 +51,7 @@
 
                             <div id="edit-modal-body">
                                 <modal-edit-form v-for="(item, key, index) in responses" :key="index" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+                                <modal-select-form :user-type="'teacher'"></modal-select-form>
                             </div>
 
                         </div>
@@ -115,7 +118,6 @@
         </div><!-- /. delete modal -->
 
     </div>
-
 @endsection
 
 @section('sidebar-control')

@@ -59,9 +59,7 @@ class ResourceImageController extends Controller
     public function edit(Request $request)
     {
         if(request()->ajax() && $request->has('path')) {
-            return (Layout::where('path', $request->query('path'))->first());
-        } else {
-            return (Layout::where('path', $request->query('path'))->first());
+            return Layout::where('path', $request->query('path'))->first();
         }
     }
 
