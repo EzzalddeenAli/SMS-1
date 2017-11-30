@@ -28383,7 +28383,7 @@ var editModal = new Vue({
     el: '#edit-modal-body',
     data: {
         message: 'Hello Vue',
-        responses: []
+        responses: {}
     },
 
     methods: {
@@ -28458,7 +28458,7 @@ var teachersTable = new Vue({
             }).then(function (response) {
                 editModal.responses = response.data;
                 editModal.responses.password !== undefined ? editModal.responses.password = "" : "";
-                console.log('success');
+                console.log(response.data);
             }).catch(function (error) {
                 console.log(error);
             });
