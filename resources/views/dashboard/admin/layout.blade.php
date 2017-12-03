@@ -29,20 +29,24 @@
 
         @endif
         @if($images !== null)
-            <div class="row">
-            @foreach($images as $img)
+        <div class="row">
+            @foreach($images as $ind=>$img)
             <div class="col-md-4">
                 <div class="thumbnail">
                     <a href="#" v-on:click="showEditModal('/resource/image?path=', '{{ urlencode($img->path ) }}')">
-                        <img src="{{ asset($img->full_path) }}" alt="Lights" style="width:100%">
+                        <img src="{{ asset($img->full_path) }}" alt="Lights" style="width:100%; max-height: 148px">
                         <div class="caption">
                             <p class="text-center">{{ $img->title }}</p>
                         </div>
                     </a>
                 </div>
             </div>
+                @if(((++$ind) % 3) === 0)
+                    <div class="clearfix"></div>
+                @endif
             @endforeach
-            </div>
+        </div>
+
         @endif
     </div>
 
