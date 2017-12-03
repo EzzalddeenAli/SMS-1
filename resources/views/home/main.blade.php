@@ -63,7 +63,7 @@
         <!-- images -->
         @foreach($tracks as $track)
         <div class="col-sm-4">
-            <p><a href="#"><img class="img-responsive" src="{{ asset($track->path) }}" alt="Image"></a></p>
+            <p><a href="#"><img class="img-responsive" src="{{ asset($track->full_path) }}" alt="Image"></a></p>
             <div class="col-sm-10 col-sm-offset-1">
                 <a href="#">{{ $track->title }}</a>
                 {{--<p>{{ $title }}</p>--}}
