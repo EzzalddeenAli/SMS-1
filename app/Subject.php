@@ -44,4 +44,9 @@ class Subject extends Model
     {
         return $this->belongsTo('App\Teacher');
     }
+
+    public function assignments()
+    {
+        return $this->hasMany('App\Assignment');
+    }
 }

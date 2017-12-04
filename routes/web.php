@@ -31,6 +31,7 @@ Route::prefix('teacher')->group(function () {
     Route::get('/', 'TeacherController@index')->name('teacher.dashboard');
     Route::get('sections', 'TeacherController@sections')->name('teacher.section.list');
     Route::get('/section/{subject_id}', 'TeacherController@section')->name('section');
+    Route::get('/assignments', 'TeacherController@assignments')->name('teacher.assignments.list');
 });
 
 Route::prefix('admin')->group(function () {
@@ -91,6 +92,9 @@ Route::prefix('resource')->group(function () {
     //Resource Images
     Route::get('image', 'ResourceImageController@edit')->name('edit.image');
     Route::patch('image', 'ResourceImageController@update')->name('update.image');
+
+    //Resource Assignments
+    Route::get('assignments', 'ResourceImageController@index')->name('assignment.list');
 
     //PUT THIS TO BOTTOM!
     //Resource Grade...

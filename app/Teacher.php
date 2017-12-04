@@ -12,6 +12,7 @@ use App\Traits\Rateable;
  * @property int $id
  * @property \Carbon\Carbon $updated_at
  * @property string $full_name
+ * @property mixed $assignments
  */
 class Teacher extends Authenticatable
 {
@@ -49,6 +50,11 @@ class Teacher extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany('App\Assignment');
     }
 
 }

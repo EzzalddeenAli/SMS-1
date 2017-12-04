@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Auth\AuthenticationException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -49,6 +50,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception->getStatusCode() === 403) {
+            return response()->view('error',
+                [
+                    'code' => $exception->getStatusCode(),
+                    'message' => '403 Access Forbidden'
+                ]);
+        }
         if ($exception instanceof AuthenticationException) {
             $guard = array_get($exception->guards(), 0);
             switch ($guard) {

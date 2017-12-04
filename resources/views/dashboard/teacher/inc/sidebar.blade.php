@@ -21,6 +21,7 @@
             <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="{{'/'.request()->segment(1) }}"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
+            <li class="{{ request()->segment(2) === 'assignments' ? 'active' : '' }}"><a href="{{ route('teacher.assignments.list')  }}"><i class="fa fa-file-word-o"></i> <span>Assignments</span></a></li>
             <li class="{{ (request()->segment(2) === 'sections') || (request()->segment(2) === 'section') ? 'active' : '' }}"><a href="{{ route('teacher.section.list')  }}"><i class="fa fa-group"></i> <span>Classes</span></a></li>
 
 {{--            <li class="treeview">
