@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property mixed $students
  * @property mixed $subjects
+ * @property mixed $assignments
  */
 class Section extends Model
 {
@@ -31,6 +32,11 @@ class Section extends Model
     public function subjects()
     {
         return $this->hasMany('App\Subject');
+    }
+
+    public function assignments()
+    {
+        return $this->hasManyThrough('App\Assignment', 'App\Subject');
     }
 
 }
