@@ -30,9 +30,46 @@
                     </div>
                 @endif
 
-                @foreach($assignments as $assignment)
-
-                @endforeach
+                    @foreach ($sections as $section)
+                        @if(count($section->subjects) > 0)
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{ $section->name }}</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Task</th>
+                                        <th>Description</th>
+                                        <th>Deadline</th>
+                                    </tr>
+                                    @foreach($section->subjects as $subject)
+                                        @if(count($subject->assignments) > 0)
+                                        <tr>
+                                            <td colspan="4" class="text-center bg-info"><b>{{ $subject->name }}</b></td>
+                                        </tr>
+                                        @foreach($subject->assignments as $ind=>$assignment)
+                                        <tr>
+                                            <td>{{ ++$ind }}.</td>
+                                            <td>{{ $assignment->title }}</td>
+                                            <td>{{ $assignment->description }}</td>
+                                            <td>{{ $assignment->deadline }}</td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    @endforeach
+                                    </tbody></table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                        @endif
+                    @endforeach
             </div>
         </div>
 

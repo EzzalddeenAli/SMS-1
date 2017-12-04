@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assignment;
 use App\Section;
+use App\Subject;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,9 +54,11 @@ class TeacherController extends Controller
 
     public function assignments()
     {
-        $assignments = Assignment::where('teacher_id', auth()->id())->get();
+        $sections = Section::with(['subjects.assignments' => function ($query) {
+            $query->where('teacher_id', auth()->id());
+        }])->get();
 
-        return view('dashboard.teacher.assignments', compact('assignments'));
+        return view('dashboard.teacher.assignments', compact('sections'));
 //        abort_unless(Gate::allows('assignments.view', $ass), 403);
 
 
