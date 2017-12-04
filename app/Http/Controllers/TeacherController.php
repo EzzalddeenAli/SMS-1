@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
 use App\Section;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TeacherController extends Controller
 {
@@ -47,6 +49,16 @@ class TeacherController extends Controller
         $vue_modals = true;
 
         return view('dashboard.teacher.section', compact('subject', 'index', 'vue_modals'));
+    }
+
+    public function assignments()
+    {
+        $assignments = Assignment::where('teacher_id', auth()->id())->get();
+
+        return view('dashboard.teacher.assignments', compact('assignments'));
+//        abort_unless(Gate::allows('assignments.view', $ass), 403);
+
+
     }
 
 }

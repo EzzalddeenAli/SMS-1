@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Assignment;
+use App\Policies\AssignmentPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -14,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+//        Assignment::class => AssignmentPolicy::class,
     ];
 
     /**
@@ -28,5 +31,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-grade', function ($user, $subject) {
             return $user->id == $subject->teacher_id;
         });
+
+        //resource gate eg: assignments.view, assignments.update
+        Gate::resource('assignments', 'App\Policies\AssignmentPolicy');
     }
 }
