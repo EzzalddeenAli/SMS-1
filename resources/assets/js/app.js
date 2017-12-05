@@ -76,9 +76,9 @@ let addModal = new Vue({
 
         assignmentFields: {
             title: "text",
-            password: "password",
             description: "text",
-            deadline: "date",
+            "deadline_date": "date",
+            "deadline_time": "time",
         },
 
         levelFields: {},

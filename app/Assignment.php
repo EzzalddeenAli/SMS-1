@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Assignment extends Model
 {
 
+    protected $fillable = ['title', 'description', 'deadline', 'subject_id', 'teacher_id',];
     public function subject()
     {
         return $this->belongsTo('App\Subject');

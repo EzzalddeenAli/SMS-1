@@ -94,7 +94,8 @@ Route::prefix('resource')->group(function () {
     Route::patch('image', 'ResourceImageController@update')->name('update.image');
 
     //Resource Assignments
-    Route::get('assignments', 'ResourceImageController@index')->name('assignment.list');
+    Route::get('assignments', 'ResourceAssignmentController@index')->name('assignment.list');
+    Route::post('assignments', 'ResourceAssignmentController@store')->name('add.assignment');
 
     //PUT THIS TO BOTTOM!
     //Resource Grade...
