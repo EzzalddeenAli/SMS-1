@@ -30,6 +30,14 @@
                     </div>
                 @endif
 
+                @if (session('status'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                     @foreach ($sections as $section)
                         @if(count($section->subjects) > 0)
                     <div class="col-md-6">
@@ -42,7 +50,7 @@
                                 </div>
                             </div>
                             <!-- /.box-header -->
-                            <div class="box-body">
+                            <div class="box-body table-responsive" style="max-height: 300px; overflow-y: scroll">
                                 <table class="table table-bordered">
                                     <tbody>
                                     <tr>
@@ -117,7 +125,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Add Assignment</h4>
                         </div>
-                        <form action="{{ route('add.subject') }}" method="post">
+                        <form action="{{ route('add.assignment') }}" method="post">
                             {{ csrf_field() }}
                             <div class="modal-body">
 
@@ -125,8 +133,6 @@
                                     <modal-add-form v-for="(type, field) in fields" :options="subjectFields" :extra-options="{'subject-name': 'text'}" :form-name="field" :form-type="type"></modal-add-form>
                                     <input type="text" name="subject_id" v-model="assignment.subject_id">
                                 </div>
-
-                                <input type="hidden" name="sectionId" value="{{ request()->segment(3) }}">
 
                             </div>
                             <div class="modal-footer">

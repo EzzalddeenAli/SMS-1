@@ -73,11 +73,11 @@ class Handler extends ExceptionHandler
             return redirect()->guest(route($login));
         }
         //if forbidden
-        if ($exception->getStatusCode() === 403) {
+        if ($exception instanceof HttpException) {
             return response()->view('error',
                 [
                     'code' => $exception->getStatusCode(),
-                    'message' => '403 Access Forbidden'
+                    'message' => $exception->getMessage(),
                 ]);
         }
 
