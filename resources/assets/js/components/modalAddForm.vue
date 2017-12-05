@@ -1,7 +1,7 @@
 <template>
     <div v-if="formType !== 'select'">
     <div class="form-group" v-if="!excluded">
-        <label :for="formName" v-text="formName"></label>
+        <label :for="formName" v-text="formName" v-if="formType !== 'hidden'"></label>
         <input :type="formType" class="form-control" :name="formName" :id="formName" value="" :placeholder="formName">
     </div>
 </div>

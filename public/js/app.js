@@ -28425,9 +28425,20 @@ var addModal = new Vue({
             age: "number"
         },
 
+        assignmentFields: {
+            title: "text",
+            password: "password",
+            description: "text",
+            deadline: "date"
+        },
+
         levelFields: {},
 
-        subjectFields: {}
+        subjectFields: {},
+
+        assignment: {
+            subject_id: 0
+        }
     }
 
 });
@@ -28465,12 +28476,18 @@ var teachersTable = new Vue({
             $('#edit-modal').modal('show');
         },
         showAddModal: function showAddModal(field) {
+            var param = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
             switch (field) {
                 case 'teacher':
                     addModal.fields = addModal.teacherFields;
                     break;
                 case 'student':
                     addModal.fields = addModal.studentFields;
+                    break;
+                case 'assignment':
+                    addModal.fields = addModal.assignmentFields;
+                    addModal.assignment.subject_id = param;
                     break;
                 case 'level':
                     addModal.fields = { levelId: "select" };
@@ -75638,14 +75655,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return (_vm.formType !== 'select') ? _c('div', [(!_vm.excluded) ? _c('div', {
     staticClass: "form-group"
-  }, [_c('label', {
+  }, [(_vm.formType !== 'hidden') ? _c('label', {
     attrs: {
       "for": _vm.formName
     },
     domProps: {
       "textContent": _vm._s(_vm.formName)
     }
-  }), _vm._v(" "), _c('input', {
+  }) : _vm._e(), _vm._v(" "), _c('input', {
     staticClass: "form-control",
     attrs: {
       "type": _vm.formType,
