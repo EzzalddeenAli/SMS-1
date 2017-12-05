@@ -28568,6 +28568,11 @@ var teachersTable = new Vue({
                 case 'student':
                     deleteModal.deleteLink = '/resource/student/' + username;
                     break;
+                case 'assignment':
+                    username = JSON.parse(username);
+                    deleteModal.deleteLink = '/resource/assignments/' + username.id;
+                    username = "TITLE: " + username.title + "<br> DESCRIPTION: " + username.description;
+                    break;
             }
 
             deleteModal.username = username;
@@ -75488,6 +75493,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -75510,8 +75520,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var image = ["path"];
             return image.includes(this.formName); //return true if formName has a match in array
         },
+        isDeadline: function isDeadline() {
+            var date = ["deadline"];
+            return date.includes(this.formName); //return true if formName has a match in array
+        },
         excluded: function excluded() {
-            var excluded = ["advisory", "section_id", "path", "ext"];
+            var excluded = ["advisory", "section_id", "teacher_id", "path", "ext", "deadline"];
             return excluded.includes(this.formName); //return true if formName has a match in array
         }
     }
@@ -75556,6 +75570,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "file",
       "name": _vm.formName,
       "id": _vm.formName
+    }
+  })]) : _vm._e(), _vm._v(" "), (_vm.isDeadline) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": _vm.formName
+    }
+  }, [_vm._v(_vm._s(_vm.formName) + " "), _c('span', {
+    staticClass: "help-block inline"
+  }, [_vm._v("leave if unchanged")])]), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "date",
+      "name": "deadline_date",
+      "id": _vm.formName
+    }
+  }), _vm._v(" "), _c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "time",
+      "name": "deadline_time"
     }
   })]) : _vm._e()])
 },staticRenderFns: []}

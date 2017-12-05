@@ -16,6 +16,9 @@ class Assignment extends Model
 {
 
     protected $fillable = ['title', 'description', 'deadline', 'subject_id', 'teacher_id',];
+
+    protected $hidden = ['created_at', 'updated_at',];
+
     public function subject()
     {
         return $this->belongsTo('App\Subject');

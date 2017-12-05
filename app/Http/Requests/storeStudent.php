@@ -24,13 +24,13 @@ class storeStudent extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'bail|required|unique:students|min:8|alpha_num',
-            'password' => 'bail|required|min:8',
-            'first_name' => 'bail|required|string',
+            'username'    => 'bail|required|unique:students|min:8|alpha_num',
+            'password'    => 'bail|required|min:8',
+            'first_name'  => 'bail|required|string',
             'middle_name' => 'bail|required|string',
-            'last_name' => 'bail|required|string',
-            'age' => 'bail|required|integer',
-            'section_id' => 'bail|required|integer',
+            'last_name'   => 'bail|required|string',
+            'age'         => 'bail|required|integer',
+            'section_id'  => 'bail|required|integer',
         ];
     }
 }
