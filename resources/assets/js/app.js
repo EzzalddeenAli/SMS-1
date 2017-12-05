@@ -74,9 +74,20 @@ let addModal = new Vue({
             age: "number",
         },
 
+        assignmentFields: {
+            title: "text",
+            password: "password",
+            description: "text",
+            deadline: "date",
+        },
+
         levelFields: {},
 
-        subjectFields: {}
+        subjectFields: {},
+
+        assignment: {
+            subject_id: 0
+        }
     }
 
 });
@@ -114,13 +125,17 @@ let teachersTable = new Vue({
             $('#edit-modal').modal('show');
         },
 
-        showAddModal(field) {
+        showAddModal(field, param = null) {
             switch (field) {
                 case 'teacher':
                     addModal.fields = addModal.teacherFields;
                     break;
                 case 'student':
                     addModal.fields = addModal.studentFields;
+                    break;
+                case 'assignment':
+                    addModal.fields = addModal.assignmentFields;
+                    addModal.assignment.subject_id = param;
                     break;
                 case 'level':
                     addModal.fields = {levelId: "select"};
