@@ -12,32 +12,16 @@ use Illuminate\Support\Facades\Hash;
 
 class ResourceTeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //Showing forms are done with Vue
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(storeTeacher $request)
     {
         Teacher::create([
@@ -53,24 +37,11 @@ class ResourceTeacherController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param $username
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
-     */
     public function edit($username)
     {
         if(request()->ajax()) {
@@ -78,13 +49,6 @@ class ResourceTeacherController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param updateTeacher|Request $request
-     * @return \Illuminate\Http\Response
-     * @internal param int $id
-     */
     public function update(updateTeacher $request)
     {
         $teacher = Teacher::find($request->id);
@@ -104,12 +68,6 @@ class ResourceTeacherController extends Controller
         return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($username)
     {
         Teacher::where('username', $username)->delete();

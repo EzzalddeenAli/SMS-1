@@ -175,6 +175,11 @@ let teachersTable = new Vue({
                 case 'student':
                     deleteModal.deleteLink = '/resource/student/' + username;
                     break;
+                case 'assignment':
+                    username = JSON.parse(username);
+                    deleteModal.deleteLink = '/resource/assignments/' + username.id;
+                    username = "TITLE: " + username.title + "<br> DESCRIPTION: " + username.description;
+                    break;
             }
 
             deleteModal.username = username;

@@ -71,8 +71,12 @@
                                             <td>{{ $assignment->title }}</td>
                                             <td>{{ $assignment->description }}</td>
                                             <td>{{ $assignment->deadline }}</td>
-                                            <td class="text-center" style="width: 30px; padding: 4px"><button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button></td>
-                                            <td class="text-center" style="width: 30px; padding: 4px"><button class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button></td>
+                                            <td class="text-center" style="width: 30px; padding: 4px">
+                                                <button v-on:click="showDeleteModal('assignment', '{{ $assignment }}')" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
+                                            </td>
+                                            <td class="text-center" style="width: 30px; padding: 4px">
+                                                <button v-on:click="showEditModal('/resource/assignments/', '{{ $assignment->id }}/edit')" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></button>
+                                            </td>
                                         </tr>
                                         @endforeach
                                         @endif
@@ -98,7 +102,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Edit Assignments</h4>
                         </div>
-                        <form action="{{ route('update.grade') }}" method="post">
+                        <form action="{{ route('assignments.update') }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
                             <div class="modal-body">
@@ -125,13 +129,13 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Add Assignment</h4>
                         </div>
-                        <form action="{{ route('add.assignment') }}" method="post">
+                        <form action="{{ route('assignments.store') }}" method="post">
                             {{ csrf_field() }}
                             <div class="modal-body">
 
                                 <div id="add-modal-body">
                                     <modal-add-form v-for="(type, field) in fields" :options="subjectFields" :extra-options="{'subject-name': 'text'}" :form-name="field" :form-type="type"></modal-add-form>
-                                    <input type="text" name="subject_id" v-model="assignment.subject_id">
+                                    <input type="hidden" name="subject_id" v-model="assignment.subject_id">
                                 </div>
 
                             </div>
@@ -157,7 +161,7 @@
                             <form :action="deleteLink" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('delete') }}
-                                <div class="modal-body" v-text="username">
+                                <div class="modal-body" v-html="username">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

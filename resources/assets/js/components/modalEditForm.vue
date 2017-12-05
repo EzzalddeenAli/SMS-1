@@ -9,6 +9,11 @@
             <label :for="formName">Photo <span class="inline help-block">format: .png, .jpeg, .jpg</span></label>
             <input type="file" class="form-control" :name="formName" :id="formName">
         </div>
+        <div class="form-group" v-if="isDeadline">
+            <label :for="formName">{{ formName }} <span class="help-block inline">leave if unchanged</span></label>
+            <input type="date" class="form-control" name="deadline_date" :id="formName">
+            <input type="time" class="form-control" name="deadline_time">
+        </div>
     </div>
 </template>
 
@@ -37,8 +42,13 @@
                 return image.includes(this.formName); //return true if formName has a match in array
             },
 
+            isDeadline() {
+                let date = ["deadline"];
+                return date.includes(this.formName); //return true if formName has a match in array
+            },
+
             excluded() {
-                let excluded = ["advisory", "section_id", "path", "ext"];
+                let excluded = ["advisory", "section_id", "teacher_id", "path", "ext", "deadline"];
                 return excluded.includes(this.formName); //return true if formName has a match in array
             }
         },
