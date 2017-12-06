@@ -7,7 +7,7 @@ $(function () {
             return;
         }
 
-        if (color.charAt(0) == "#") {
+        if (color.charAt(0) === "#") {
             return color;
         }
 
@@ -56,6 +56,8 @@ $(function () {
     let d = date.getDate(),
         m = date.getMonth(),
         y = date.getFullYear();
+/*    console.log(new Date(y, m, d).getTime() / 1000);
+    console.log(new Date(1512489600 * 1000));*/
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -129,9 +131,18 @@ $(function () {
             copiedEventObject.allDay = allDay;
             copiedEventObject.backgroundColor = $(this).css('background-color');
             copiedEventObject.borderColor = $(this).css('border-color');
-            console.log(copiedEventObject.title);
-            console.log(copiedEventObject.start._d);
-            console.log(copiedEventObject.backgroundColor); //make background and border color same
+
+            //make a post request to persist event
+            axios.post('/resource/events', {
+                title:  copiedEventObject.title,
+                date: copiedEventObject.start._d.getTime() / 1000,
+                backgroundColor: rgbToHex(copiedEventObject.backgroundColor),
+                borderColor: rgbToHex(copiedEventObject.backgroundColor),
+            }).then(function (response) {
+                    console.log(response);
+            }).catch(function (error) {
+                    console.log(error);
+            });
 
             // render the event on the calendar
             // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)

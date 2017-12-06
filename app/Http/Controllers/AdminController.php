@@ -113,4 +113,11 @@ class AdminController extends Controller
         return view('dashboard.admin.layout', compact('images'));
     }
 
+    public function Calendar()
+    {
+        //        return Carbon::createFromTimestamp('1512489600'); //convert milisecond to date
+
+        return view('dashboard.admin.calendar');
+    }
+
 }

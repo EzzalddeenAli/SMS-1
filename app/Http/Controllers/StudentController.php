@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade as PDF;;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Student;
@@ -58,6 +59,8 @@ class StudentController extends Controller
 
     public function calendar()
     {
+//        return Carbon::createFromTimestamp('1512489600'); //convert milisecond to date
+
         return view('dashboard.student.calendar');
     }
 
