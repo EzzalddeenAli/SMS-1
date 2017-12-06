@@ -33,7 +33,8 @@ class AdminController extends Controller
     public function index()
     {
 
-        $http = new Client;
+        //quotes
+/*        $http = new Client;
         try {
             $response = $http->get('https://favqs.com/api/qotd');
             if ($response->getStatusCode() === 200) {
@@ -43,9 +44,10 @@ class AdminController extends Controller
             }
         } catch (ConnectException $e) {
             return view('dashboard.admin');
-        }
-
-        return view('dashboard.admin', compact('quote'));
+        }*/
+        $count['students'] = Student::all()->count();
+        $count['teachers'] = Teacher::all()->count();
+        return view('dashboard.admin', compact('quote', 'count'));
     }
 
     public function teachers()

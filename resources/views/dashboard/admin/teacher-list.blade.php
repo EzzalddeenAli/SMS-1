@@ -72,13 +72,13 @@
                                 <td class="{{ $rating >= 3.5 ? 'text-success' : ($rating >= 2.5 ? 'text-primary' : ($rating > 0 ? 'text-danger' : '')) }}">
                                     {{ $rating !== null ? $rating : 'None' }}
                                 </td>
-                                <td>
+                                <td style="width: 30px">
                                     <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
                                 </td>
-                                <td>
+                                <td style="width: 30px">
                                     <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
                                 </td>
-                                <td>
+                                <td style="width: 30px">
                                     <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                                 </td>
                             </tr>

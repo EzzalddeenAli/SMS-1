@@ -8,9 +8,10 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
+    <link media="print" href="{{ asset('css/fullcalendar.print.css') }}" rel="stylesheet">
+{{--    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('AdminLTE/ionicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('AdminLTE/AdminLTE.min.css')}}" rel="stylesheet">
+    <link href="{{asset('AdminLTE/AdminLTE.min.css')}}" rel="stylesheet">--}}
 
     <link href="{{asset('AdminLTE/skins/skin-blue.min.css')}}" rel="stylesheet">
 

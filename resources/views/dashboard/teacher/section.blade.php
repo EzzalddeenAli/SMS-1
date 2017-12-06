@@ -55,7 +55,7 @@
                                 <td>{{$student->first_name}}</td>
                                 <td>{{$student->middle_name}}</td>
                                 <td>{{$student->last_name}}</td>
-                                <td>
+                                <td style="width: 30px">
                                     <button v-on:click="showEditModal('/resource/{{$subject->id}}/', '{{$student->username}}')"
                                             class="btn btn-primary" title="edit grades"><i
                                                 class="fa fa-graduation-cap fa-lg"></i></button>
