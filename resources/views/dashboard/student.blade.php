@@ -104,69 +104,28 @@
                                     <th>Title</th>
                                     <th>Subject</th>
                                     <th>Teacher</th>
-                                    <th>Status</th>
+                                    <th>Deadline</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($student->section->assignments as $assignment)
                                 <tr>
-                                    <td><a href="#">Printed Output</a></td>
-                                    <td>Entrepreneur</td>
-                                    <td>Lhen Terrenal</td>
-                                    <td><span class="label label-success">Completed</span></td>
+                                    <td><a href="#">{{ $assignment->title }}</a></td>
+                                    <td>{{ $assignment->description }}</td>
+                                    <td>{{ $assignment->teacher->full_name }}</td>
+                                    <td><span class="label label-success ">{{ $assignment->deadline }}</span></td>
                                 </tr>
-                                <tr>
-                                    <td><a href="#">Scrap Book</a></td>
-                                    <td>English</td>
-                                    <td>Charrie Palo</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Movie</a></td>
-                                    <td>Philosophy</td>
-                                    <td>Benedict Rivera</td>
-                                    <td><span class="label label-danger">Failed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Powerpoint</a></td>
-                                    <td>MIL</td>
-                                    <td>Joseph Tennorio</td>
-                                    <td><span class="label label-info">Processing</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Musical Notes</a></td>
-                                    <td>Music</td>
-                                    <td>Joseph Perez</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Essay</a></td>
-                                    <td>Filipino</td>
-                                    <td>April Torress</td>
-                                    <td><span class="label label-danger">Failed</span></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Thesis Chapter 3</a></td>
-                                    <td>Research</td>
-                                    <td>Mariel Alboreda</td>
-                                    <td><span class="label label-success">Completed</span></td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <!-- /.table-responsive -->
                     </div>
                     <!-- /.box-body -->
-                    <div class="box-footer clearfix">
-                        <span class="label label-danger" style="margin-right: 3px;">Failed</span>/
-                        <span class="label label-warning">Pending</span><i style="margin-left:3px;" class="fa fa-angle-right"></i>
-                        <span class="label label-info">Processing</span><i style="margin-left:3px;" class="fa fa-angle-right"></i>
-                        <span class="label label-success">Completed</span>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All To Do</a>
-                    </div>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            {{--<div class="col-md-4">
 
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -215,7 +174,7 @@
                     </div>
                     <!-- /.footer -->
                 </div>
-            </div>
+            </div>--}}
 
         </div>
 

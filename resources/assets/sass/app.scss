@@ -9,7 +9,10 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Custom
-//@import "home";
+@import "font-awesome.min";
+@import "ionicons.min";
+@import "fullcalendar.min";
+@import "AdminLTE.min";
 
 nav.navbar-static-top {
   height: 50px;

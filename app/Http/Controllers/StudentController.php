@@ -10,25 +10,15 @@ use App\Rating;
 
 class StudentController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth:student');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
-        return view('dashboard.student');
+        $student = Student::with(['section', 'section.assignments', 'section.assignments.teacher'])->find(auth()->id());
+        return view('dashboard.student', compact('student'));
     }
 
     public function grades() {
@@ -64,6 +54,11 @@ class StudentController extends Controller
         );
 
         return $request;
+    }
+
+    public function calendar()
+    {
+        return view('dashboard.student.calendar');
     }
 
     //@todo remove or modify after pdf test

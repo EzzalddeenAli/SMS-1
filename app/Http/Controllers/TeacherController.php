@@ -30,7 +30,8 @@ class TeacherController extends Controller
 
     public function index()
     {
-        return view('dashboard.teacher');
+        $ass_num = Assignment::where('teacher_id', auth()->id())->count();
+        return view('dashboard.teacher', compact('ass_num'));
     }
 
     public function sections()

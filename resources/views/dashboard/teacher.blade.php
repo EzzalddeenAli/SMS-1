@@ -30,7 +30,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Assignments</span>
-                        <span class="info-box-number">7<small></small></span>
+                        <span class="info-box-number">{{ $ass_num }}<small></small></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>

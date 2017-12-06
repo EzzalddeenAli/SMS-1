@@ -64,11 +64,14 @@
                                 <td>{{$student->last_name}}</td>
                                 <td>{{$student->age}}</td>
                                 <td>{{$student->section->name}}</td>
-                                <td>
-                                    <button v-on:click="showDeleteModal('student', '{{$student->username}}')" class="btn btn-danger delete-btn" title="Delete Student"><i class="fa fa-trash-o fa-lg"></i></button>
+                                <td style="width: 30px">
+                                    <button v-on:click="showDeleteModal('student', '{{$student->username}}')" class="btn btn-danger delete-btn btn-sm" title="Delete Student"><i class="fa fa-trash-o fa-lg"></i></button>
                                 </td>
-                                <td>
-                                    <button v-on:click="showEditModal('/resource/students/', '{{$student->username}}')" class="btn btn-info edit-btn" title="Edit Student"><i class="fa fa-edit fa-lg"></i></button>
+                                <td style="width: 30px">
+                                    <button v-on:click="showEditModal('/resource/students/', '{{$student->username}}')" class="btn btn-info edit-btn btn-sm" title="Edit Student"><i class="fa fa-edit fa-lg"></i></button>
+                                </td>
+                                <td style="width: 30px">
+                                    <a href="#" class="btn btn-default edit-btn btn-sm" title="View Profile"><i class="fa fa-eye fa-lg"></i></a>
                                 </td>
                             </tr>
                         @endforeach
