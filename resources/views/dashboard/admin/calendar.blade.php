@@ -1,15 +1,15 @@
 @extends('dashboard.layouts.master')
-@section('title', 'Student Dashboard')
+@section('title', 'Admin Dashboard')
 @section('sidebar')
-    @include('dashboard.student.inc.sidebar')
+    @include('dashboard.admin.inc.sidebar')
 @endsection
 
 @section('content-header')
     <section class="content-header">
         <h1>
-            Calender
+            Teacher list
         </h1>
-        @include('dashboard.inc.breadcrumbs')
+@include('dashboard.inc.breadcrumbs')
     </section>
 @endsection
 
@@ -103,5 +103,5 @@
 @endsection
 
 @section('sidebar-control')
-    @include('dashboard.student.inc.sidebar-control')
+    @include('dashboard.admin.inc.sidebar-control')
 @endsection

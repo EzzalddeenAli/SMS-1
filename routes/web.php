@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('students', 'AdminController@students')->name('admin.student.list');
+    Route::get('/calendar', 'AdminController@calendar')->name('admin.calender');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
     Route::get('/layout/{area}', 'AdminController@layout')->name('admin.layout');
 });
@@ -99,6 +100,9 @@ Route::prefix('resource')->group(function () {
         'update'
     ]]);
     Route::patch('assignments', 'ResourceAssignmentController@update')->name('assignments.update');
+
+    //Resource Events
+    Route::resource('events', 'ResourceEventController');
 
     //PUT THIS TO BOTTOM!
     //Resource Grade...
