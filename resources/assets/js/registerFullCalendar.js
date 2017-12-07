@@ -88,37 +88,36 @@ $(function () {
                 backgroundColor: rgbToHex(copiedEventObject.backgroundColor),
                 borderColor: rgbToHex(copiedEventObject.backgroundColor),
             }).then(function (response) {
-                    console.log(response);
+                // render the event on the calendar
+                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove()
+                }
             }).catch(function (error) {
                     console.log(error);
             });
 
-            // render the event on the calendar
-            // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-            $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 
-            // is the "remove after drop" checkbox checked?
-            if ($('#drop-remove').is(':checked')) {
-                // if so, remove the element from the "Draggable Events" list
-                $(this).remove()
-            }
 
         },
 
         //Triggered when the user clicks an event.
         /*DELETE EVENT*/
         eventClick(calEvent, jsEvent, view) {
-
             //we get event bordertop property
             let $hex = rgbToHex($(this).css('borderTopColor'));
             //if borderTop is red remove it
             if($hex === '#ff0000') {
                 $('#calendar').fullCalendar('removeEvents', calEvent._id );
-                axios.post('/resource/events', {
-                    title:  copiedEventObject.title,
-                    date: copiedEventObject.start._d.getTime() / 1000,
-                    backgroundColor: rgbToHex(copiedEventObject.backgroundColor),
-                    borderColor: rgbToHex(copiedEventObject.backgroundColor),
+                axios.post('/resource/events/' , {
+                    _method:  'delete',
+                    title:  calEvent.title,
+                    date: calEvent.start._d.getTime() / 1000,
+                    backgroundColor:  calEvent.backgroundColor,
                 }).then(function (response) {
                     console.log(response);
                 }).catch(function (error) {
@@ -134,7 +133,6 @@ $(function () {
 
         //Triggered when dragging stops and the event has moved to a different day/time.
         eventDrop(event, delta, revertFunc) {
-            console.log(event);
             if (!confirm("Are you sure about this change?")) {
                 revertFunc();
             } else {
@@ -154,8 +152,8 @@ $(function () {
             let event = {
                 title: datum.title,
                 start: new Date(datum.date * 1000),
-                backgroundColor: datum.backgroundColor,
-                borderColor: datum.borderColor
+                backgroundColor: datum.background_color,
+                borderColor: datum.border_color
             };
             $('#calendar').fullCalendar( 'renderEvent', event, true);
         }

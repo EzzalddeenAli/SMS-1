@@ -102,7 +102,10 @@ Route::prefix('resource')->group(function () {
     Route::patch('assignments', 'ResourceAssignmentController@update')->name('assignments.update');
 
     //Resource Events
-    Route::resource('events', 'ResourceEventController');
+    Route::resource('events', 'ResourceEventController', ['except' => [
+        'destroy'
+    ]]);
+    Route::delete('events', 'ResourceEventController@destroy');
 
     //PUT THIS TO BOTTOM!
     //Resource Grade...
