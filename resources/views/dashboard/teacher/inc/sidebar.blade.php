@@ -21,20 +21,67 @@
             <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="{{'/'.request()->segment(1) }}"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
-            <li class="{{ request()->segment(2) === 'assignments' ? 'active' : '' }}"><a href="{{ route('teacher.assignments.list')  }}"><i class="fa fa-file-word-o"></i> <span>Assignments</span></a></li>
-            <li class="{{ (request()->segment(2) === 'sections') || (request()->segment(2) === 'section') ? 'active' : '' }}"><a href="{{ route('teacher.section.list')  }}"><i class="fa fa-group"></i> <span>Classes</span></a></li>
-            <li class="{{ request()->segment(2) === 'calendar' ? 'active' : '' }}"><a href="{{ route('teacher.calendar')  }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
 
-{{--            <li class="treeview">
-                <a href="#"><i class="fa fa-chain"></i> <span>Students</span>
-                    <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                </a>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-building"></i> <span>School</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('student.teachers') }}">Nothing Here</a></li>
+                    <li><a href="#">School Information</a></li>
+                    <li><a href="{{ route('teacher.calendar') }}">Calendar</a></li>
                 </ul>
-            </li>--}}
+            </li>
+
+            <li class="treeview {{ (request()->segment(2) === 'grades') || (request()->segment(2) === 'permit') ? 'active-link' : '' }}">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span>Grades</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('teacher.section.list')  }}">Classes</a></li>
+                    <li><a href="#">Assignments</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-users"></i> <span>Students</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Student Info</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-clock-o"></i> <span>Attendance</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Attendance Chart</a></li>
+                    <li><a href="#">Absence Summary</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-money"></i> <span>Accounting</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Salaries</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-user"></i> <span>User</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">User Info</a></li>
+                    <li><a href="#">Preference</a></li>
+                </ul>
+            </li>
+
+
+
 
         </ul>
         <!-- /.sidebar-menu -->
