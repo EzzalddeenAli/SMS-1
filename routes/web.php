@@ -16,7 +16,7 @@ Route::prefix('student')->group(function () {
     //Dashboard Controllers
     Route::get('/', 'StudentController@index')->name('student.dashboard');
     Route::get('/grades', 'StudentController@grades')->name('student.grades');
-    Route::get('/calendar', 'StudentController@calendar')->name('student.calender');
+    Route::get('/calendar', 'StudentController@calendar')->name('student.calendar');
     Route::get('/grades/download', 'StudentController@gradesDownload');
     Route::get('/permit', 'StudentController@permit')->name('student.permit');
     Route::get('/teachers/rate', 'StudentController@teachers')->name('student.teachers');
@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('students', 'AdminController@students')->name('admin.student.list');
-    Route::get('/calendar', 'AdminController@calendar')->name('admin.calender');
+    Route::get('/calendar', 'AdminController@calendar')->name('admin.calendar');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
     Route::get('/layout/{area}', 'AdminController@layout')->name('admin.layout');
 });

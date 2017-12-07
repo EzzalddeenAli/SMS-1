@@ -7,7 +7,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            Section
+            Student List
         </h1>
 @include('dashboard.inc.breadcrumbs')
     </section>

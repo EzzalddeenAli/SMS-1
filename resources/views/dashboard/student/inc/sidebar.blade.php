@@ -21,29 +21,63 @@
             <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="{{'/'.request()->segment(1) }}"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
-            <li class="{{ request()->segment(2) === null ? 'assignments' : '' }}"><a href="#"><i class="fa fa-edit"></i> <span>Assignments</span></a></li>
-            <li class="{{ request()->segment(2) === null ? 'calendar' : '' }}"><a href="{{ route('student.calender') }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-building"></i> <span>School</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">School Information</a></li>
+                    <li><a href="{{ route('student.calendar') }}">Calendar</a></li>
+                </ul>
+            </li>
 
             <li class="treeview {{ (request()->segment(2) === 'grades') || (request()->segment(2) === 'permit') ? 'active-link' : '' }}">
                 <a href="#"><i class="fa fa-bar-chart-o"></i> <span>Grades</span>
-                    <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                </a>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('student.grades') }}">Report Card</a></li>
                     <li><a href="{{ route('student.permit') }}">Permit</a></li>
+                    <li><a href="#">Assignments</a></li>
                 </ul>
             </li>
 
             <li class="treeview">
-                <a href="#"><i class="fa fa-chain"></i> <span>Teachers</span>
-                    <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                </a>
+                <a href="#"><i class="fa fa-users"></i> <span>Teachers</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('student.teachers') }}">Rate</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-clock-o"></i> <span>Attendance</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Absences</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-money"></i> <span>Billing</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Fees</a></li>
+                    <li><a href="#">Payments</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-user"></i> <span>User</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">User Info</a></li>
+                    <li><a href="#">Preference</a></li>
                 </ul>
             </li>
 
