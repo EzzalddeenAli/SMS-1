@@ -12,6 +12,6 @@ class Event extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['title', 'date', 'background_color', 'border_color',];
+    protected $fillable = ['title', 'start', 'end', 'background_color', 'border_color',];
 
 }

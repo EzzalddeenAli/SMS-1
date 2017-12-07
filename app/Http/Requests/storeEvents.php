@@ -25,7 +25,8 @@ class storeEvents extends FormRequest
     {
         return [
             'title'           => 'bail|required|string',
-            'date'            => 'bail|required|numeric',
+            'start'            => 'bail|required|numeric',
+            'end'            => 'bail|required|numeric',
             'backgroundColor' => 'bail|required|string',
             'borderColor'     => 'bail|required|string',
         ];
