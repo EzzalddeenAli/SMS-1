@@ -23,7 +23,7 @@
             <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="{{'/'.request()->segment(1) }}"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
             <li class="{{ request()->segment(2) === 'teachers' ? 'active' : '' }}"><a href="{{ route('admin.teacher.list') }}"><i class="ion ion-ios-people"></i> <span>Teachers</span></a></li>
             <li class="{{ request()->segment(2) === 'students' ? 'active' : '' }}"><a href="{{ route('admin.student.list') }}"><i class="fa fa-users"></i> <span>Students</span></a></li>
-            <li class="{{ request()->segment(2) === 'calendar' ? 'active' : '' }}"><a href="{{ route('admin.calender') }}"><i class="fa fa-users"></i> <span>Calendar</span></a></li>
+            <li class="{{ request()->segment(2) === 'calendar' ? 'active' : '' }}"><a href="{{ route('admin.calender') }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
 
             <li class="treeview" title="Edit website pictures">
                 <a href="#"><i class="fa fa-globe"></i> <span>Website</span>
