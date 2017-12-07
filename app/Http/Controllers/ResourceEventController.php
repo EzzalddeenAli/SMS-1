@@ -40,21 +40,21 @@ class ResourceEventController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'bail|required|string',
-            'date' => 'bail|required|numeric',
-            'backgroundColor' => 'bail|required|string',
-            'borderColor' => 'bail|required|string',
-        ]);
-
-        Event::create([
-            'title'           => $request->title,
-            'date'            => $request->date,
-            'backgroundColor' => $request->backgroundColor,
-            'borderColor'     => $request->borderColor,
-        ]);
-
         if (request()->ajax()) {
+            $request->validate([
+                'title'            => 'bail|required|string',
+                'date'             => 'bail|required|numeric',
+                'backgroundColor' => 'bail|required|string',
+                'borderColor'     => 'bail|required|string',
+            ]);
+
+            Event::create([
+                'title'            => $request->title,
+                'date'             => $request->date,
+                'background_color' => $request->backgroundColor,
+                'border_color'     => $request->borderColor,
+            ]);
+
             return response('Event Created', 200)
                 ->header('Content-Type', 'text/plain');
         }
@@ -102,8 +102,17 @@ class ResourceEventController extends Controller
      * @param  \App\Event $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Request $request)
     {
-        //
+        if (request()->ajax()) {
+            Event::where('background_color', $request->backgroundColor)
+                ->where('date', $request->date)
+                ->where('title', $request->title)
+                ->delete();
+            return response('Event Deleted', 200)
+                ->header('Content-Type', 'text/plain');
+        }
+
+        return back();
     }
 }

@@ -7,7 +7,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            Teacher list
+            Calendar
         </h1>
 @include('dashboard.inc.breadcrumbs')
     </section>
@@ -53,8 +53,6 @@
                     </div>
                     <div class="box-body">
                         <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                            <button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle"
-                                    data-toggle="dropdown">Color <span class="caret"></span></button>
                             <ul class="fc-color-picker" id="color-chooser">
                                 <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
                                 <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>

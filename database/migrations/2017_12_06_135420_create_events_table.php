@@ -17,8 +17,8 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->unsignedInteger('date');
-            $table->string('backgroundColor');
-            $table->string('borderColor');
+            $table->string('background_color');
+            $table->string('border_color');
         });
     }
 
