@@ -108282,7 +108282,7 @@ $(function () {
 
     /* initialize the calendar
      -----------------------------------------------------------------*/
-
+    var oldEvent = {};
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -108313,6 +108313,7 @@ $(function () {
             copiedEventObject.backgroundColor = $(this).css('background-color');
             copiedEventObject.borderColor = $(this).css('border-color');
 
+            /*ADD EVENT*/
             //make a post request to persist event
             axios.post('/resource/events', {
                 title: copiedEventObject.title,
@@ -108335,8 +108336,8 @@ $(function () {
         },
 
 
-        //Triggered when the user clicks an event.
         /*DELETE EVENT*/
+        //Triggered when the user clicks an event.
         eventClick: function eventClick(calEvent, jsEvent, view) {
             //we get event bordertop property
             var $hex = rgbToHex($(this).css('borderTopColor'));
@@ -108361,16 +108362,54 @@ $(function () {
         },
 
 
+        /*EDIT EVENT*/
         //Triggered when dragging stops and the event has moved to a different day/time.
+        eventDragStart: function eventDragStart(event) {
+            //store previous event details to oldEvent
+            oldEvent.title = event.title;
+            oldEvent.date = event.start._d.getTime() / 1000;
+            oldEvent.backgroundColor = event.backgroundColor;
+        },
+
+
+        //make the update request
         eventDrop: function eventDrop(event, delta, revertFunc) {
             if (!confirm("Are you sure about this change?")) {
                 revertFunc();
             } else {
-                console.log(event.title);
-                console.log(event.start._d);
-                console.log(event.backgroundColor);
+                axios.post('/resource/events/edit', {
+                    _method: 'patch',
+                    title: event.title,
+                    date: event.start._d.getTime() / 1000,
+                    backgroundColor: event.backgroundColor,
+                    oldEvent: oldEvent
+                }).then(function (response) {
+                    console.log(response);
+                }).catch(function (error) {
+                    //revert the event to it's original position if failed
+                    revertFunc();
+                    console.log(error);
+                });
             }
         }
+    });
+
+    /*STATIC CALENDAR*/
+    $('#calendar-static').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        buttonText: {
+            today: 'today',
+            month: 'month',
+            week: 'week',
+            day: 'day'
+        },
+        //Random default events
+        displayEventTime: false //hide time
+
     });
 
     /*FETCH EVENTS FROM DATABASE*/
@@ -108392,6 +108431,7 @@ $(function () {
                     borderColor: datum.border_color
                 };
                 $('#calendar').fullCalendar('renderEvent', event, true);
+                $('#calendar-static').fullCalendar('renderEvent', event, true);
             }
         } catch (err) {
             _didIteratorError = true;
