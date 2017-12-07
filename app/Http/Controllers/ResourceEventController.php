@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Http\Requests\storeEvents;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 
@@ -35,19 +36,12 @@ class ResourceEventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param storeEvents|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeEvents $request)
     {
         if (request()->ajax()) {
-            $request->validate([
-                'title'            => 'bail|required|string',
-                'date'             => 'bail|required|numeric',
-                'backgroundColor' => 'bail|required|string',
-                'borderColor'     => 'bail|required|string',
-            ]);
-
             Event::create([
                 'title'            => $request->title,
                 'date'             => $request->date,
@@ -87,13 +81,27 @@ class ResourceEventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Event $event
+     * @param storeEvents|Request $request
      * @return \Illuminate\Http\Response
+     * @internal param Event $event
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request)
     {
-        //
+        if (request()->ajax()) {
+            $event = Event::where('background_color', $request->input('oldEvent.backgroundColor'))
+                ->where('date', $request->input('oldEvent.date'))
+                ->where('title', $request->input('oldEvent.title'))
+                ->firstOrFail();
+
+            $event->update([
+                'date' => $request->date
+            ]);
+
+            return response('Event Edited', 200)
+                ->header('Content-Type', 'text/plain');
+        }
+
+        return back();
     }
 
     /**

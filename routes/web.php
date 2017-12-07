@@ -103,8 +103,9 @@ Route::prefix('resource')->group(function () {
 
     //Resource Events
     Route::resource('events', 'ResourceEventController', ['except' => [
-        'destroy'
+        'destroy', 'update'
     ]]);
+    Route::patch('events/edit', 'ResourceEventController@update');
     Route::delete('events', 'ResourceEventController@destroy');
 
     //PUT THIS TO BOTTOM!
