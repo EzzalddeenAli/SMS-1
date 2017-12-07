@@ -61,8 +61,11 @@ class TeacherController extends Controller
 
         return view('dashboard.teacher.assignments', compact('sections'));
 //        abort_unless(Gate::allows('assignments.view', $ass), 403);
+    }
 
-
+    public function calendar()
+    {
+        return view('dashboard.teacher.calendar');
     }
 
 }
