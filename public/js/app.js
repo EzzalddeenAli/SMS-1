@@ -108282,13 +108282,7 @@ $(function () {
 
     /* initialize the calendar
      -----------------------------------------------------------------*/
-    //Date for the calendar events (dummy data)
-    var date = new Date();
-    var d = date.getDate(),
-        m = date.getMonth(),
-        y = date.getFullYear();
-    /*    console.log(new Date(y, m, d).getTime() / 1000);
-        console.log(new Date(1512489600 * 1000));*/
+
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -108302,45 +108296,7 @@ $(function () {
             day: 'day'
         },
         //Random default events
-        events: [{
-            title: 'All Day Event',
-            start: new Date(y, m, 1),
-            backgroundColor: '#f56954', //red
-            borderColor: '#f56954' //red
-        }, {
-            title: 'Long Event',
-            start: new Date(y, m, d - 5),
-            end: new Date(y, m, d - 2),
-            backgroundColor: '#f39c12', //yellow
-            borderColor: '#f39c12' //yellow
-        }, {
-            title: 'Meeting',
-            start: new Date(y, m, d, 10, 30),
-            allDay: false,
-            backgroundColor: '#0073b7', //Blue
-            borderColor: '#0073b7' //Blue
-        }, {
-            title: 'Lunch',
-            start: new Date(y, m, d, 12, 0),
-            end: new Date(y, m, d, 14, 0),
-            allDay: false,
-            backgroundColor: '#00c0ef', //Info (aqua)
-            borderColor: '#00c0ef' //Info (aqua)
-        }, {
-            title: 'Birthday Party',
-            start: new Date(y, m, d + 1, 19, 0),
-            end: new Date(y, m, d + 1, 22, 30),
-            allDay: false,
-            backgroundColor: '#00a65a', //Success (green)
-            borderColor: '#00a65a' //Success (green)
-        }, {
-            title: 'Click for Google',
-            start: new Date(y, m, 28),
-            end: new Date(y, m, 29),
-            url: 'http://google.com/',
-            backgroundColor: '#3c8dbc', //Primary (light-blue)
-            borderColor: '#3c8dbc' //Primary (light-blue)
-        }],
+        displayEventTime: false, //hide time
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar !!!
         drop: function drop(date, allDay) {
@@ -108382,6 +108338,7 @@ $(function () {
 
 
         //Triggered when the user clicks an event.
+        /*DELETE EVENT*/
         eventClick: function eventClick(calEvent, jsEvent, view) {
 
             //we get event bordertop property
@@ -108389,7 +108346,16 @@ $(function () {
             //if borderTop is red remove it
             if ($hex === '#ff0000') {
                 $('#calendar').fullCalendar('removeEvents', calEvent._id);
-                console.log('red found');
+                axios.post('/resource/events', {
+                    title: copiedEventObject.title,
+                    date: copiedEventObject.start._d.getTime() / 1000,
+                    backgroundColor: rgbToHex(copiedEventObject.backgroundColor),
+                    borderColor: rgbToHex(copiedEventObject.backgroundColor)
+                }).then(function (response) {
+                    console.log(response);
+                }).catch(function (error) {
+                    console.log(error);
+                });
             }
 
             //changed border color to red
@@ -108409,6 +108375,44 @@ $(function () {
                 console.log(event.backgroundColor);
             }
         }
+    });
+
+    /*FETCH EVENTS FROM DATABASE*/
+    axios.get('/resource/events', {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    }).then(function (response) {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = response.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var datum = _step.value;
+
+                var event = {
+                    title: datum.title,
+                    start: new Date(datum.date * 1000),
+                    backgroundColor: datum.backgroundColor,
+                    borderColor: datum.borderColor
+                };
+                $('#calendar').fullCalendar('renderEvent', event, true);
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+    }).catch(function (error) {
+        console.log(error);
     });
 
     /* ADDING EVENTS */
