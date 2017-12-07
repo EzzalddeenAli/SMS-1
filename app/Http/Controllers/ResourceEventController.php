@@ -44,7 +44,8 @@ class ResourceEventController extends Controller
         if (request()->ajax()) {
             Event::create([
                 'title'            => $request->title,
-                'date'             => $request->date,
+                'start'            => $request->start,
+                'end'              => $request->end,
                 'background_color' => $request->backgroundColor,
                 'border_color'     => $request->borderColor,
             ]);
@@ -89,12 +90,14 @@ class ResourceEventController extends Controller
     {
         if (request()->ajax()) {
             $event = Event::where('background_color', $request->input('oldEvent.backgroundColor'))
-                ->where('date', $request->input('oldEvent.date'))
+                ->where('start', $request->input('oldEvent.start'))
+                ->where('end', $request->input('oldEvent.end'))
                 ->where('title', $request->input('oldEvent.title'))
                 ->firstOrFail();
 
             $event->update([
-                'date' => $request->date
+                'start' => $request->start,
+                'end'   => $request->end,
             ]);
 
             return response('Event Edited', 200)
@@ -114,7 +117,8 @@ class ResourceEventController extends Controller
     {
         if (request()->ajax()) {
             Event::where('background_color', $request->backgroundColor)
-                ->where('date', $request->date)
+                ->where('start', $request->start)
+                ->where('end', $request->end)
                 ->where('title', $request->title)
                 ->delete();
             return response('Event Deleted', 200)

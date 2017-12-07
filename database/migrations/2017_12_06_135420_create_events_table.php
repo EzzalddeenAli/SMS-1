@@ -16,7 +16,8 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->unsignedInteger('date');
+            $table->unsignedInteger('start');
+            $table->unsignedInteger('end');
             $table->string('background_color');
             $table->string('border_color');
         });

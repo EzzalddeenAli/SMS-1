@@ -108317,7 +108317,8 @@ $(function () {
             //make a post request to persist event
             axios.post('/resource/events', {
                 title: copiedEventObject.title,
-                date: copiedEventObject.start._d.getTime() / 1000,
+                start: copiedEventObject.start._d.getTime() / 1000,
+                end: copiedEventObject.start._d.getTime() / 1000,
                 backgroundColor: rgbToHex(copiedEventObject.backgroundColor),
                 borderColor: rgbToHex(copiedEventObject.backgroundColor)
             }).then(function (response) {
@@ -108347,10 +108348,11 @@ $(function () {
                 axios.post('/resource/events/', {
                     _method: 'delete',
                     title: calEvent.title,
-                    date: calEvent.start._d.getTime() / 1000,
+                    start: calEvent.start._d.getTime() / 1000,
+                    end: calEvent.start._d.getTime() / 1000,
                     backgroundColor: calEvent.backgroundColor
                 }).then(function (response) {
-                    console.log(response);
+                    console.log(response.status);
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -108367,7 +108369,8 @@ $(function () {
         eventDragStart: function eventDragStart(event) {
             //store previous event details to oldEvent
             oldEvent.title = event.title;
-            oldEvent.date = event.start._d.getTime() / 1000;
+            oldEvent.start = event.start._d.getTime() / 1000;
+            oldEvent.end = event.start._d.getTime() / 1000;
             oldEvent.backgroundColor = event.backgroundColor;
         },
 
@@ -108380,11 +108383,12 @@ $(function () {
                 axios.post('/resource/events/edit', {
                     _method: 'patch',
                     title: event.title,
-                    date: event.start._d.getTime() / 1000,
+                    start: event.start._d.getTime() / 1000,
+                    end: event.start._d.getTime() / 1000,
                     backgroundColor: event.backgroundColor,
                     oldEvent: oldEvent
                 }).then(function (response) {
-                    console.log(response);
+                    console.log(response.status);
                 }).catch(function (error) {
                     //revert the event to it's original position if failed
                     revertFunc();
@@ -108426,7 +108430,8 @@ $(function () {
 
                 var event = {
                     title: datum.title,
-                    start: new Date(datum.date * 1000),
+                    start: new Date(datum.start * 1000),
+                    end: new Date(datum.end * 1000),
                     backgroundColor: datum.background_color,
                     borderColor: datum.border_color
                 };
