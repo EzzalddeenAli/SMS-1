@@ -55,6 +55,7 @@
                         {{ Form::bsPhone('phone', null, ['oninput' => 'this.value=this.value.slice(0,this.maxLength)','maxlength' => 10]) }}
                         {{ Form::bsText('administrator') }}
                         {{ Form::bsUrl('website') }}
+                        {{ Form::bsEmail('email') }}
                         {{ Form::bsText('short_name') }}
                         {{ Form::bsText('school_number') }}
                         {{ Form::bsSubmit('submit', ['class' => 'btn btn-primary']) }}

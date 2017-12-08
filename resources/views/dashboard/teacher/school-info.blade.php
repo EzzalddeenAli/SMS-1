@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content container-fluid">
 
-    @include('dashboard.inc.static.calendar')
+        @include('dashboard.inc.static.school-info')
 
     </section>
     <!-- /.content -->

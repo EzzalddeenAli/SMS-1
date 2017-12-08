@@ -51,10 +51,10 @@ class AdminController extends Controller
         return view('dashboard.admin', compact('quote', 'count'));
     }
 
-    public function school_information()
+    public function school_info()
     {
         $school_info = School_information::firstOrFail();
-        return view('dashboard.admin.school-information', compact('school_info'));
+        return view('dashboard.admin.school-info', compact('school_info'));
     }
 
     public function teachers()

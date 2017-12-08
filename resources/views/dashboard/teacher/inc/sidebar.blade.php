@@ -27,7 +27,7 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">School Information</a></li>
+                    <li><a href="{{ route('teacher.school-info') }}">School Information</a></li>
                     <li><a href="{{ route('teacher.calendar') }}">Calendar</a></li>
                 </ul>
             </li>
