@@ -118,7 +118,7 @@ $(function () {
                     start: calEvent.start._d.getTime() / 1000,
                     end: calEvent.start._d.getTime() / 1000,
                     backgroundColor: calEvent.backgroundColor,
-                    '_method': 'delete',
+                    // '_method': 'delete',
                 }).then(function (response) {
                     $('#calendar').fullCalendar('removeEvents', calEvent._id);
                     console.log(response);
