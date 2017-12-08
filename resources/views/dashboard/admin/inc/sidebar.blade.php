@@ -32,7 +32,7 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.school.information') }}">School Information</a></li>
+                    <li><a href="{{ route('admin.school-info') }}">School Information</a></li>
                     <li><a href="{{ route('admin.calendar') }}">Calendar</a></li>
                     <li><a href="#">Grade Levels</a></li>
                 </ul>

@@ -16,7 +16,54 @@
 @section('content-main')
     <!-- Main content -->
     <section class="content container-fluid">
+        @if(session('status'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Success:</strong> {{ session('status') }}!
+        </div>
+            @elseif($errors->any())
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">School Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        {!! Form::model($school_info, ['route' => 'admin.school-info.update', 'method' => 'patch']) !!}
+                        {{ Form::bsText('school_name') }}
+                        {{ Form::bsText('address') }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ Form::bsText('city') }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ Form::bsText('state') }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ Form::bsNumber('zip', null, ['oninput' => 'this.value=this.value.slice(0,this.maxLength)', 'maxlength' => 8]) }}
+                            </div>
+                        </div>
+                        {{ Form::bsPhone('phone', null, ['oninput' => 'this.value=this.value.slice(0,this.maxLength)','maxlength' => 10]) }}
+                        {{ Form::bsText('administrator') }}
+                        {{ Form::bsUrl('website') }}
+                        {{ Form::bsText('short_name') }}
+                        {{ Form::bsText('school_number') }}
+                        {{ Form::bsSubmit('submit', ['class' => 'btn btn-primary']) }}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
 
+            </div>
+        </div>
 
 
     </section>

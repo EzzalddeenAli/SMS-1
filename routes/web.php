@@ -43,7 +43,9 @@ Route::prefix('admin')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    Route::get('school/info', 'AdminController@school_information')->name('admin.school.information');
+    Route::get('school/info', 'AdminController@school_information')->name('admin.school-info');
+    Route::get('school/info/index', 'ResourceSchoolInfoController@index')->name('admin.school-info.index');
+    Route::patch('school/info/update', 'ResourceSchoolInfoController@update')->name('admin.school-info.update');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('students', 'AdminController@students')->name('admin.student.list');
     Route::get('calendar', 'AdminController@calendar')->name('admin.calendar');
