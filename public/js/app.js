@@ -108344,16 +108344,17 @@ $(function () {
             var $hex = rgbToHex($(this).css('borderTopColor'));
             //if borderTop is red remove it
             if ($hex === '#ff0000') {
-                $('#calendar').fullCalendar('removeEvents', calEvent._id);
                 axios.post('/resource/events/', {
                     _method: 'delete',
                     title: calEvent.title,
                     start: calEvent.start._d.getTime() / 1000,
                     end: calEvent.start._d.getTime() / 1000,
-                    backgroundColor: calEvent.backgroundColor
+                    backgroundColor: rgbToHex(calEvent.backgroundColor)
                 }).then(function (response) {
-                    console.log(response.status);
+                    $('#calendar').fullCalendar('removeEvents', calEvent._id);
+                    console.log(response);
                 }).catch(function (error) {
+                    alert('something went wrong, please try again');
                     console.log(error);
                 });
             }
@@ -108390,6 +108391,7 @@ $(function () {
                 }).then(function (response) {
                     console.log(response.status);
                 }).catch(function (error) {
+                    alert('something went wrong, please try again');
                     //revert the event to it's original position if failed
                     revertFunc();
                     console.log(error);
@@ -108453,6 +108455,7 @@ $(function () {
             }
         }
     }).catch(function (error) {
+        alert('something went wrong, please try again');
         console.log(error);
     });
 

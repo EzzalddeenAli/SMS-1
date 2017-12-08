@@ -2,7 +2,7 @@ $(function () {
 
     //RGB TO HEX CONVERTER
     function rgbToHex(color) {
-        color = ""+ color;
+        color = "" + color;
         if (!color || color.indexOf("rgb") < 0) {
             return;
         }
@@ -16,10 +16,10 @@ $(function () {
             g = parseInt(nums[3], 10).toString(16),
             b = parseInt(nums[4], 10).toString(16);
 
-        return "#"+ (
-                (r.length === 1 ? "0"+ r : r) +
-                (g.length === 1 ? "0"+ g : g) +
-                (b.length === 1 ? "0"+ b : b)
+        return "#" + (
+                (r.length === 1 ? "0" + r : r) +
+                (g.length === 1 ? "0" + g : g) +
+                (b.length === 1 ? "0" + b : b)
             );
     }
 
@@ -84,7 +84,7 @@ $(function () {
             /*ADD EVENT*/
             //make a post request to persist event
             axios.post('/resource/events', {
-                title:  copiedEventObject.title,
+                title: copiedEventObject.title,
                 start: copiedEventObject.start._d.getTime() / 1000,
                 end: copiedEventObject.start._d.getTime() / 1000,
                 backgroundColor: rgbToHex(copiedEventObject.backgroundColor),
@@ -100,9 +100,8 @@ $(function () {
                     $(this).remove()
                 }
             }).catch(function (error) {
-                    console.log(error);
+                console.log(error);
             });
-
 
 
         },
@@ -113,17 +112,18 @@ $(function () {
             //we get event bordertop property
             let $hex = rgbToHex($(this).css('borderTopColor'));
             //if borderTop is red remove it
-            if($hex === '#ff0000') {
-                $('#calendar').fullCalendar('removeEvents', calEvent._id );
-                axios.post('/resource/events/' , {
-                    _method:  'delete',
-                    title:  calEvent.title,
+            if ($hex === '#ff0000') {
+                axios.post('/resource/events/', {
+                    _method: 'delete',
+                    title: calEvent.title,
                     start: calEvent.start._d.getTime() / 1000,
                     end: calEvent.start._d.getTime() / 1000,
-                    backgroundColor:  calEvent.backgroundColor,
+                    backgroundColor: rgbToHex(calEvent.backgroundColor),
                 }).then(function (response) {
-                    console.log(response.status);
+                    $('#calendar').fullCalendar('removeEvents', calEvent._id);
+                    console.log(response);
                 }).catch(function (error) {
+                    alert('something went wrong, please try again');
                     console.log(error);
                 });
             }
@@ -151,7 +151,7 @@ $(function () {
             } else {
                 axios.post('/resource/events/edit', {
                     _method: 'patch',
-                    title:  event.title,
+                    title: event.title,
                     start: event.start._d.getTime() / 1000,
                     end: event.start._d.getTime() / 1000,
                     backgroundColor: event.backgroundColor,
@@ -159,6 +159,7 @@ $(function () {
                 }).then(function (response) {
                     console.log(response.status);
                 }).catch(function (error) {
+                    alert('something went wrong, please try again');
                     //revert the event to it's original position if failed
                     revertFunc();
                     console.log(error);
@@ -198,10 +199,11 @@ $(function () {
                 backgroundColor: datum.background_color,
                 borderColor: datum.border_color
             };
-            $('#calendar').fullCalendar( 'renderEvent', event, true);
-            $('#calendar-static').fullCalendar( 'renderEvent', event, true);
+            $('#calendar').fullCalendar('renderEvent', event, true);
+            $('#calendar-static').fullCalendar('renderEvent', event, true);
         }
     }).catch(function (error) {
+        alert('something went wrong, please try again');
         console.log(error);
     });
 
