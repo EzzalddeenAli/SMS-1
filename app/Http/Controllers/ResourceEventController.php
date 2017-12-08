@@ -110,8 +110,9 @@ class ResourceEventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event $event
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @internal param Event $event
      */
     public function destroy(Request $request)
     {
