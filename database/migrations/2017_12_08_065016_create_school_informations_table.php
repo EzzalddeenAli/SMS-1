@@ -25,6 +25,7 @@ class CreateSchoolInformationsTable extends Migration
             $table->string('website')->nullable();
             $table->string('short_name');
             $table->string('school_number')->nullable();
+            $table->string('email')->nullable();
         });
     }
 

@@ -1,13 +1,13 @@
 @extends('dashboard.layouts.master')
-@section('title', 'Teacher Dashboard')
+@section('title', 'Student Dashboard')
 @section('sidebar')
-    @include('dashboard.teacher.inc.sidebar')
+    @include('dashboard.student.inc.sidebar')
 @endsection
 
 @section('content-header')
     <section class="content-header">
         <h1>
-            Sections
+            School Information
         </h1>
         @include('dashboard.inc.breadcrumbs')
     </section>
@@ -15,14 +15,14 @@
 
 @section('content-main')
     <!-- Main content -->
-    <section class="content container-fluid">
+    <section class="invoice">
 
-    @include('dashboard.inc.static.calendar')
+        @include('dashboard.inc.static.school-info')
 
     </section>
     <!-- /.content -->
 @endsection
 
 @section('sidebar-control')
-    @include('dashboard.teacher.inc.sidebar-control')
+    @include('dashboard.student.inc.sidebar-control')
 @endsection

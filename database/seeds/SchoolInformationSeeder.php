@@ -18,6 +18,8 @@ class SchoolInformationSeeder extends Seeder
             'administrator' => 'Mrs. Julie Asi',
             'website'       => 'www.jilcstanauan.com',
             'short_name'    => 'JILCS',
+            'school_number'    => '#12378-123',
+            'email'    => 'jilcstanauan@gmail.com',
         ]);
     }
 }

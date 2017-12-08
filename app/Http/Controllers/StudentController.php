@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\School_information;
 use Barryvdh\DomPDF\Facade as PDF;;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,6 +21,12 @@ class StudentController extends Controller
     {
         $student = Student::with(['section', 'section.assignments', 'section.assignments.teacher'])->find(auth()->id());
         return view('dashboard.student', compact('student'));
+    }
+
+    public function school_info()
+    {
+        $school_info = School_information::firstOrFail();
+        return view('dashboard.student.school-info', compact('school_info'));
     }
 
     public function grades() {

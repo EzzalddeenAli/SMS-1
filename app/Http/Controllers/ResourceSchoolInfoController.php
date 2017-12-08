@@ -25,6 +25,7 @@ class ResourceSchoolInfoController extends Controller
             'website'       => 'bail|nullable|string',
             'short_name'    => 'bail|required|string',
             'school_number' => 'bail|nullable|string',
+            'email'         => 'bail|nullable|email',
         ]);
 
         $school_info = School_information::firstOrFail();

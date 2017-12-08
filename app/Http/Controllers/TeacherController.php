@@ -34,6 +34,11 @@ class TeacherController extends Controller
         return view('dashboard.teacher', compact('ass_num'));
     }
 
+    public function school_info()
+    {
+        return view('dashboard.teacher.school-info');
+    }
+
     public function sections()
     {
         $teacher = Teacher::with(['subjects', 'subjects.section', 'subjects.section.level'])->find(auth()->id());

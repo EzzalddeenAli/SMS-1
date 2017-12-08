@@ -21,6 +21,7 @@ Route::prefix('student')->group(function () {
     Route::get('/permit', 'StudentController@permit')->name('student.permit');
     Route::get('/teachers/rate', 'StudentController@teachers')->name('student.teachers');
     Route::post('/rate', 'StudentController@rate')->name('student.rate');
+    Route::get('school/info', 'StudentController@school_info')->name('student.school-info');
 });
 
 Route::prefix('teacher')->group(function () {
@@ -34,6 +35,7 @@ Route::prefix('teacher')->group(function () {
     Route::get('calendar', 'TeacherController@calendar')->name('teacher.calendar');
     Route::get('/section/{subject_id}', 'TeacherController@section')->name('section');
     Route::get('/assignments', 'TeacherController@assignments')->name('teacher.assignments.list');
+    Route::get('school/info', 'TeacherController@school_info')->name('teacher.school-info');
 });
 
 Route::prefix('admin')->group(function () {
@@ -43,7 +45,7 @@ Route::prefix('admin')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-    Route::get('school/info', 'AdminController@school_information')->name('admin.school-info');
+    Route::get('school/info', 'AdminController@school_info')->name('admin.school-info');
     Route::get('school/info/index', 'ResourceSchoolInfoController@index')->name('admin.school-info.index');
     Route::patch('school/info/update', 'ResourceSchoolInfoController@update')->name('admin.school-info.update');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');

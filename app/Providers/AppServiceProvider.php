@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         Form::component('bsNumber', 'components.form.number', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsPhone', 'components.form.phone', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsUrl', 'components.form.url', ['name', 'value' => null, 'attributes' => []]);
+        Form::component('bsEmail', 'components.form.email', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsSubmit', 'components.form.submit', ['name', 'attributes' => ['class' => 'btn btn-default']]);
         Schema::defaultStringLength(191);
     }
