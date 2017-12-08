@@ -17,36 +17,26 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     */
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
 
         //quotes
-/*        $http = new Client;
-        try {
-            $response = $http->get('https://favqs.com/api/qotd');
-            if ($response->getStatusCode() === 200) {
-                $response_array = json_decode((string) $response->getBody(), true);
-                $quote['author'] = $response_array['quote']['author'];
-                $quote['body'] = $response_array['quote']['body'];
-            }
-        } catch (ConnectException $e) {
-            return view('dashboard.admin');
-        }*/
+        /*        $http = new Client;
+                try {
+                    $response = $http->get('https://favqs.com/api/qotd');
+                    if ($response->getStatusCode() === 200) {
+                        $response_array = json_decode((string) $response->getBody(), true);
+                        $quote['author'] = $response_array['quote']['author'];
+                        $quote['body'] = $response_array['quote']['body'];
+                    }
+                } catch (ConnectException $e) {
+                    return view('dashboard.admin');
+                }*/
         $count['students'] = Student::all()->count();
         $count['teachers'] = Teacher::all()->count();
         return view('dashboard.admin', compact('quote', 'count'));
@@ -73,6 +63,65 @@ class AdminController extends Controller
         $index = 0;
 
         return view('dashboard.admin.section', compact('index', 'subjects'));
+    }
+
+    public function search()
+    {
+        $users = ['student', 'teacher'];
+        $funcs = ['report_card', 'permit'];
+        //Check user type
+        if (in_array(request()->query('type_user'), $users)) {
+            //Check function type
+            if (in_array(request()->query('type_func'), $funcs)) {
+                $user = request()->query('type_user');
+                $func = request()->query('type_func');
+                return view('dashboard.admin.find-user', compact('user', 'func'));
+            }
+        }
+
+        abort(404, 'Undefined type');
+    }
+
+    public function find(Request $request)
+    {
+        $request->validate([
+            'user'        => 'required|string',
+            'func'        => 'required|string',
+            'username'    => 'bail|nullable|string',
+            'first_name'  => 'bail|nullable|string',
+            'middle_name' => 'bail|nullable|string',
+            'last_name'   => 'bail|nullable|string',
+            'age'         => 'bail|nullable|numeric',
+            'section'     => 'bail|nullable|string',
+        ]);
+
+        switch ($request->user) {
+            case 'student':
+                $results = Student::where('username', 'like', '%'.$request->username.'%')
+                    ->where('first_name', 'like', '%'.$request->first_name.'%')
+                    ->where('middle_name', 'like', '%'.$request->middle_name.'%')
+                    ->where('last_name', 'like', '%'.$request->last_name.'%')
+                    ->where('age', 'like', '%'.$request->age.'%')
+                    ->whereHas('section', function ($query) {
+                        $query->where('name', 'like', '%' . request()->section . '%');
+                    })
+                    ->get()->load('section');
+
+                if (count($results) > 0) {
+                    $message = count($results).' Students were found.';
+                } else {
+                    $message = 'No Student Found.';
+                }
+
+                break;
+            case 'teacher':
+
+                break;
+            default:
+                abort(404, 'Type Error');
+        }
+
+        return view('dashboard.admin.find-results', compact('results', 'message'));
     }
 
     public function teachers()

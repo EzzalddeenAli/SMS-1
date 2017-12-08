@@ -1,5 +1,4 @@
 <?php
-Route::view('/lte', 'dashboard.test');
 Route::get('/', 'HomeController@index')->name('home.main');
 //Route::get('home', 'HomeController@index')->name('user.dashboard');
 
@@ -52,6 +51,8 @@ Route::prefix('admin')->group(function () {
     Route::get('students', 'AdminController@students')->name('admin.student.list');
     Route::get('calendar', 'AdminController@calendar')->name('admin.calendar');
     Route::get('levels', 'AdminController@levels')->name('admin.levels.list');
+    Route::get('search', 'AdminController@search')->name('admin.search');
+    Route::post('find', 'AdminController@find')->name('admin.find');
     Route::get('section/{id}/subjects', 'AdminController@section')->name('admin.section.subjects');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
     Route::get('/layout/{area}', 'AdminController@layout')->name('admin.layout');
@@ -123,19 +124,3 @@ Route::prefix('resource')->group(function () {
     //MAKE SURE NOTHING IS BELOW HERE!
 
 });
-
-//for roulette api, don't use
-/*Route::get('/callback', function (Illuminate\Http\Request $request) {
-    $http = new \GuzzleHttp\Client;
-
-    $response = $http->post('192.168.1.7:8000/oauth/token', [
-        'form_params' => [
-            'grant_type' => 'authorization_code',
-            'client_id' => 3,
-            'client_secret' => 'AWQbbwrrDSr5Z5FV7eQKvQfAFtVYtPGgYC8Waw05',
-            'redirect_uri' => '192.168.1.7:8080/callback',
-            'code' => $request->code,
-        ],
-    ]);
-    return json_decode((string) $response->getBody(), true);
-});*/
