@@ -38,9 +38,9 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Report Card</a></li>
-                    <li><a href="#">Permit</a></li>
-                    <li><a href="#">Assignments</a></li>
+                    <li><a href="{{ route('admin.search', ['type_user' => 'student', 'type_func' => 'report_card']) }}">Report Card</a></li>
+                    <li><a href="{{ route('admin.search', ['type_user' => 'student', 'type_func' => 'permit']) }}">Permit</a></li>
+                    <li><a href="{{ route('admin.search', ['type_user' => 'class', 'type_func' => 'assignments']) }}">Assignments</a></li>
                 </ul>
             </li>
 
