@@ -21,11 +21,6 @@
             <li class="header">Navigation</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="{{ request()->segment(2) === null ? 'active' : '' }}"><a href="{{'/'.request()->segment(1) }}"><i class="fa fa-desktop"></i> <span>Dashboard</span></a></li>
-{{--
-            <li class="{{ request()->segment(2) === 'teachers' ? 'active' : '' }}"><a href="{{ route('admin.teacher.list') }}"><i class="ion ion-ios-people"></i> <span>Teachers</span></a></li>
-            <li class="{{ request()->segment(2) === 'students' ? 'active' : '' }}"><a href="{{ route('admin.student.list') }}"><i class="fa fa-users"></i> <span>Students</span></a></li>
-            <li class="{{ request()->segment(2) === 'calendar' ? 'active' : '' }}"><a href="{{ route('admin.calendar') }}"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
---}}
 
             <li class="treeview">
                 <a href="#"><i class="fa fa-building"></i> <span>School</span>
@@ -34,7 +29,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('admin.school-info') }}">School Information</a></li>
                     <li><a href="{{ route('admin.calendar') }}">Calendar</a></li>
-                    <li><a href="#">Grade Levels</a></li>
+                    <li><a href="{{ route('admin.levels.list') }}">Grade Levels</a></li>
                 </ul>
             </li>
 

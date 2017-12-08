@@ -51,6 +51,8 @@ Route::prefix('admin')->group(function () {
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('students', 'AdminController@students')->name('admin.student.list');
     Route::get('calendar', 'AdminController@calendar')->name('admin.calendar');
+    Route::get('levels', 'AdminController@levels')->name('admin.levels.list');
+    Route::get('section/{id}/subjects', 'AdminController@section')->name('admin.section.subjects');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
     Route::get('/layout/{area}', 'AdminController@layout')->name('admin.layout');
 });
