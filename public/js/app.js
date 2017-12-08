@@ -108344,12 +108344,12 @@ $(function () {
             var $hex = rgbToHex($(this).css('borderTopColor'));
             //if borderTop is red remove it
             if ($hex === '#ff0000') {
-                axios.post('/resource/events/', {
+                axios.post('/resource/events', {
                     _method: 'delete',
                     title: calEvent.title,
                     start: calEvent.start._d.getTime() / 1000,
                     end: calEvent.start._d.getTime() / 1000,
-                    backgroundColor: rgbToHex(calEvent.backgroundColor)
+                    backgroundColor: calEvent.backgroundColor
                 }).then(function (response) {
                     $('#calendar').fullCalendar('removeEvents', calEvent._id);
                     console.log(response);
