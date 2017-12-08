@@ -43,9 +43,10 @@ Route::prefix('admin')->group(function () {
 
     //Dashboard Controllers
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('school/info', 'AdminController@school_information')->name('admin.school.information');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('students', 'AdminController@students')->name('admin.student.list');
-    Route::get('/calendar', 'AdminController@calendar')->name('admin.calendar');
+    Route::get('calendar', 'AdminController@calendar')->name('admin.calendar');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
     Route::get('/layout/{area}', 'AdminController@layout')->name('admin.layout');
 });

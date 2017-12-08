@@ -50,6 +50,11 @@ class AdminController extends Controller
         return view('dashboard.admin', compact('quote', 'count'));
     }
 
+    public function school_information()
+    {
+        return view('dashboard.admin.school-information');
+    }
+
     public function teachers()
     {
         if (request()->ajax()) {
