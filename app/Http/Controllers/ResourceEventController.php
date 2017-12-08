@@ -116,6 +116,7 @@ class ResourceEventController extends Controller
      */
     public function destroy(Request $request)
     {
+        return $request;
         if (request()->ajax()) {
             Event::where('background_color', $request->backgroundColor)
                 ->where('start', $request->start)

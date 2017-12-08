@@ -108348,7 +108348,7 @@ $(function () {
                     title: calEvent.title,
                     start: calEvent.start._d.getTime() / 1000,
                     end: calEvent.start._d.getTime() / 1000,
-                    backgroundColor: rgbToHex(calEvent.backgroundColor),
+                    backgroundColor: calEvent.backgroundColor,
                     '_method': 'delete'
                 }).then(function (response) {
                     $('#calendar').fullCalendar('removeEvents', calEvent._id);
