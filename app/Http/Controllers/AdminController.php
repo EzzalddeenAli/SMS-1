@@ -6,6 +6,7 @@ use App\Admin;
 use App\Image;
 use App\Level;
 use App\Registrar;
+use App\School_information;
 use App\Student;
 use App\Teacher;
 use GuzzleHttp\Client;
@@ -52,7 +53,8 @@ class AdminController extends Controller
 
     public function school_information()
     {
-        return view('dashboard.admin.school-information');
+        $school_info = School_information::firstOrFail();
+        return view('dashboard.admin.school-information', compact('school_info'));
     }
 
     public function teachers()
