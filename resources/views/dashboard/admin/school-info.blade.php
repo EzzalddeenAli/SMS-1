@@ -15,6 +15,7 @@
 
 @section('content-main')
     <!-- Main content -->
+    @if(!isset($preview))
     <section class="content container-fluid">
         @if(session('status'))
         <div class="alert alert-success">
@@ -59,6 +60,7 @@
                         {{ Form::bsText('short_name') }}
                         {{ Form::bsText('school_number') }}
                         {{ Form::bsSubmit('submit', ['class' => 'btn btn-primary']) }}
+                        <a href="{{ route('admin.school-info', ['preview' => 'true']) }}" class="btn btn-info pull-right">Preview</a>
                         {!! Form::close() !!}
                     </div>
                 </div>
@@ -68,6 +70,13 @@
 
 
     </section>
+    @else
+        <section class="invoice">
+            @include('dashboard.inc.static.school-info')
+            <br>
+            <a href="{{ route('admin.school-info') }}" class="btn btn-primary">Edit</a>
+        </section>
+    @endif
     <!-- /.content -->
 @endsection
 

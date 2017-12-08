@@ -7,6 +7,7 @@ use App\Image;
 use App\Level;
 use App\Registrar;
 use App\School_information;
+use App\Section;
 use App\Student;
 use App\Teacher;
 use GuzzleHttp\Client;
@@ -53,8 +54,25 @@ class AdminController extends Controller
 
     public function school_info()
     {
+        if (request()->has('preview')) {
+            $preview = "true";
+        }
         $school_info = School_information::firstOrFail();
-        return view('dashboard.admin.school-info', compact('school_info'));
+        return view('dashboard.admin.school-info', compact('school_info', 'preview'));
+    }
+
+    public function levels()
+    {
+        $levels = Level::all()->load('sections');
+        return view('dashboard.admin.level-list', compact('levels'));
+    }
+
+    public function section(Section $id)
+    {
+        $subjects = $id->subjects->load('teacher');
+        $index = 0;
+
+        return view('dashboard.admin.section', compact('index', 'subjects'));
     }
 
     public function teachers()
