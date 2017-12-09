@@ -60,7 +60,13 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.student.list') }}">Student List</a></li>
+                    <li>
+                        {{ Form::open(['route' => 'admin.find.basic', 'id' => 's-list']) }}
+                        <input type="hidden" name="user" value="student">
+                        <input type="hidden" name="func" value="student-list">
+                        {{ Form::close() }}
+                        <a href="#" onclick="document.querySelector('#s-list').submit()">Student List</a>
+                    </li>
                     <li><a href="#">Print List</a></li>
                 </ul>
             </li>

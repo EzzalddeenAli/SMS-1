@@ -49,7 +49,7 @@ Route::prefix('admin')->group(function () {
     Route::patch('school/info/update', 'ResourceSchoolInfoController@update')->name('admin.school-info.update');
     Route::get('teachers', 'AdminController@teachers')->name('admin.teacher.list');
     Route::get('teachers/ratings', 'AdminController@ratings')->name('admin.teacher.ratings');
-    Route::get('students', 'AdminController@students')->name('admin.student.list');
+//    Route::get('students', 'AdminController@students')->name('admin.student.list');
     Route::get('calendar', 'AdminController@calendar')->name('admin.calendar');
     Route::get('levels', 'AdminController@levels')->name('admin.levels.list');
     Route::get('search', 'AdminController@search')->name('admin.search');
