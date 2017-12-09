@@ -17,6 +17,13 @@
     <!-- Main content -->
     <section class="content">
         <div class="row" id="teachers-table">
+            @if($func === 'student-list')
+            <div class="form-horizontal form-group">
+                <div class="col-sm-1">
+                    <button v-on:click="showAddModal('student')" class="btn btn-success btn-sm" title="add student"><i class="fa fa-plus fa-lg"></i> Add Student</button>
+                </div>
+            </div>
+            @endif
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
