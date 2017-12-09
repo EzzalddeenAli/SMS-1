@@ -129,8 +129,8 @@
                             <img src="{{ asset('images/avatars/avatar.png') }}" class="img-circle" alt="User Image">
 
                             <p>
-                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }} - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                                <small>Member since {{ auth()->user()->created_at->toFormattedDateString() }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -167,10 +167,10 @@
                         </li>
                     </ul>
                 </li>
-                <!-- Control Sidebar Toggle Button -->
+{{--                <!-- Control Sidebar Toggle Button -->
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
+                </li>--}}
             </ul>
         </div>
     </nav>

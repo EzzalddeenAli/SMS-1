@@ -15,6 +15,11 @@ class Registrar extends Authenticatable
 {
     use Notifiable;
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'username', 'password',
     ];
