@@ -40,7 +40,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('admin.search', ['type_user' => 'student', 'type_func' => 'report_card']) }}">Report Card</a></li>
                     <li><a href="{{ route('admin.search', ['type_user' => 'student', 'type_func' => 'permit']) }}">Permit</a></li>
-                    <li><a href="{{ route('admin.search', ['type_user' => 'class', 'type_func' => 'assignments']) }}">Assignments</a></li>
+                    <li><a href="{{ route('admin.levels.list') }}">Assignments</a></li>
                 </ul>
             </li>
 
