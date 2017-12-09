@@ -23,10 +23,10 @@
                         <h3 class="box-title">{{ $message }}</h3>
 
                         <div class="box-tools">
-                            {!! Form::open(['route' => 'admin.basic.find']) !!}
+                            {!! Form::open(['route' => 'admin.find.basic']) !!}
                             <div class="input-group input-group-sm" style="width: 200px;">
                                 <input name="user" value="student" type="hidden">
-                                <input name="func" value="report_card" type="hidden">
+                                <input name="func" value="{{ $func }}" type="hidden">
                                 <input name="basic_search" class="form-control pull-right" placeholder="Search" type="text">
 
                                 <div class="input-group-btn">
@@ -62,8 +62,9 @@
                                     @if($func === 'report_card')
                                     <a href="{{ route('admin.report.card', ['username' => $result->username]) }}"
                                        class="btn btn-primary btn-sm">view report card</a>
-                                        @elseif($func === 'report_card')
-                                    <a href="#" class="btn btn-primary btn-sm">view permit</a>
+                                        @elseif($func === 'permit')
+                                    <a href="{{ route('admin.permit', ['username' => $result->username]) }}"
+                                       class="btn btn-primary btn-sm">View permit</a>
                                     @endif
                                 </td>
                             </tr>
