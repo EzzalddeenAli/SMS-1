@@ -65,6 +65,7 @@ class AdminController extends Controller
         return view('dashboard.admin.section', compact('index', 'subjects'));
     }
 
+    /*SEARCH FORM*/
     public function search()
     {
         $users = ['student', 'teacher'];
@@ -129,7 +130,7 @@ class AdminController extends Controller
     }
 
     /*BASIC SEARCH*/
-    public function basic_find(Request $request)
+    public function find_basic(Request $request)
     {
         $request->validate([
             'user'         => 'required|string',
@@ -175,6 +176,18 @@ class AdminController extends Controller
         return view('dashboard.admin.student-report-card', compact('student'));
     }
 
+    //@todo make permit
+    public function permit(Request $request)
+    {
+        $student = Student::where('username', $request->username)->firstOrFail();
+        return view('dashboard.admin.student-permit', compact('student'));
+    }
+
+    public function assignments(Section $section)
+    {
+        $section = $section->load(['assignments', 'assignments.teacher']);
+        return view('dashboard.admin.section-assignments', compact('section'));
+    }
     public function teachers()
     {
         if (request()->ajax()) {

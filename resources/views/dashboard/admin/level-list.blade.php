@@ -59,7 +59,9 @@
                                         <td class="text-center" style="width: 50%"><p style="font-weight: bold; font-size: 16px; margin: 0;">{{ $section->name }}</p></td>
                                         <td>
                                             <a class="btn btn-sm btn-default" href="{{ route('admin.section.subjects', ['id' => $section->id]) }}"
-                                               title="Subjects" style="width: 40px"><i class="fa fa-book"></i></a>
+                                               title="Subjects"><span>Subjects</span></a>
+                                            <a class="btn btn-sm btn-default" href="{{ route('admin.section.assignments', ['section' => $section->id]) }}"
+                                               title="Subjects"><span>Assignments</span></a>
                                         </td>
                                     </tr>
                                 @endforeach
