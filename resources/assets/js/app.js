@@ -16,7 +16,7 @@ window.Chart = require('chart.js');
 require('./pie-chart');
 require('moment');
 require('fullcalendar');
-
+require( 'datatables.net-bs' );
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -25,3 +25,4 @@ require('fullcalendar');
 
 require('./registerVue');
 require('./registerFullCalendar');
+require('./registerDataTables');

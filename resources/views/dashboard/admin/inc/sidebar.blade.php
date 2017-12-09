@@ -50,7 +50,7 @@
               </span></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('admin.teacher.list') }}">Teacher List</a></li>
-                    <li><a href="#">Ratings</a></li>
+                    <li><a href="{{ route('admin.teacher.ratings') }}">Ratings</a></li>
                     <li><a href="#">Print List</a></li>
                 </ul>
             </li>

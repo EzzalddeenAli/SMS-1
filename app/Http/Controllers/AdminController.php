@@ -188,6 +188,7 @@ class AdminController extends Controller
         $section = $section->load(['assignments', 'assignments.teacher']);
         return view('dashboard.admin.section-assignments', compact('section'));
     }
+
     public function teachers()
     {
         if (request()->ajax()) {
@@ -199,6 +200,12 @@ class AdminController extends Controller
         $vue_modals = true;
 
         return view('dashboard.admin.teacher-list', compact('teachers', 'index', 'vue_modals'));
+    }
+
+    public function ratings()
+    {
+        $teachers = Teacher::all()->load('ratings');
+        return view('dashboard.admin.teacher-ratings', compact('teachers'));
     }
 
     public function students()
