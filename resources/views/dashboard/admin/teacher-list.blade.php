@@ -15,9 +15,9 @@
 
 @section('content-main')
     <!-- Main content -->
-    <section class="content container-fluid">
+    <section class="content">
 
-        <div class="row" id="teachers-table">
+        <div class="row invoice" id="teachers-table">
             <div class="col-lg-12">
                 @if($errors->any())
                     <div class="alert alert-danger">
@@ -50,7 +50,7 @@
                             <th>Last Name</th>
                             <th>Age</th>
                             <th>Advisory</th>
-                            <th>Rating</th>
+                            {{--<th>Rating</th>--}}
                             <th colspan="10" class="text-center">Action</th>
                         </tr>
                         </thead>
@@ -60,7 +60,7 @@
                             <tr>
                                 @php
                                     $advisory = $teacher->advisory_name($teacher->advisory);
-                                    $rating = $teacher->averageRating;
+                                    /*$rating = $teacher->averageRating;*/
                                 @endphp
                                 <td>{{++$index}}</td>
                                 <td>{{$teacher->username}}</td>
@@ -69,17 +69,17 @@
                                 <td>{{$teacher->last_name}}</td>
                                 <td>{{$teacher->age}}</td>
                                 <td>{{$advisory !== null ? $advisory : 'None'}}</td>
-                                <td class="{{ $rating >= 3.5 ? 'text-success' : ($rating >= 2.5 ? 'text-primary' : ($rating > 0 ? 'text-danger' : '')) }}">
+                                {{--<td class="{{ $rating >= 3.5 ? 'text-success' : ($rating >= 2.5 ? 'text-primary' : ($rating > 0 ? 'text-danger' : '')) }}">
                                     {{ $rating !== null ? $rating : 'None' }}
+                                </td>--}}
+                                <td style="width: 30px">
+                                    <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')" class="btn btn-primary btn-sm edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
                                 </td>
                                 <td style="width: 30px">
-                                    <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')" class="btn btn-primary edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
+                                    <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info btn-sm edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
                                 </td>
                                 <td style="width: 30px">
-                                    <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
-                                </td>
-                                <td style="width: 30px">
-                                    <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
+                                    <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger btn-sm delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
                                 </td>
                             </tr>
                         @endforeach
