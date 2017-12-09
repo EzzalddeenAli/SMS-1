@@ -23,14 +23,17 @@
                         <h3 class="box-title">{{ $message }}</h3>
 
                         <div class="box-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input name="table_search" class="form-control pull-right" placeholder="Search" type="text">
+                            {!! Form::open(['route' => 'admin.basic.find']) !!}
+                            <div class="input-group input-group-sm" style="width: 200px;">
+                                <input name="user" value="student" type="hidden">
+                                <input name="func" value="report_card" type="hidden">
+                                <input name="basic_search" class="form-control pull-right" placeholder="Search" type="text">
 
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                 </div>
+                            {!! Form::close() !!}
                             </div>
-                        </div>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
@@ -56,7 +59,12 @@
                                 <td>{{ $result->age }}</td>
                                 <td>{{ $result->section->name }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-sm">view report card</a>
+                                    @if($func === 'report_card')
+                                    <a href="{{ route('admin.report.card', ['username' => $result->username]) }}"
+                                       class="btn btn-primary btn-sm">view report card</a>
+                                        @elseif($func === 'report_card')
+                                    <a href="#" class="btn btn-primary btn-sm">view permit</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
