@@ -53,8 +53,11 @@ Route::prefix('admin')->group(function () {
     Route::get('levels', 'AdminController@levels')->name('admin.levels.list');
     Route::get('search', 'AdminController@search')->name('admin.search');
     Route::post('find', 'AdminController@find')->name('admin.find');
-    Route::get('section/{id}/subjects', 'AdminController@section')->name('admin.section.subjects');
+    Route::post('find/basic', 'AdminController@basic_find')->name('admin.basic.find');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
+
+    Route::get('student/{username}/card', 'AdminController@report_card')->name('admin.report.card');
+    Route::get('section/{id}/subjects', 'AdminController@section')->name('admin.section.subjects');
     Route::get('/layout/{area}', 'AdminController@layout')->name('admin.layout');
 });
 

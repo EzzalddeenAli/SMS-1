@@ -82,6 +82,7 @@ class AdminController extends Controller
         abort(404, 'Undefined type');
     }
 
+    /*ADVANCE SEARCH*/
     public function find(Request $request)
     {
         $request->validate([
@@ -95,20 +96,21 @@ class AdminController extends Controller
             'section'     => 'bail|nullable|string',
         ]);
 
+        //fetch result based on given user type
         switch ($request->user) {
             case 'student':
-                $results = Student::where('username', 'like', '%'.$request->username.'%')
-                    ->where('first_name', 'like', '%'.$request->first_name.'%')
-                    ->where('middle_name', 'like', '%'.$request->middle_name.'%')
-                    ->where('last_name', 'like', '%'.$request->last_name.'%')
-                    ->where('age', 'like', '%'.$request->age.'%')
+                $results = Student::where('username', 'like', '%' . $request->username . '%')
+                    ->where('first_name', 'like', '%' . $request->first_name . '%')
+                    ->where('middle_name', 'like', '%' . $request->middle_name . '%')
+                    ->where('last_name', 'like', '%' . $request->last_name . '%')
+                    ->where('age', 'like', '%' . $request->age . '%')
                     ->whereHas('section', function ($query) {
                         $query->where('name', 'like', '%' . request()->section . '%');
                     })
                     ->get()->load('section');
 
                 if (count($results) > 0) {
-                    $message = count($results).' Students were found.';
+                    $message = count($results) . ' Students were found.';
                 } else {
                     $message = 'No Student Found.';
                 }
@@ -121,7 +123,56 @@ class AdminController extends Controller
                 abort(404, 'Type Error');
         }
 
-        return view('dashboard.admin.find-results', compact('results', 'message'));
+        $func = $request->func;
+
+        return view('dashboard.admin.find-results', compact('results', 'message', 'func'));
+    }
+
+    /*BASIC SEARCH*/
+    public function basic_find(Request $request)
+    {
+        $request->validate([
+            'user'         => 'required|string',
+            'func'         => 'required|string',
+            'basic_search' => 'bail|nullable|string',
+        ]);
+
+        //fetch result based on given user type
+        switch ($request->user) {
+            case 'student':
+                $results = Student::where('username', 'like', '%' . $request->basic_search . '%')
+                    ->orWhere('first_name', 'like', '%' . $request->basic_search . '%')
+                    ->orWhere('middle_name', 'like', '%' . $request->basic_search . '%')
+                    ->orWhere('last_name', 'like', '%' . $request->basic_search . '%')
+                    ->orWhere('age', 'like', '%' . $request->basic_search . '%')
+                    ->orWhereHas('section', function ($query) {
+                        $query->where('name', 'like', '%' . request()->basic_search . '%');
+                    })
+                    ->get()->load('section');
+
+                if (count($results) > 0) {
+                    $message = count($results) . ' Students were found.';
+                } else {
+                    $message = 'No Student Found.';
+                }
+
+                break;
+            case 'teacher':
+
+                break;
+            default:
+                abort(404, 'Type Error');
+        }
+
+        $func = $request->func;
+
+        return view('dashboard.admin.find-results', compact('results', 'message', 'func'));
+    }
+
+    public function report_card(Request $request)
+    {
+        $student = Student::where('username', $request->username)->firstOrFail();
+        return view('dashboard.admin.student-report-card', compact('student'));
     }
 
     public function teachers()
