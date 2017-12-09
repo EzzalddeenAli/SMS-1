@@ -208,14 +208,12 @@ class AdminController extends Controller
         return view('dashboard.admin.teacher-ratings', compact('teachers'));
     }
 
-    public function students()
+/*    public function students()
     {
         $students = Student::all();
-        $index = 0;
-        $vue_modals = true;
 
-        return view('dashboard.admin.student-list', compact('students', 'index', 'vue_modals'));
-    }
+        return view('dashboard.admin.student-list', compact('students'));
+    }*/
 
     //change report card publish status
     public function publish(Request $request)
