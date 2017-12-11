@@ -81,6 +81,9 @@ $(function () {
             copiedEventObject.backgroundColor = $(this).css('background-color');
             copiedEventObject.borderColor = $(this).css('border-color');
 
+            //store this to var to make it accessible inside axios function
+            $this = $(this);
+
             /*ADD EVENT*/
             //make a post request to persist event
             axios.post('/resource/events', {
@@ -97,7 +100,7 @@ $(function () {
                 // is the "remove after drop" checkbox checked?
                 if ($('#drop-remove').is(':checked')) {
                     // if so, remove the element from the "Draggable Events" list
-                    $(this).remove()
+                    $this.remove()
                 }
             }).catch(function (error) {
                 console.log(error);

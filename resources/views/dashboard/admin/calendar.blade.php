@@ -26,16 +26,12 @@
                     <div class="box-body">
                         <!-- the events -->
                         <div id="external-events">
-                            <div class="external-event bg-green ui-draggable ui-draggable-handle"
+                            <div class="external-event bg-red ui-draggable ui-draggable-handle"
                                  style="position: relative;">No Classes
                             </div>
                             <div class="external-event bg-yellow ui-draggable ui-draggable-handle"
                                  style="position: relative;">Make Up Class
                             </div>
-                            <div class="external-event bg-aqua ui-draggable ui-draggable-handle"
-                                 style="position: relative;">Do homework
-                            </div>
-
                             <div class="checkbox">
                                 <label for="drop-remove">
                                     <input id="drop-remove" type="checkbox">
@@ -53,6 +49,7 @@
                     </div>
                     <div class="box-body">
                         <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                            <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
                             <ul class="fc-color-picker" id="color-chooser">
                                 <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
                                 <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
