@@ -139,15 +139,21 @@ class AdminController extends Controller
         ]);
 
         //fetch result based on given user type
+        if ($request->basic_search === null) {
+            $request->basic_search = '';
+        } else {
+            $request->basic_search = '%' . $request->basic_search . '%';
+        }
+
         switch ($request->user) {
             case 'student':
-                $results = Student::where('username', 'like', '%' . $request->basic_search . '%')
-                    ->orWhere('first_name', 'like', '%' . $request->basic_search . '%')
-                    ->orWhere('middle_name', 'like', '%' . $request->basic_search . '%')
-                    ->orWhere('last_name', 'like', '%' . $request->basic_search . '%')
-                    ->orWhere('age', 'like', '%' . $request->basic_search . '%')
+                $results = Student::where('username', 'like', $request->basic_search)
+                    ->orWhere('first_name', 'like', $request->basic_search)
+                    ->orWhere('middle_name', 'like', $request->basic_search)
+                    ->orWhere('last_name', 'like', $request->basic_search)
+                    ->orWhere('age', 'like', $request->basic_search)
                     ->orWhereHas('section', function ($query) {
-                        $query->where('name', 'like', '%' . request()->basic_search . '%');
+                        $query->where('name', 'like', request()->basic_search);
                     })
                     ->get()->load('section');
 
