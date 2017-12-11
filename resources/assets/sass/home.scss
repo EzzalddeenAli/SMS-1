@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import "variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
 $perfect-circle: 200px;
 
 %transitions {
@@ -117,6 +121,10 @@ ul.nav-links {
 img#nav-logo {
   position: relative;
   left: -5%;
+}
+
+nav.navbar-static-top {
+  height: 50px;
 }
 
 //css medias
