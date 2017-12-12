@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Collective\Html\FormFacade as Form;
 
@@ -15,6 +16,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Custom Validation
+        Validator::extend('alpha_spaces', function ($attribute, $value) {
+
+            // This will only accept alpha and spaces.
+            // If you want to accept hyphens use: /^[\pL\s-]+$/u.
+            return preg_match('/^[\pL\s]+$/u', $value);
+        });
+
+        Validator::extend('alpha_num_spaces', function ($attribute, $value) {
+
+            // This will only accept alpha_num and spaces.
+            return preg_match('/(^[A-Za-z0-9 ]+$)+/', $value);
+        });
+
         //Form Builder
         Form::component('bsText', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsNumber', 'components.form.number', ['name', 'value' => null, 'attributes' => []]);
