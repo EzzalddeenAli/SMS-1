@@ -135,15 +135,16 @@ class AdminController extends Controller
         $request->validate([
             'user'         => 'required|string',
             'func'         => 'required|string',
-            'basic_search' => 'bail|nullable|string',
+            'basic_search' => 'bail|nullable|alpha_num_spaces',
         ]);
 
         //fetch result based on given user type
-        if ($request->basic_search === null) {
-            $request->basic_search = '';
+        if(is_numeric((int) $request->basic_search)) {
+            $age = (int) $request->basic_search;
         } else {
-            $request->basic_search = '%' . $request->basic_search . '%';
+            $age = 0;
         }
+        $request->basic_search = '%' . $request->basic_search . '%';
 
         switch ($request->user) {
             case 'student':
@@ -151,7 +152,7 @@ class AdminController extends Controller
                     ->orWhere('first_name', 'like', $request->basic_search)
                     ->orWhere('middle_name', 'like', $request->basic_search)
                     ->orWhere('last_name', 'like', $request->basic_search)
-                    ->orWhere('age', 'like', $request->basic_search)
+                    ->orWhere('age', $age)
                     ->orWhereHas('section', function ($query) {
                         $query->where('name', 'like', request()->basic_search);
                     })
