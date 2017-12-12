@@ -97,6 +97,16 @@ class AdminController extends Controller
             'section'     => 'bail|nullable|string',
         ]);
 
+        //For PostgreSQL compatibility issue
+        //If age is not null
+        $age['sign'] = '=';
+        $age['val'] = $request->age;
+        //If age is null
+        if ($request->age === null) {
+            $age['sign'] = '>';
+            $age['val'] = 0;
+        }
+
         //fetch result based on given user type
         switch ($request->user) {
             case 'student':
@@ -104,7 +114,7 @@ class AdminController extends Controller
                     ->where('first_name', 'like', '%' . $request->first_name . '%')
                     ->where('middle_name', 'like', '%' . $request->middle_name . '%')
                     ->where('last_name', 'like', '%' . $request->last_name . '%')
-                    ->where('age', 'like', '%' . $request->age . '%')
+                    ->where('age', $age['sign'] , $age['val'])
                     ->whereHas('section', function ($query) {
                         $query->where('name', 'like', '%' . request()->section . '%');
                     })
