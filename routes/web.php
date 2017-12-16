@@ -1,6 +1,16 @@
 <?php
 Route::get('/', 'HomeController@index')->name('home.main');
 //Route::get('home', 'HomeController@index')->name('user.dashboard');
+Route::get('/applicant', function () {
+    $data = [
+        'title' => 'JILCS Application for Admission',
+        'num' => ['wasd', 'wasder', 'wasdest']
+    ];
+
+    $pdf = PDF::loadView('pdf.test', $data);
+    return $pdf->stream('invoice.pdf');
+//    return view('pdf.test', $data);
+});
 
 //Auth::routes();
 //Route::get('logout', 'Auth\LoginController@logout');
@@ -16,7 +26,7 @@ Route::prefix('student')->group(function () {
     Route::get('/', 'StudentController@index')->name('student.dashboard');
     Route::get('/grades', 'StudentController@grades')->name('student.grades');
     Route::get('/calendar', 'StudentController@calendar')->name('student.calendar');
-    Route::get('/grades/download', 'StudentController@gradesDownload');
+//    Route::get('/grades/download', 'StudentController@gradesDownload');
     Route::get('/permit', 'StudentController@permit')->name('student.permit');
     Route::get('/teachers/rate', 'StudentController@teachers')->name('student.teachers');
     Route::post('/rate', 'StudentController@rate')->name('student.rate');

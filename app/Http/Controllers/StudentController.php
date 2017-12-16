@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\School_information;
-use Barryvdh\DomPDF\Facade as PDF;;
+use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,18 +69,6 @@ class StudentController extends Controller
 //        return Carbon::createFromTimestamp('1512489600'); //convert milisecond to date
 
         return view('dashboard.student.calendar');
-    }
-
-    //@todo remove or modify after pdf test
-    public function gradesDownload()
-    {
-        $data = [
-            'title' => 'JILCS Registration Form',
-            'num' => ['wasd', 'wasder', 'wasdest']
-        ];
-
-        $pdf = PDF::loadView('pdf.test', $data);
-        return $pdf->stream('invoice.pdf');
     }
 
 }
