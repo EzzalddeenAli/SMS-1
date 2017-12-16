@@ -114,7 +114,7 @@ class AdminController extends Controller
                     ->where('first_name', 'like', '%' . $request->first_name . '%')
                     ->where('middle_name', 'like', '%' . $request->middle_name . '%')
                     ->where('last_name', 'like', '%' . $request->last_name . '%')
-                    ->where('age', $age['sign'] , $age['val'])
+                    ->where('age', $age['sign'], $age['val'])
                     ->whereHas('section', function ($query) {
                         $query->where('name', 'like', '%' . request()->section . '%');
                     })
@@ -149,8 +149,8 @@ class AdminController extends Controller
         ]);
 
         //fetch result based on given user type
-        if(is_numeric((int) $request->basic_search)) {
-            $age = (int) $request->basic_search;
+        if (is_numeric((int)$request->basic_search)) {
+            $age = (int)$request->basic_search;
         } else {
             $age = 0;
         }
@@ -224,13 +224,6 @@ class AdminController extends Controller
         $teachers = Teacher::all()->load('ratings');
         return view('dashboard.admin.teacher-ratings', compact('teachers'));
     }
-
-/*    public function students()
-    {
-        $students = Student::all();
-
-        return view('dashboard.admin.student-list', compact('students'));
-    }*/
 
     //change report card publish status
     public function publish(Request $request)
