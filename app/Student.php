@@ -82,4 +82,8 @@ class Student extends Authenticatable
         return $this->belongsTo('App\Section');
     }
 
+    public function personal_data()
+    {
+        return $this->hasMany('App\PersonalData');
+    }
 }
