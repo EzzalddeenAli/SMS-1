@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  */
-class School_information extends Model
+class SchoolInformation extends Model
 {
     public $timestamps = false;
     protected $guarded = ['id'];

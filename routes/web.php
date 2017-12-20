@@ -9,7 +9,7 @@ Route::get('/applicant', function () {
 
     $pdf = PDF::loadView('pdf.test', $data);
     return $pdf->stream('invoice.pdf');
-//    return view('pdf.test', $data);
+    return view('pdf.test', $data);
 });
 
 //Auth::routes();

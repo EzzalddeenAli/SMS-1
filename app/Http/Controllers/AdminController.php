@@ -6,7 +6,7 @@ use App\Admin;
 use App\Image;
 use App\Level;
 use App\Registrar;
-use App\School_information;
+use App\SchoolInformation;
 use App\Section;
 use App\Student;
 use App\Teacher;
@@ -47,7 +47,7 @@ class AdminController extends Controller
         if (request()->has('preview')) {
             $preview = "true";
         }
-        $school_info = School_information::firstOrFail();
+        $school_info = SchoolInformation::firstOrFail();
         return view('dashboard.admin.school-info', compact('school_info', 'preview'));
     }
 
