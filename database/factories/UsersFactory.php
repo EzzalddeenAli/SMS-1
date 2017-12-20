@@ -8,6 +8,9 @@ $factory->define(App\Admin::class, function (Faker $faker) {
     return [
         "username" => $faker->name,
         "password" => $password ?: $password = bcrypt('12345678'),
+        "first_name" => $faker->name,
+        "middle_name" => $faker->name,
+        "last_name" => $faker->name,
     ];
 });
 
