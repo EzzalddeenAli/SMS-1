@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\School_information;
+use App\SchoolInformation;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class StudentController extends Controller
 
     public function school_info()
     {
-        $school_info = School_information::firstOrFail();
+        $school_info = SchoolInformation::firstOrFail();
         return view('dashboard.student.school-info', compact('school_info'));
     }
 

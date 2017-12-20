@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\School_information;
+use App\SchoolInformation;
 
 class SchoolInformationSeeder extends Seeder
 {
 
     public function run()
     {
-        School_information::create([
+        SchoolInformation::create([
             'school_name'   => 'Jesus Is Lord Christian School Tanauan City',
             'address'       => 'J.V. Pagaspas St.',
             'city'          => ' Tanauan City',

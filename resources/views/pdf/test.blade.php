@@ -65,6 +65,28 @@
             border: 1px solid gray;
             border-collapse: collapse;
         }
+
+        .sign-box {
+            width: 90%;
+            margin: 18px 5%;
+        }
+
+        .left-sign {
+            width: 45%;
+            margin: 0;
+            border-top: 1px solid;
+            display: inline-block;
+            text-align: center;
+
+        }
+
+        .right-sign {
+            width: 45%;
+            margin: 0 0 0 9%;
+            border-top: 1px solid;
+            display: inline-block;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -128,36 +150,54 @@
         <tbody>
         <tr>
             <td>Name</td>
-            <td></td>
-            <td></td>
+            <td>Mariosep Lurdes</td>
+            <td>Maria Lurdes</td>
         </tr>
         <tr>
             <td>Age</td>
-            <td></td>
-            <td></td>
+            <td>45</td>
+            <td>42</td>
         </tr>
         <tr>
             <td>Nationality</td>
-            <td></td>
-            <td></td>
+            <td>Filipino</td>
+            <td>Filipino</td>
         </tr>
         <tr>
             <td>Occupation</td>
-            <td></td>
-            <td></td>
+            <td>Engineer</td>
+            <td>House Wife</td>
         </tr>
         <tr>
             <td>Contact No.</td>
-            <td></td>
-            <td></td>
+            <td>09178974467</td>
+            <td>09164670912</td>
         </tr>
         <tr>
             <td>Work Address</td>
-            <td></td>
-            <td></td>
+            <td>Creo Muntinlupa City</td>
+            <td>Tech Muntinlupa City</td>
         </tr>
         </tbody>
     </table>
+</div>
+
+<div class="box" style="border-color: black;">
+	<p class="title">Verification</p>
+    <p style="margin-bottom: 30px;">I certify that the information given herein is correct and complete.
+        Falsification or withholding of
+        information requested in this form
+        will automatically nullify my application and/or subject me to dismissal, even if already admitted. </p>
+
+    <div class="sign-box">
+        <p class="left-sign">Full name and Signature of Applicant</p>
+        <p class="right-sign">Date</p>
+    </div>
+
+    <div class="sign-box">
+        <p class="left-sign">Full name and Signature of Parents/Guardian</p>
+        <p class="right-sign">Date</p>
+    </div>
 </div>
 </body>
 </html>

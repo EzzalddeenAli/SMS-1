@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Assignment;
+use App\SchoolInformation;
 use App\Section;
 use App\Subject;
 use App\Teacher;
@@ -36,7 +37,8 @@ class TeacherController extends Controller
 
     public function school_info()
     {
-        return view('dashboard.teacher.school-info');
+        $school_info = SchoolInformation::firstOrFail();
+        return view('dashboard.teacher.school-info', compact('school_info'));
     }
 
     public function sections()
