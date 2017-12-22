@@ -187,6 +187,11 @@ class AdminController extends Controller
         return view('dashboard.admin.find-results', compact('results', 'message', 'func'));
     }
 
+    public function student_profile()
+    {
+        return view('dashboard.admin.student-profile');
+    }
+
     public function report_card(Request $request)
     {
         $student = Student::where('username', $request->username)->firstOrFail();

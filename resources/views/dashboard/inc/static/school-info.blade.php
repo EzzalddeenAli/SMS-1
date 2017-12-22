@@ -26,7 +26,7 @@
             <strong>Administrator:</strong><br>
             {{ $school_info->administrator }} <br>
             <strong>Phone:</strong><br>
-            {{ $school_info->phone }} <br>
+            {{ '09'.$school_info->phone }} <br>
             <strong>Website:</strong><br>
             {{ $school_info->website }} <br>
         </address>

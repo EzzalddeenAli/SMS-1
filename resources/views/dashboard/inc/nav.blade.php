@@ -18,7 +18,7 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <!-- Messages: style can be found in dropdown.less-->
+{{--                <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -53,7 +53,6 @@
                     </ul>
                 </li>
                 <!-- /.messages-menu -->
-
                 <!-- Notifications Menu -->
                 <li class="dropdown notifications-menu">
                     <!-- Menu toggle button -->
@@ -114,7 +113,8 @@
                         </li>
                     </ul>
                 </li>
-                <!-- User Account Menu -->
+                <!-- User Account Menu -->--}}
+
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -133,7 +133,7 @@
                                 <small>Member since {{ auth()->user()->created_at->toFormattedDateString() }}</small>
                             </p>
                         </li>
-                        <!-- Menu Body -->
+{{--                        <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
                                 <div class="col-xs-4 text-center">
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                             <!-- /.row -->
-                        </li>
+                        </li>--}}
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">

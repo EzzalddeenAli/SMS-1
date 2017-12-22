@@ -78,7 +78,8 @@
                                                         class="btn btn-danger btn-sm delete-btn" title="Delete"><i class="fa fa-trash-o fa-lg"></i></button>
                                                 <button v-on:click="showEditModal('/resource/students/', '{{ $result->username }}')"
                                                         class="btn btn-info btn-sm edit-btn" title="Edit"><i class="fa fa-edit fa-lg"></i></button>
-                                                <a href="#" class="btn btn-primary btn-sm" title="Profile"><i class="fa fa-user"></i></a>
+                                                <a href="{{ route('admin.student.profile', ['username' => $result->username]) }}" class="btn btn-primary btn-sm" title="Profile">
+                                                    <i class="fa fa-user"></i></a>
                                             @endif
                                         </td>
                                     </tr>

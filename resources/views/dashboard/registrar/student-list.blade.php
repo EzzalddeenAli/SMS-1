@@ -71,7 +71,8 @@
                                     <button v-on:click="showEditModal('/resource/students/', '{{$student->username}}')" class="btn btn-info edit-btn btn-sm" title="Edit Student"><i class="fa fa-edit fa-lg"></i></button>
                                 </td>
                                 <td style="width: 30px">
-                                    <a href="#" class="btn btn-default edit-btn btn-sm" title="View Profile"><i class="fa fa-eye fa-lg"></i></a>
+                                    <a href="{{ route('admin.student.profile', ['username' => $student->username]) }}" class="btn btn-primary btn-sm" title="Profile">
+                                        <i class="fa fa-user"></i></a>
                                 </td>
                             </tr>
                         @endforeach

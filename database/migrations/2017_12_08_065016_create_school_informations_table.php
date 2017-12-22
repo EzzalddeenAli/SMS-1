@@ -20,7 +20,7 @@ class CreateSchoolInformationsTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->integer('zip')->nullable();
-            $table->string('phone')->nullable();
+            $table->unsignedInteger('phone')->nullable();
             $table->string('administrator');
             $table->string('website')->nullable();
             $table->string('short_name');

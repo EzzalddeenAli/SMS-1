@@ -14,7 +14,7 @@ class SchoolInformationSeeder extends Seeder
             'city'          => ' Tanauan City',
             'state'         => 'Batangas',
             'zip'           => 4232,
-            'phone'         => '043-778-53-74',
+            'phone'         => 178373474,
             'administrator' => 'Mrs. Julie Asi',
             'website'       => 'www.jilcstanauan.com',
             'short_name'    => 'JILCS',
