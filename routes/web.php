@@ -67,6 +67,7 @@ Route::prefix('admin')->group(function () {
     Route::post('find/basic', 'AdminController@find_basic')->name('admin.find.basic');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
 
+    Route::get('student/{username}/profile', 'AdminController@student_profile')->name('admin.student.profile');
     Route::get('student/{username}/permit', 'AdminController@permit')->name('admin.permit');
     Route::get('student/{username}/card', 'AdminController@report_card')->name('admin.report.card');
     Route::get('section/{id}/subjects', 'AdminController@section')->name('admin.section.subjects');
