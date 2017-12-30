@@ -64,7 +64,7 @@ Route::prefix('admin')->group(function () {
     Route::get('levels', 'AdminController@levels')->name('admin.levels.list');
     Route::get('search', 'AdminController@search')->name('admin.search');
     Route::post('find', 'AdminController@find')->name('admin.find');
-    Route::post('find/basic', 'AdminController@find_basic')->name('admin.find.basic');
+    Route::get('find/basic', 'AdminController@find_basic')->name('admin.find.basic');
     Route::post('card/publish', 'AdminController@publish')->name('admin.card.publish');
 
     Route::get('student/{username}/profile', 'AdminController@student_profile')->name('admin.student.profile');

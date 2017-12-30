@@ -61,11 +61,12 @@
               </span></a>
                 <ul class="treeview-menu">
                     <li>
-                        {{ Form::open(['route' => 'admin.find.basic', 'id' => 's-list']) }}
+                        <a href="{{ route('admin.find.basic', ['user' => 'student', 'func' => 'student-list']) }}">Student List</a>
+{{--                        {{ Form::open(['route' => 'admin.find.basic', 'id' => 's-list']) }}
                         <input type="hidden" name="user" value="student">
                         <input type="hidden" name="func" value="student-list">
                         {{ Form::close() }}
-                        <a href="#" onclick="document.querySelector('#s-list').submit()">Student List</a>
+                        <a href="#" onclick="document.querySelector('#s-list').submit()">Student List</a>--}}
                     </li>
                     <li><a href="#">Print List</a></li>
                 </ul>

@@ -28,7 +28,7 @@
                             @endforeach
                         </ul>
                     </div>
-            @endif
+                @endif
 
             <!-- menu bar -->
                 <div class="form-group">
