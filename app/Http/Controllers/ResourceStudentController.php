@@ -64,7 +64,7 @@ class ResourceStudentController extends Controller
             ]);
         }
 
-        return back();
+        return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list']);
     }
 
     /**
@@ -113,7 +113,7 @@ class ResourceStudentController extends Controller
         'last_name' => $request->last_name,
         'age' => $request->age,
         'advisory' => $request->advisory,
-        'section_id' => $request->section_id,
+        'section_id' => $request->section_id !== null ? $request->section_id : $student->section_id,
         ]);
 
         return back();

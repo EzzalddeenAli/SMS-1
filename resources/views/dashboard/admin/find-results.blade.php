@@ -24,7 +24,21 @@
                 </div>
             </div>
             @endif
+
             <div class="col-xs-12">
+
+                @if($errors->any())
+                    <br>
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }} </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">{{ $message }}</h3>
@@ -40,8 +54,8 @@
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                 </div>
-                                {!! Form::close() !!}
                             </div>
+                            {!! Form::close() !!}
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">

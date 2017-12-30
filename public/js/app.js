@@ -123796,7 +123796,7 @@ $(function () {
                     $('#calendar').fullCalendar('removeEvents', calEvent._id);
                     console.log(response);
                 }).catch(function (error) {
-                    alert('something went wrong, please try again');
+                    // alert('something went wrong, please try again');
                     console.log(error);
                 });
             }
@@ -123833,7 +123833,7 @@ $(function () {
                 }).then(function (response) {
                     console.log(response.status);
                 }).catch(function (error) {
-                    alert('something went wrong, please try again');
+                    // alert('something went wrong, please try again');
                     //revert the event to it's original position if failed
                     revertFunc();
                     console.log(error);
@@ -123897,7 +123897,7 @@ $(function () {
             }
         }
     }).catch(function (error) {
-        alert('something went wrong, please try again');
+        // alert('something went wrong, please try again');
         console.log(error);
     });
 

@@ -6,6 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class storeStudent extends FormRequest
 {
+    //The URI to redirect to if validation fails.
+    protected $redirect = '/admin/find/basic?user=student&func=student-list';
+
     /**
      * Determine if the user is authorized to make this request.
      *

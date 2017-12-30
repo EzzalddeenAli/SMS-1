@@ -30,7 +30,7 @@ class updateStudent extends FormRequest
             'middle_name' => 'bail|required|alpha',
             'last_name' => 'bail|required|alpha',
             'age' => 'bail|required|integer',
-            'section_id' => 'bail|required|integer',
+            'section_id' => 'bail|nullable|integer',
         ];
     }
 }
