@@ -15,18 +15,18 @@ class CreateFamilyBackgroundsTable extends Migration
     {
         Schema::create('family_backgrounds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mother_name');
-            $table->string('mother_age');
-            $table->string('mother_nationality');
-            $table->string('mother_occupation');
-            $table->string('mother_contact');
-            $table->string('mother_work_address');
-            $table->string('father_name');
-            $table->string('father_age');
-            $table->string('father_nationality');
-            $table->string('father_occupation');
-            $table->string('father_contact');
-            $table->string('father_work_address');
+            $table->string('mother_name')->nullable();
+            $table->integer('mother_age')->nullable();
+            $table->string('mother_nationality')->nullable();
+            $table->string('mother_occupation')->nullable();
+            $table->integer('mother_contact')->nullable();
+            $table->string('mother_work_address')->nullable();
+            $table->string('father_name')->nullable();
+            $table->integer('father_age')->nullable();
+            $table->string('father_nationality')->nullable();
+            $table->string('father_occupation')->nullable();
+            $table->integer('father_contact')->nullable();
+            $table->string('father_work_address')->nullable();
             $table->morphs('user');
         });
     }
