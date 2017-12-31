@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         //Form Builder
         Form::component('bsText', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
+        Form::component('bsDate', 'components.form.date', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsNumber', 'components.form.number', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsPhone', 'components.form.phone', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsUrl', 'components.form.url', ['name', 'value' => null, 'attributes' => []]);

@@ -187,7 +187,7 @@
                                             </select>
                                         </div>
 
-                                        {{ Form::bsText('birthday *') }}
+                                        {{ Form::bsDate('birthday *') }}
                                         {{ Form::bsText('birth_place') }}
                                         {{ Form::bsText('nationality *') }}
                                         {{ Form::bsText('religion') }}
