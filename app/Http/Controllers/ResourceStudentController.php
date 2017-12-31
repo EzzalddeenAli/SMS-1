@@ -41,9 +41,9 @@ class ResourceStudentController extends Controller
      * @param storeStudent|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(storeStudent $request)
+    public function store(Request $request)
     {
-
+        return $request;
         $student = Student::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),

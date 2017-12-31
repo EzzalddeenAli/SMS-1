@@ -139,7 +139,7 @@
 
             <!-- add modal -->
             <div class="modal fade" id="add-modal">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -148,10 +148,102 @@
                         <form action="{{ route('add.student') }}" method="post">
                             {{ csrf_field() }}
                             <div class="modal-body">
-
-                                <div id="add-modal-body">
+{{--                                <div id="add-modal-body">
                                     <modal-add-form v-for="(type, field) in fields" :form-name="field" :form-type="type"></modal-add-form>
                                     <modal-select-form :user-type="'student'"></modal-select-form>
+                                </div>--}}
+
+                            <!-- TAB NAVIGATION -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Student Data <span class="text-red">*</span></a></li>
+                                    <li><a href="#tab2" role="tab" data-toggle="tab">Personal Data <span class="text-red">*</span></a></li>
+                                    <li><a href="#tab3" role="tab" data-toggle="tab">Family Background</a></li>
+                                    <li><a href="#tab4" role="tab" data-toggle="tab">Educational Background</a></li>
+                                </ul>
+                                <!-- TAB CONTENT -->
+                                <div class="tab-content">
+                                    <div class="active tab-pane fade in" id="tab1">
+
+                                        {{ Form::bsText('username *') }}
+                                        {{ Form::bsText('password *') }}
+                                        {{ Form::bsText('first_name *') }}
+                                        {{ Form::bsText('middle_name *') }}
+                                        {{ Form::bsText('last_name *') }}
+                                        {{ Form::bsNumber('age *') }}
+                                        <div id="add-modal-body">
+                                            <modal-select-form :user-type="'student'"></modal-select-form>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="tab2">
+
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <span class="text-red">*</span>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value=""> -- Select One --</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+
+                                        {{ Form::bsText('birthday *') }}
+                                        {{ Form::bsText('birth_place') }}
+                                        {{ Form::bsText('nationality *') }}
+                                        {{ Form::bsText('religion') }}
+                                        {{ Form::bsText('school_last_attended') }}
+                                        {{ Form::bsText('level_applied') }}
+
+                                    </div>
+                                    <div class="tab-pane fade" id="tab3">
+                                        {{ Form::bsText('mother_name') }}
+                                        {{ Form::bsNumber('mother_age') }}
+                                        {{ Form::bsText('mother_nationality') }}
+                                        {{ Form::bsText('mother_occupation') }}
+                                        {{ Form::bsNumber('mother_contact') }}
+                                        {{ Form::bsText('mother_work_address') }}
+                                        {{ Form::bsText('father_name') }}
+                                        {{ Form::bsNumber('father_age') }}
+                                        {{ Form::bsText('father_nationality') }}
+                                        {{ Form::bsText('father_occupation') }}
+                                        {{ Form::bsNumber('father_contact') }}
+                                        {{ Form::bsText('father_work_address') }}
+                                    </div>
+                                    <div class="tab-pane fade" id="tab4">
+                                        @php($levels = ['nursery', 'kinder', 'preparatory'])
+                                        @for($i = 1; $i < 13; $i++ )
+                                            @php(array_push($levels, "grade$i"))
+                                        @endfor
+
+                                        @foreach($levels as $level)
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="level[]" class="control-label">Level</label>
+                                                    <input class="form-control" disabled="" name="level[]" value="{{ $level }}" id="level[]" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="name_of_school[]" class="control-label">Name Of School</label>
+                                                    <input class="form-control" name="name_of_school[]" id="name_of_school[]" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="year_attended[]" class="control-label">Year Attended</label>
+                                                    <input class="form-control" name="year_attended[]" id="year_attended[]" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="honors_awards[]" class="control-label">Honors Awards</label>
+                                                    <input class="form-control" name="honors_awards[]" id="honors_awards[]" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
 
                             </div>

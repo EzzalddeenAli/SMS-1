@@ -17,11 +17,11 @@ class CreatePersonalDataTable extends Migration
             $table->increments('id');
             $table->enum('gender', ['male', 'female']);
             $table->date('birthday');
-            $table->string('birth_place');
+            $table->string('birth_place')->nullable();
             $table->string('nationality');
-            $table->string('religion');
-            $table->string('school_last_attended');
-            $table->string('level_applied');
+            $table->string('religion')->nullable();
+            $table->string('school_last_attended')->nullable();
+            $table->string('level_applied')->nullable();
             $table->morphs('user');
         });
     }
