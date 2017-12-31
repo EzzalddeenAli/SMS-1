@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\EducationalBackground;
+use App\FamilyBackground;
 use App\Grade;
 use App\Http\Requests\storeStudent;
 use App\Http\Requests\updateStudent;
+use App\PersonalData;
 use App\Section;
 use ErrorException;
 use Illuminate\Foundation\PackageManifest;
 use Illuminate\Http\Request;
 use App\Student;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ResourceStudentController extends Controller
@@ -41,36 +45,47 @@ class ResourceStudentController extends Controller
      * @param storeStudent|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeStudent $request)
     {
-        return $request;
-        $student = Student::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name' => $request->last_name,
-            'age' => $request->age,
-            'section_id' => $request->section_id,
-        ]);
+//        return $request;
+        try {
+            DB::transaction(function () {
 
-        //find section's subjects then foreach grade add student
-        $section = Section::find($request->section_id);
+                $request = request();
+                $student = Student::create([
+                    'username'    => $request->username,
+                    'password'    => Hash::make($request->password),
+                    'first_name'  => $request->first_name,
+                    'middle_name' => $request->middle_name,
+                    'last_name'   => $request->last_name,
+                    'age'         => $request->age,
+                    'section_id'  => $request->section_id,
+                ]);
 
-        foreach ($section->subjects as $subject) {
-            Grade::create([
-                'subject_id' => $subject->id,
-                'student_id' => $student->id,
-            ]);
+                //find section's subjects then foreach grade add student
+                $section = Section::find($request->section_id);
+
+                foreach ($section->subjects as $subject) {
+                    Grade::create([
+                        'subject_id' => $subject->id,
+                        'student_id' => $student->id,
+                    ]);
+                }
+
+                PersonalData::create(array_merge($request->all(), ['user_id' => $student->id, 'user_type' => 'App\Student']));
+                FamilyBackground::create(array_merge($request->all(), ['user_id' => $student->id, 'user_type' => 'App\Student']));
+            }, 5);
+
+        } catch (\Exception $e) {
+            return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list'])->withErrors(['Database error, Failed to add student.']);
         }
-
         return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -87,7 +102,7 @@ class ResourceStudentController extends Controller
      */
     public function edit($username)
     {
-        if(request()->ajax()) {
+        if (request()->ajax()) {
             return Student::where('username', $username)->first();
         }
     }
@@ -106,14 +121,14 @@ class ResourceStudentController extends Controller
         $request->password === null ? $password = $student->password : $password = Hash::make($request->password);
 
         $student->update([
-        'username' => $request->username,
-        'password' => $password,
-        'first_name' => $request->first_name,
-        'middle_name' => $request->middle_name,
-        'last_name' => $request->last_name,
-        'age' => $request->age,
-        'advisory' => $request->advisory,
-        'section_id' => $request->section_id !== null ? $request->section_id : $student->section_id,
+            'username'    => $request->username,
+            'password'    => $password,
+            'first_name'  => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name'   => $request->last_name,
+            'age'         => $request->age,
+            'advisory'    => $request->advisory,
+            'section_id'  => $request->section_id !== null ? $request->section_id : $student->section_id,
         ]);
 
         return back();

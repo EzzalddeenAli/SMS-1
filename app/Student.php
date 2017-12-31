@@ -82,8 +82,13 @@ class Student extends Authenticatable
         return $this->belongsTo('App\Section');
     }
 
-    public function personal_data()
+    public function personalData()
     {
-        return $this->hasMany('App\PersonalData');
+        return $this->morphMany('App\PersonalData', 'user');
+    }
+
+    public function familyBackground()
+    {
+        return $this->morphMany('App\FamilyBackground', 'user');
     }
 }
