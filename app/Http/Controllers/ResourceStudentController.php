@@ -72,6 +72,7 @@ class ResourceStudentController extends Controller
                     ]);
                 }
 
+                //merge request all with polymorphic data
                 PersonalData::create(array_merge($request->all(), ['user_id' => $student->id, 'user_type' => 'App\Student']));
                 FamilyBackground::create(array_merge($request->all(), ['user_id' => $student->id, 'user_type' => 'App\Student']));
             }, 5);

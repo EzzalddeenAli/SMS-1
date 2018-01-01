@@ -182,8 +182,8 @@
                                             <span class="text-red">*</span>
                                             <select name="gender" id="gender" class="form-control">
                                                 <option value=""> -- Select One --</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
+                                                <option value="male" @if(old('gender') === 'male') {{ 'selected' }} @endif >Male</option>
+                                                <option value="female" @if(old('gender') === 'female') {{ 'selected' }} @endif >Female</option>
                                             </select>
                                         </div>
 

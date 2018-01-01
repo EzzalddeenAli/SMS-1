@@ -25,23 +25,23 @@
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="{{ asset('images/avatars/avatar5.png') }}" alt="User profile picture">
 
-                        <h3 class="profile-username text-center">Nina Mcintire</h3>
+                        <h3 class="profile-username text-center text-black">{{ $student['first_name'] }}</h3>
 
-                        <p class="text-muted text-center">Software Engineer</p>
+                        <p class="text-muted text-center">{{--{{ $student->section->level->name }} - {{ $student->section->name }}--}}</p>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Followers</b> <a class="pull-right">1,322</a>
+                                <b>Status</b> <a class="pull-right"><span class="label bg-green">Active</span></a>
                             </li>
                             <li class="list-group-item">
-                                <b>Following</b> <a class="pull-right">543</a>
+                                <b>User Rating</b> <a class="pull-right"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a>
                             </li>
                             <li class="list-group-item">
-                                <b>Friends</b> <a class="pull-right">13,287</a>
+                                <b>Member Since</b> <a class="pull-right">Jan 07, 2014 </a>
                             </li>
                         </ul>
 
-                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                        {{--<a href="#" class="btn btn-primary btn-block"><b>Message</b></a>--}}
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -54,7 +54,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+                        {{--<strong><i class="fa fa-book margin-r-5"></i> Education</strong>--}}
 
                         <p class="text-muted">
                             B.S. in Computer Science from the University of Tennessee at Knoxville
@@ -70,44 +70,42 @@
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#personalData" data-toggle="tab" aria-expanded="true">Personal Data</a></li>
-                        <li class=""><a href="#familyBackground" data-toggle="tab" aria-expanded="false">Family Background</a></li>
+                        <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Profile</a></li>
+                        <li><a href="#tab2" data-toggle="tab" aria-expanded="true">Records</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="personalData">
-                            <!-- Post -->
-                            <div class="post">
-                                <div class="user-block">
-                                    <img class="img-circle img-bordered-sm" src="{{ asset('images/avatars/avatar5.png') }}" alt="user image">
-                                    <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                                    <span class="description">Shared publicly - 7:30 PM today</span>
+                        <div class="tab-pane active" id="tab1">
+                                <!-- info row -->
+                                <div class="row invoice-info">
+                                    <div class="col-xs-12">
+                                        <p class="h2 text-black" style="margin-top: 0"><i class="fa fa-user"></i> About</p>
+                                    </div>
+                                    @foreach($student as $key=>$val)
+                                        @if(!in_array($key,['password', 'username', 'section_id', 'id']))
+                                    <div class="col-sm-6 invoice-col">
+                                        <div class="col-xs-5">
+                                            <span class="text-black">{{ $key }}:</span>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            {{ $val }}
+                                        </div>
+                                    </div>
+                                        @endif
+                                    @endforeach
+                                    <!-- /.col -->
                                 </div>
-                                <!-- /.user-block -->
-                                <p>
-                                    Lorem ipsum represents a long-held tradition for designers,
-                                    typographers and the like. Some people hate it and argue for
-                                    its demise, but others ignore the hate as they create awesome
-                                    tools to help create filler text for everyone from bacon lovers
-                                    to Charlie Sheen fans.
-                                </p>
-                                <ul class="list-inline">
-                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                                    </li>
-                                    <li class="pull-right">
-                                        <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                                            (5)</a></li>
-                                </ul>
+                                <!-- /.row -->
 
-                                <input class="form-control input-sm" placeholder="Type a comment" type="text">
-                            </div>
-                            <!-- /.post -->
+                                <!-- this row will not appear when printing -->
+                            <br>
+                                <div class="row no-print">
+                                    <div class="col-xs-12">
+                                        <a href="#" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                    </div>
+                                </div>
                         </div>
 
-                        <div class="tab-pane" id="familyBackground">
+                        <div class="tab-pane" id="tab2">
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-2 control-label">Name</label>
