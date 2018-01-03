@@ -25,9 +25,9 @@
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="{{ asset('images/avatars/avatar5.png') }}" alt="User profile picture">
 
-                        <h3 class="profile-username text-center text-black">{{ $student['first_name'] }}</h3>
+                        <h3 class="profile-username text-center text-black">{{ $student->full_name }}</h3>
 
-                        <p class="text-muted text-center">{{--{{ $student->section->level->name }} - {{ $student->section->name }}--}}</p>
+                        <p class="text-muted text-center">{{ $student->section->level->name }} - {{ $student->section->name }}</p>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -75,13 +75,13 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
-                                <!-- info row -->
-                                <div class="row invoice-info">
-                                    <div class="col-xs-12">
-                                        <p class="h2 text-black" style="margin-top: 0"><i class="fa fa-user"></i> About</p>
-                                    </div>
-                                    @foreach($student as $key=>$val)
-                                        @if(!in_array($key,['password', 'username', 'section_id', 'id']))
+                            <!-- info row -->
+                            <div class="row invoice-info">
+                                <div class="col-xs-12">
+                                    <p class="h2 text-black" style="margin-top: 0"><i class="fa fa-user"></i> About</p>
+                                </div>
+                                {{--student info--}}
+                                @foreach($student_arr as $key=>$val)
                                     <div class="col-sm-6 invoice-col">
                                         <div class="col-xs-5">
                                             <span class="text-black">{{ $key }}:</span>
@@ -90,73 +90,49 @@
                                             {{ $val }}
                                         </div>
                                     </div>
-                                        @endif
-                                    @endforeach
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-
-                                <!-- this row will not appear when printing -->
-                            <br>
-                                <div class="row no-print">
-                                    <div class="col-xs-12">
-                                        <a href="#" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                @endforeach
+                                {{--personal data--}}
+                                @foreach($personalData['0'] as $key=>$val)
+                                    <div class="col-sm-6 invoice-col">
+                                        <div class="col-xs-5">
+                                            <span class="text-black">{{ $key }}:</span>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            {{ $val }}
+                                        </div>
                                     </div>
+                                @endforeach
+                                <!-- /.col -->
+
+                                <div class="col-xs-12">
+                                    <p class="h2 text-black"><i class="fa fa-user"></i> Family Background</p>
                                 </div>
+                                @foreach($familyBackground[0] as $key=>$val)
+                                    <div class="col-sm-12 invoice-col">
+                                        <div class="col-xs-5">
+                                            <span class="text-black">{{ $key }}:</span>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            {{ $val }}
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <!-- /.row -->
+
+
+                            <hr>
+                            <!-- this row will not appear when printing -->
+                            <div class="row no-print">
+                                <div class="col-xs-12">
+                                    <a href="#" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="tab-pane" id="tab2">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="inputName" placeholder="Name" type="email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="inputEmail" placeholder="Email" type="email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="inputName" placeholder="Name" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="inputSkills" placeholder="Skills" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-danger">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+                           second tab
                         </div>
                         <!-- /.tab-pane -->
                     </div>

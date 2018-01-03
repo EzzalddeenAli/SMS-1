@@ -72,7 +72,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+{{--            <li class="treeview">
                 <a href="#"><i class="fa fa-clock-o"></i> <span>Attendance</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span></a>
@@ -116,7 +116,7 @@
                     <li><a href="#">User Info</a></li>
                     <li><a href="#">Preference</a></li>
                 </ul>
-            </li>
+            </li>--}}
 
             <li class="treeview" title="Edit website pictures">
                 <a href="#"><i class="fa fa-globe"></i> <span>Website</span>
