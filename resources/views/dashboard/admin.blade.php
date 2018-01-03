@@ -173,7 +173,8 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            {{--student population--}}
+            {{--<div class="col-md-4">
 
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -222,7 +223,7 @@
                     </div>
                     <!-- /.footer -->
                 </div>
-            </div>
+            </div>--}}
 
         </div>
 
