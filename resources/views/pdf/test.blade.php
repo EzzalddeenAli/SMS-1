@@ -90,19 +90,22 @@
     </style>
 </head>
 <body>
-<img class="logo" src="{{ base_path() }}\public\images\pdfs\jilcs-header.png" >
+<img class="logo" src="{{ base_path() }}\public\images\pdfs\jilcs-header.png">
 <h2 style="text-align: center; margin-top: 0;">{{ $title }}</h2>
 <div class="box">
     <p class="title">Personal Data</p>
     <p>1. Name of student</p>
     <div class="underline">
-        <span class="label">Last</span><div class="content">Dolor</div>
+        <span class="label">Last</span>
+        <div class="content">Dolor</div>
     </div>
     <div class="underline">
-        <span class="label">First</span><div class="content">Lorem</div>
+        <span class="label">First</span>
+        <div class="content">Lorem</div>
     </div>
     <div class="underline">
-        <span class="label">Middle</span><div class="content">Ipsum</div>
+        <span class="label">Middle</span>
+        <div class="content">Ipsum</div>
     </div>
     <p>2. Gender</p>
     <label><input type="checkbox" name="checkbox" value="value">Male</label>
@@ -127,25 +130,47 @@
 
 <div class="box">
     <p class="title">Educational Background</p>
-    <p>8. School Last Attended</p>
-    <div class="underline">
-        <div class="content">Harvard University</div><span class="label" style="font-weight: normal">S.Y:</span>
-    </div>
-    <p>9. Level Applied For</p>
-    <div class="underline">
-        <div class="content">Grade12</div>
-    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Level</th>
+            <th>Name Of School</th>
+            <th>Year Attended</th>
+            <th>Honors Awards</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Nursery</td>
+            <td>JILCS Tanauan</td>
+            <td>2004</td>
+            <td>none</td>
+        </tr>
+        <tr>
+            <td>Kinder</td>
+            <td>JILCS Tanauan</td>
+            <td>2005</td>
+            <td>1st</td>
+        </tr>
+        <tr>
+            <td>Preparatory</td>
+            <td>JILCS Tanauan</td>
+            <td>2006</td>
+            <td>1st</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <div class="page-break"></div>
 <div class="box">
     <p class="title">Family Background</p>
     <table>
         <thead>
-            <tr>
-                <th></th>
-                <th>Father</th>
-                <th>Mother</th>
-            </tr>
+        <tr>
+            <th></th>
+            <th>Father</th>
+            <th>Mother</th>
+        </tr>
         </thead>
         <tbody>
         <tr>
@@ -183,7 +208,7 @@
 </div>
 
 <div class="box" style="border-color: black;">
-	<p class="title">Verification</p>
+    <p class="title">Verification</p>
     <p style="margin-bottom: 30px;">I certify that the information given herein is correct and complete.
         Falsification or withholding of
         information requested in this form

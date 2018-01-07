@@ -125,14 +125,59 @@
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">
                                 <div class="col-xs-12">
-                                    <a href="#" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                    <a href="#" target="_blank" class="btn btn-default disabled"><i class="fa fa-print"></i> Print</a>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="tab-pane" id="tab2">
-                           second tab
+                            <div class="box">
+                                <div class="col-xs-12">
+                                    <p class="h2 text-black"><i class="fa fa-user"></i> Educational Background</p>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Father</th>
+                                        <th>Mother</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Mariosep Lurdes</td>
+                                        <td>Maria Lurdes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Age</td>
+                                        <td>45</td>
+                                        <td>42</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nationality</td>
+                                        <td>Filipino</td>
+                                        <td>Filipino</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Occupation</td>
+                                        <td>Engineer</td>
+                                        <td>House Wife</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact No.</td>
+                                        <td>09178974467</td>
+                                        <td>09164670912</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Work Address</td>
+                                        <td>Creo Muntinlupa City</td>
+                                        <td>Tech Muntinlupa City</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>  
                         </div>
                         <!-- /.tab-pane -->
                     </div>
