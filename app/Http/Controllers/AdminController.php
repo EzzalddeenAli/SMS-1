@@ -169,7 +169,7 @@ class AdminController extends Controller
                     ->get()->load('section');
 
                 if (count($results) > 0) {
-                    $message = count($results) . ' Students were found.';
+                        $message = count($results) . ' Students were found.';
                 } else {
                     $message = 'No Student Found.';
                 }

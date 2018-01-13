@@ -47,7 +47,7 @@ class ResourceStudentController extends Controller
      */
     public function store(storeStudent $request)
     {
-//        return $request;
+        return $request;
         try {
             DB::transaction(function () {
 

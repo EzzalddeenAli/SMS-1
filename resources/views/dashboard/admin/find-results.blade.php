@@ -29,7 +29,7 @@
 
                 @if($errors->any())
                     <br>
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger" style="max-height: 150px; overflow-y: scroll">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <ul>
                             @foreach($errors->all() as $error)
@@ -220,25 +220,25 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="level[]" class="control-label">Level</label>
-                                                    <input class="form-control" disabled="" name="level[]" value="{{ $level }}" id="level[]" type="text">
+                                                    <input class="form-control" readonly name="level[{{ $level }}]" value="{{ $level }}" id="level[]" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="name_of_school[]" class="control-label">Name Of School</label>
-                                                    <input class="form-control" name="name_of_school[]" id="name_of_school[]" type="text">
+                                                    <input class="form-control" name="level[{{ $level }}][name_of_school]" id="name_of_school[]" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="year_attended[]" class="control-label">Year Attended</label>
-                                                    <input class="form-control" name="year_attended[]" id="year_attended[]" type="text">
+                                                    <input class="form-control" name="level[{{ $level }}][year_attended]" id="year_attended[]" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label for="honors_awards[]" class="control-label">Honors Awards</label>
-                                                    <input class="form-control" name="honors_awards[]" id="honors_awards[]" type="text">
+                                                    <input class="form-control" name="level[{{ $level }}][honors_awards]" id="honors_awards[]" type="text">
                                                 </div>
                                             </div>
                                         </div>
