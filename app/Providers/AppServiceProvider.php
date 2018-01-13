@@ -30,6 +30,18 @@ class AppServiceProvider extends ServiceProvider
             return preg_match('/(^[A-Za-z0-9 ]+$)+/', $value);
         });
 
+        Validator::extend('level', function ($attribute, $value) {
+            $levels = ['nursery', 'kinder', 'preparatory'];
+            for ($i = 1; $i < 13; $i++) {
+                array_push($levels, "grade$i");
+            }
+
+            $attribute = explode('.', $attribute);
+
+
+            return in_array($attribute[1] !== null ? $attribute[1] : '', $levels);
+        });
+
         //Form Builder
         Form::component('bsText', 'components.form.text', ['name', 'value' => null, 'attributes' => []]);
         Form::component('bsDate', 'components.form.date', ['name', 'value' => null, 'attributes' => []]);
