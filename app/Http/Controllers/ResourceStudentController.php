@@ -47,7 +47,7 @@ class ResourceStudentController extends Controller
      */
     public function store(storeStudent $request)
     {
-        return $request;
+        //try the given data
         try {
             DB::transaction(function () {
 
@@ -75,9 +75,22 @@ class ResourceStudentController extends Controller
                 //merge request all with polymorphic data
                 PersonalData::create(array_merge($request->all(), ['user_id' => $student->id, 'user_type' => 'App\Student']));
                 FamilyBackground::create(array_merge($request->all(), ['user_id' => $student->id, 'user_type' => 'App\Student']));
+
+                foreach ($request->level as $name => $value) {
+                    EducationalBackground::create([
+                        'level'          => $name,
+                        'name_of_school' => $value['name_of_school'],
+                        'year_attended'  => $value['year_attended'],
+                        'honors_awards'  => $value['honors_awards'],
+                        'user_id'        => $student->id,
+                        'user_type'      => 'App\Student',
+                    ]);
+                }
+
             }, 5);
 
         } catch (\Exception $e) {
+            //if data failed restart again
             return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list'])->withErrors(['Database error, Failed to add student.']);
         }
         return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list']);
