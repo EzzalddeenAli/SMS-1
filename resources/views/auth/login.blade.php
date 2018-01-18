@@ -20,11 +20,12 @@
     </div>
     <div class="login-box animated fadeInUp">
         <div class="box-header">
-            @if($header !== 'Student')
+{{--            @if($header !== 'Student')
                 <h2>Log In as <span style="font-style: italic">{{ $header }}</span></h2>
                 @else
                 <h2>Log In</h2>
-            @endif
+            @endif--}}
+            <h2>Log In</h2>
         </div>
         <form method="POST" action="{{ route($route) }}">
             {{ csrf_field() }}
