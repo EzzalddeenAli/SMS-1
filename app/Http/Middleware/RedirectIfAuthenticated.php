@@ -32,7 +32,7 @@ class RedirectIfAuthenticated
                     return redirect()->route('registrar.dashboard');
                     break;
                 default:
-                    return redirect('/home');
+                    return redirect(route('home.main'));
                     break;
             }
         }

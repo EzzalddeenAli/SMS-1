@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
     {
         //check if login is needed
         if ($exception instanceof AuthenticationException) {
-            $guard = array_get($exception->guards(), 0);
+/*            $guard = array_get($exception->guards(), 0);
             switch ($guard) {
                 case 'admin':
                     $login = 'admin.login';
@@ -70,7 +70,9 @@ class Handler extends ExceptionHandler
                     $login = 'home.main';
             }
 
-            return redirect()->guest(route($login));
+            return redirect()->guest(route($login));*/
+
+            return redirect()->guest(route('login'));
         }
         //if forbidden
         if ($exception instanceof HttpException) {

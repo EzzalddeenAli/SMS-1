@@ -1,6 +1,6 @@
 <?php
 Route::get('/', 'HomeController@index')->name('home.main');
-//Route::get('home', 'HomeController@index')->name('user.dashboard');
+
 Route::get('/applicant', function () {
     $data = [
         'title' => 'JILCS Application for Admission',
@@ -12,13 +12,15 @@ Route::get('/applicant', function () {
     return view('pdf.test', $data);
 });
 
-//Auth::routes();
-//Route::get('logout', 'Auth\LoginController@logout');
+Route::get('login', 'Auth\LoginController@login')->name('login');
+Route::post('login', 'Auth\LoginController@authenticate')->name('user.authenticate');
+
+
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::prefix('student')->group(function () {
     //Login Controllers
-    Route::get('login', 'Auth\StudentLoginController@login')->name('student.login');
+//    Route::get('login', 'Auth\StudentLoginController@login')->name('student.login'); <-- obsolete
 //    Route::get('login', 'Auth\StudentLoginController@login')->name('login');
     Route::post('login', 'Auth\StudentLoginController@authenticate')->name('student.authenticate');
 
@@ -35,7 +37,7 @@ Route::prefix('student')->group(function () {
 
 Route::prefix('teacher')->group(function () {
     //Login Controllers
-    Route::get('login', 'Auth\TeacherLoginController@login')->name('teacher.login');
+//    Route::get('login', 'Auth\TeacherLoginController@login')->name('teacher.login'); <-- obsolete
     Route::post('login', 'Auth\TeacherLoginController@authenticate')->name('teacher.authenticate');
 
     //Dashboard Controllers
@@ -49,7 +51,7 @@ Route::prefix('teacher')->group(function () {
 
 Route::prefix('admin')->group(function () {
     //Login Controllers
-    Route::get('login', 'Auth\AdminLoginController@login')->name('admin.login');
+//    Route::get('login', 'Auth\AdminLoginController@login')->name('admin.login'); <-- obsolete
     Route::post('login', 'Auth\AdminLoginController@authenticate')->name('admin.authenticate');
 
     //Dashboard Controllers
@@ -77,7 +79,7 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('registrar')->group(function () {
     //Login Controllers
-    Route::get('login', 'Auth\RegistrarLoginController@login')->name('registrar.login');
+//    Route::get('login', 'Auth\RegistrarLoginController@login')->name('registrar.login'); <-- obsolete
     Route::post('login', 'Auth\RegistrarLoginController@authenticate')->name('registrar.authenticate');
 
     //Dashboard Controllers
