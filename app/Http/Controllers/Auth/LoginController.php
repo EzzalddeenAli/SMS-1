@@ -15,7 +15,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+//        $this->middleware('guest')->except('logout');
     }
 
     public function login()
@@ -70,7 +70,6 @@ class LoginController extends Controller
 
         // check if username and password match any roles
         if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
-            ;
             return redirect()->intended(route('admin.dashboard'));
         } else if (Auth::guard('registrar')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
             return redirect()->intended(route('registrar.dashboard'));

@@ -23,18 +23,22 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
-                        <img class="profile-user-img img-responsive img-circle" src="{{ asset('images/avatars/avatar5.png') }}" alt="User profile picture">
+                        <img class="profile-user-img img-responsive img-circle"
+                             src="{{ asset('images/avatars/avatar5.png') }}" alt="User profile picture">
 
                         <h3 class="profile-username text-center text-black">{{ $student->full_name }}</h3>
 
-                        <p class="text-muted text-center">{{ $student->section->level->name }} - {{ $student->section->name }}</p>
+                        <p class="text-muted text-center">{{ $student->section->level->name }}
+                            - {{ $student->section->name }}</p>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
                                 <b>Status</b> <a class="pull-right"><span class="label bg-green">Active</span></a>
                             </li>
                             <li class="list-group-item">
-                                <b>User Rating</b> <a class="pull-right"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a>
+                                <b>User Rating</b> <a class="pull-right"><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                            class="fa fa-star"></i><i class="fa fa-star"></i></a>
                             </li>
                             <li class="list-group-item">
                                 <b>Member Since</b> <a class="pull-right">Jan 07, 2014 </a>
@@ -48,13 +52,13 @@
                 <!-- /.box -->
 
                 <!-- About Me Box -->
-                <div class="box box-primary">
+{{--                <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">About Me</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        {{--<strong><i class="fa fa-book margin-r-5"></i> Education</strong>--}}
+                        --}}{{--<strong><i class="fa fa-book margin-r-5"></i> Education</strong>--}}{{--
 
                         <p class="text-muted">
                             B.S. in Computer Science from the University of Tennessee at Knoxville
@@ -63,7 +67,7 @@
                         <hr>
                     </div>
                     <!-- /.box-body -->
-                </div>
+                </div>--}}
                 <!-- /.box -->
             </div>
             <!-- /.col -->
@@ -98,11 +102,11 @@
                                             <span class="text-black">{{ $key }}:</span>
                                         </div>
                                         <div class="col-xs-7">
-                                            {{ $val }}
+                                            {{ $val !== null ? $val : 'N/A' }}
                                         </div>
                                     </div>
                                 @endforeach
-                                <!-- /.col -->
+                            <!-- /.col -->
 
                                 <div class="col-xs-12">
                                     <p class="h2 text-black"><i class="fa fa-user"></i> Family Background</p>
@@ -113,7 +117,7 @@
                                             <span class="text-black">{{ $key }}:</span>
                                         </div>
                                         <div class="col-xs-7">
-                                            {{ $val }}
+                                            {{ $val !== null ? $val : 'N/A' }}
                                         </div>
                                     </div>
                                 @endforeach
@@ -125,7 +129,8 @@
                             <!-- this row will not appear when printing -->
                             <div class="row no-print">
                                 <div class="col-xs-12">
-                                    <a href="#" target="_blank" class="btn btn-default disabled"><i class="fa fa-print"></i> Print</a>
+                                    <a href="#" target="_blank" class="btn btn-default disabled"><i
+                                                class="fa fa-print"></i> Print</a>
                                 </div>
                             </div>
 
@@ -139,45 +144,29 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>Father</th>
-                                        <th>Mother</th>
+                                        <th>Level</th>
+                                        <th>Name of School</th>
+                                        <th>Year Attended</th>
+                                        <th>Honors Awards</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Name</td>
-                                        <td>Mariosep Lurdes</td>
-                                        <td>Maria Lurdes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Age</td>
-                                        <td>45</td>
-                                        <td>42</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nationality</td>
-                                        <td>Filipino</td>
-                                        <td>Filipino</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Occupation</td>
-                                        <td>Engineer</td>
-                                        <td>House Wife</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact No.</td>
-                                        <td>09178974467</td>
-                                        <td>09164670912</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Work Address</td>
-                                        <td>Creo Muntinlupa City</td>
-                                        <td>Tech Muntinlupa City</td>
-                                    </tr>
+                                    @empty($educationalBackground)
+                                        <tr>
+                                            <td colspan="10" class="text-warning h3 text-center">No Data Found</td>
+                                        </tr>
+                                    @endempty
+                                    @foreach($educationalBackground as $item)
+                                        <tr>
+                                            <td><b class="text-black">{{ $item['level'] !== null ? $item['level'] : 'N/A' }}</b></td>
+                                            <td>{{ $item['name_of_school'] !== null ? $item['name_of_school'] : 'N/A' }}</td>
+                                            <td>{{ $item['year_attended'] !== null ? $item['year_attended'] : 'N/A' }}</td>
+                                            <td>{{ $item['honors_awards'] !== null ? $item['honors_awards'] : 'N/A' }}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
-                            </div>  
+                            </div>
                         </div>
                         <!-- /.tab-pane -->
                     </div>

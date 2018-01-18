@@ -193,8 +193,9 @@ class AdminController extends Controller
         $student_arr = Student::where('username', $request->username)->firstOrFail()->makeHidden(['password', 'username' ,'section_id', 'id'])->toArray();
         $personalData = $student->personalData->makeHidden(['id', 'user_id' ,'user_type'])->toArray();
         $familyBackground = $student->familyBackground->makeHidden(['id', 'user_id' ,'user_type'])->toArray();
-
-        return view('dashboard.admin.student-profile', compact('student', 'student_arr', 'personalData', 'familyBackground'));
+        $educationalBackground = $student->educationalBackground->makeHidden(['id', 'user_id' ,'user_type'])->toArray();
+//        dd($educationalBackground);
+        return view('dashboard.admin.student-profile', compact('student', 'student_arr', 'personalData', 'familyBackground', 'educationalBackground'));
     }
 
     public function report_card(Request $request)
