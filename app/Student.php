@@ -91,4 +91,9 @@ class Student extends Authenticatable
     {
         return $this->morphMany('App\FamilyBackground', 'user');
     }
+
+    public function educationalBackground()
+    {
+        return $this->morphMany('App\EducationalBackground', 'user');
+    }
 }
