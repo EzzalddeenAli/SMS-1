@@ -15,6 +15,16 @@ class FamilyBackground extends Model
         'user_id', 'user_type'
         ];
 
+    public function getMotherContactAttribute($value)
+    {
+        return '09'.$value;
+    }
+
+    public function getFatherContactAttribute($value)
+    {
+        return '09'.$value;
+    }
+
     public function user()
     {
         return $this->morphTo();

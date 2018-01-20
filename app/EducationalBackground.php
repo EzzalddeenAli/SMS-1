@@ -9,4 +9,9 @@ class EducationalBackground extends Model
     public $timestamps = false;
     //    protected $guarded = ['id'];
     protected $fillable = ['level', 'name_of_school', 'year_attended', 'honors_awards', 'user_id', 'user_type'];
+
+    public function getLevelAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }
