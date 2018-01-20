@@ -5,14 +5,16 @@ use Illuminate\Database\Seeder;
 
 class StudentsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        Student::create([
+        /* INCLUDES EDUCATIONAL BACKGROUND SEEDER */
+        $levels = ['nursery', 'kinder', 'preparatory'];
+        for ($i = 1; $i < 13; $i++ ) {
+            array_push($levels, "grade$i");
+        }
+
+        $student1 = Student::create([
             "username" => "student1",
             "password" => Hash::make("12345678"),
             "first_name" => "Lorem",
@@ -22,7 +24,7 @@ class StudentsTableSeeder extends Seeder
             "section_id" => 1,
         ]);
 
-        Student::create([
+        $student2 = Student::create([
             "username" => "student2",
             "password" => Hash::make("12345678"),
             "first_name" => "Merol",
@@ -32,7 +34,7 @@ class StudentsTableSeeder extends Seeder
             "section_id" => 1,
         ]);
 
-        Student::create([
+        $student3 = Student::create([
             "username" => "student3",
             "password" => Hash::make("12345678"),
             "first_name" => "Hanzel",
@@ -41,5 +43,22 @@ class StudentsTableSeeder extends Seeder
             "age" => 18,
             "section_id" => 1,
         ]);
+
+        foreach($levels as $level) {
+            factory(App\EducationalBackground::class)->create([
+                'level' => $level,
+                'user_id' => $student1->id,
+            ]);
+
+            factory(App\EducationalBackground::class)->create([
+                'level' => $level,
+                'user_id' => $student2->id,
+            ]);
+
+            factory(App\EducationalBackground::class)->create([
+                'level' => $level,
+                'user_id' => $student3->id,
+            ]);
+        }
     }
 }
