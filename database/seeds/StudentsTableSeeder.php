@@ -1,5 +1,6 @@
 <?php
 
+use App\EducationalBackground;
 use App\Student;
 use Illuminate\Database\Seeder;
 
@@ -45,17 +46,17 @@ class StudentsTableSeeder extends Seeder
         ]);
 
         foreach($levels as $level) {
-            factory(App\EducationalBackground::class)->create([
+            factory(EducationalBackground::class)->create([
                 'level' => $level,
                 'user_id' => $student1->id,
             ]);
 
-            factory(App\EducationalBackground::class)->create([
+            factory(EducationalBackground::class)->create([
                 'level' => $level,
                 'user_id' => $student2->id,
             ]);
 
-            factory(App\EducationalBackground::class)->create([
+            factory(EducationalBackground::class)->create([
                 'level' => $level,
                 'user_id' => $student3->id,
             ]);
