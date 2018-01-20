@@ -84,10 +84,19 @@
                                 <div class="col-xs-12">
                                     <p class="h2 text-black" style="margin-top: 0"><i class="fa fa-user"></i> About</p>
                                 </div>
+                                {{-- ABOUT --}}
                                 {{--student info--}}
                                 @foreach($student_arr as $key=>$val)
                                     <div class="col-sm-6 invoice-col">
                                         <div class="col-xs-5">
+                                            @php
+                                                $key = explode('_', $key);
+                                                $newKey = [];
+                                                    for ($i = 0; $i < count($key); $i++) {
+                                                        array_push($newKey, ucfirst($key[$i]));
+                                                    }
+                                                $key = implode(' ', $newKey);
+                                            @endphp
                                             <span class="text-black">{{ $key }}:</span>
                                         </div>
                                         <div class="col-xs-7">
@@ -99,6 +108,14 @@
                                 @foreach($personalData['0'] as $key=>$val)
                                     <div class="col-sm-6 invoice-col">
                                         <div class="col-xs-5">
+                                            @php
+                                                $key = explode('_', $key);
+                                                $newKey = [];
+                                                    for ($i = 0; $i < count($key); $i++) {
+                                                        array_push($newKey, ucfirst($key[$i]));
+                                                    }
+                                                $key = implode(' ', $newKey);
+                                            @endphp
                                             <span class="text-black">{{ $key }}:</span>
                                         </div>
                                         <div class="col-xs-7">
@@ -114,6 +131,14 @@
                                 @foreach($familyBackground[0] as $key=>$val)
                                     <div class="col-sm-12 invoice-col">
                                         <div class="col-xs-5">
+                                            @php
+                                                $key = explode('_', $key);
+                                                $newKey = [];
+                                                    for ($i = 0; $i < count($key); $i++) {
+                                                        array_push($newKey, ucfirst($key[$i]));
+                                                    }
+                                                $key = implode(' ', $newKey);
+                                            @endphp
                                             <span class="text-black">{{ $key }}:</span>
                                         </div>
                                         <div class="col-xs-7">
