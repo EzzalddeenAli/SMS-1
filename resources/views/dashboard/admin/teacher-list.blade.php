@@ -7,7 +7,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            Teacher list
+            Find Teacher
         </h1>
 @include('dashboard.inc.breadcrumbs')
     </section>
@@ -17,10 +17,20 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="row invoice" id="teachers-table">
-            <div class="col-lg-12">
+        <div class="row" id="teachers-table">
+            @if($func === 'teacher-list')
+                <div class="form-horizontal form-group">
+                    <div class="col-sm-1">
+                        <button v-on:click="showAddModal('teacher')" class="btn btn-success btn-sm" title="add teacher"><i class="fa fa-plus fa-lg"></i> Add Teacher</button>
+                    </div>
+                </div>
+            @endif
+
+            <div class="col-xs-12">
+
                 @if($errors->any())
-                    <div class="alert alert-danger">
+                    <br>
+                    <div class="alert alert-danger" style="max-height: 150px; overflow-y: scroll">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <ul>
                             @foreach($errors->all() as $error)
@@ -30,62 +40,76 @@
                     </div>
                 @endif
 
-            <!-- menu bar -->
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search for teacher">
-                </div>
-                <div class="form-horizontal form-group">
-                    <button v-on:click="showAddModal('teacher')" class="btn btn-default" title="add teacher"><i class="fa fa-plus fa-lg"></i></button>
-                </div>
-                <!-- ./menu bar-->
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ $message }}</h3>
 
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Username</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>Age</th>
-                            <th>Advisory</th>
-                            {{--<th>Rating</th>--}}
-                            <th colspan="10" class="text-center">Action</th>
-                        </tr>
-                        </thead>
+                        <div class="box-tools">
+                            {!! Form::open(['route' => 'admin.find.basic', 'method' => 'get']) !!}
+                            <div class="input-group input-group-sm" style="width: 200px;">
+                                <input name="user" value="teacher" type="hidden">
+                                <input name="func" value="{{ $func }}" type="hidden">
+                                <input name="basic_search" class="form-control pull-right" placeholder="Search"
+                                       type="text">
 
-                        <tbody>
-                        @foreach($teachers as $teacher)
-                            <tr>
-                                @php
-                                    $advisory = $teacher->advisory_name($teacher->advisory);
-                                    /*$rating = $teacher->averageRating;*/
-                                @endphp
-                                <td>{{++$index}}</td>
-                                <td>{{$teacher->username}}</td>
-                                <td>{{$teacher->first_name}}</td>
-                                <td>{{$teacher->middle_name}}</td>
-                                <td>{{$teacher->last_name}}</td>
-                                <td>{{$teacher->age}}</td>
-                                <td>{{$advisory !== null ? $advisory : 'None'}}</td>
-                                {{--<td class="{{ $rating >= 3.5 ? 'text-success' : ($rating >= 2.5 ? 'text-primary' : ($rating > 0 ? 'text-danger' : '')) }}">
-                                    {{ $rating !== null ? $rating : 'None' }}
-                                </td>--}}
-                                <td style="width: 30px">
-                                    <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')" class="btn btn-primary btn-sm edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
-                                </td>
-                                <td style="width: 30px">
-                                    <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')" class="btn btn-info btn-sm edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
-                                </td>
-                                <td style="width: 30px">
-                                    <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')" class="btn btn-danger btn-sm delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
 
-                    </table>
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Username</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Advisory</th>
+                                    {{--<th>Rating</th>--}}
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                @foreach($results as $ind=>$teacher)
+                                    <tr>
+                                        @php
+                                            $advisory = $teacher->advisory_name($teacher->advisory);
+                                            /*$rating = $teacher->averageRating;*/
+                                        @endphp
+                                        <td>{{++$ind}}</td>
+                                        <td>{{$teacher->username}}</td>
+                                        <td>{{$teacher->first_name}}</td>
+                                        <td>{{$teacher->middle_name}}</td>
+                                        <td>{{$teacher->last_name}}</td>
+                                        <td>{{$teacher->age}}</td>
+                                        <td>{{$advisory !== null ? $advisory : 'None'}}</td>
+                                        {{--<td class="{{ $rating >= 3.5 ? 'text-success' : ($rating >= 2.5 ? 'text-primary' : ($rating > 0 ? 'text-danger' : '')) }}">
+                                            {{ $rating !== null ? $rating : 'None' }}
+                                        </td>--}}
+                                        <td>
+                                            <button v-on:click="showAssignModal('teacher', '{{$teacher->id}}')"
+                                                    class="btn btn-primary btn-sm edit-btn" title="Assign Teacher to a section"><i class="fa fa-edit fa-lg"></i></button>
+                                            <button v-on:click="showEditModal('/resource/teacher/', '{{$teacher->username}}')"
+                                                    class="btn btn-info btn-sm edit-btn" title="Edit Teacher"><i class="fa fa-edit fa-lg"></i></button>
+                                            <button v-on:click="showDeleteModal('teacher', '{{$teacher->username}}')"
+                                                    class="btn btn-danger btn-sm delete-btn" title="Delete Teacher"><i class="fa fa-trash-o fa-lg"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
                 </div>
             </div>
         </div>

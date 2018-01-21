@@ -168,14 +168,14 @@ class AdminController extends Controller
                     })
                     ->get()->load('section');
 
-                if (count($results) > 0) {
-                        $message = count($results) . ' Students were found.';
-                } else {
-                    $message = 'No Student Found.';
-                }
-
                 break;
             case 'teacher':
+                $results = Teacher::where('username', 'like', $request->basic_search)
+                    ->orWhere('first_name', 'like', $request->basic_search)
+                    ->orWhere('middle_name', 'like', $request->basic_search)
+                    ->orWhere('last_name', 'like', $request->basic_search)
+                    ->orWhere('age', $age)
+                    ->get();
 
                 break;
             default:
@@ -184,16 +184,27 @@ class AdminController extends Controller
 
         $func = $request->func;
 
-        return view('dashboard.admin.find-results', compact('results', 'message', 'func'));
+        if (count($results) > 0) {
+            $message = count($results) . ' ' . $request->user . ' were found.';
+        } else {
+            $message = 'No ' . $request->user . ' Found.';
+        }
+
+        if ($func === 'student-list') {
+            return view('dashboard.admin.find-results', compact('results', 'message', 'func'));
+        } else if ($func === 'teacher-list') {
+            return view('dashboard.admin.teacher-list', compact('results', 'message', 'func'));
+        }
+
     }
 
     public function student_profile(Request $request)
     {
         $student = Student::where('username', $request->username)->firstOrFail()->load(['section', 'section.level']);
-        $student_arr = Student::where('username', $request->username)->firstOrFail()->makeHidden(['password', 'username' ,'section_id', 'id'])->toArray();
-        $personalData = $student->personalData->makeHidden(['id', 'user_id' ,'user_type'])->toArray();
-        $familyBackground = $student->familyBackground->makeHidden(['id', 'user_id' ,'user_type'])->toArray();
-        $educationalBackground = $student->educationalBackground->makeHidden(['id', 'user_id' ,'user_type'])->toArray();
+        $student_arr = Student::where('username', $request->username)->firstOrFail()->makeHidden(['password', 'username', 'section_id', 'id'])->toArray();
+        $personalData = $student->personalData->makeHidden(['id', 'user_id', 'user_type'])->toArray();
+        $familyBackground = $student->familyBackground->makeHidden(['id', 'user_id', 'user_type'])->toArray();
+        $educationalBackground = $student->educationalBackground->makeHidden(['id', 'user_id', 'user_type'])->toArray();
 //        dd($educationalBackground);
         return view('dashboard.admin.student-profile', compact('student', 'student_arr', 'personalData', 'familyBackground', 'educationalBackground'));
     }
