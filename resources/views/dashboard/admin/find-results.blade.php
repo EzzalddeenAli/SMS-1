@@ -44,7 +44,7 @@
                         <h3 class="box-title">{{ $message }}</h3>
 
                         <div class="box-tools">
-                            {!! Form::open(['route' => 'admin.find.basic']) !!}
+                            {!! Form::open(['route' => 'admin.find.basic', 'method' => 'get']) !!}
                             <div class="input-group input-group-sm" style="width: 200px;">
                                 <input name="user" value="student" type="hidden">
                                 <input name="func" value="{{ $func }}" type="hidden">
