@@ -1,5 +1,5 @@
 <?php
-Route::get('sitemap', function() {
+Route::get('sitemap.xml', function() {
     return public_path('sitemap.xml');
 });
 
