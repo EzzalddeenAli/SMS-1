@@ -134,22 +134,33 @@ class ResourceStudentController extends Controller
      */
     public function update(updateStudent $request)
     {
-        $student = Student::find($request->id);
+        try {
+            DB::transaction(function () {
+                $request = request();
+                $student = Student::find($request->id);
 
-        $request->password === null ? $password = $student->password : $password = Hash::make($request->password);
+                $request->password === null ? $password = $student->password : $password = Hash::make($request->password);
+                $student->update([
+                    'username'    => $request->username,
+                    'password'    => $password,
+                    'first_name'  => $request->first_name,
+                    'middle_name' => $request->middle_name,
+                    'last_name'   => $request->last_name,
+                    'age'         => $request->age,
+                    'advisory'    => $request->advisory,
+                    'section_id'  => $request->section_id !== null ? $request->section_id : $student->section_id,
+                ]);
 
-        $student->update([
-            'username'    => $request->username,
-            'password'    => $password,
-            'first_name'  => $request->first_name,
-            'middle_name' => $request->middle_name,
-            'last_name'   => $request->last_name,
-            'age'         => $request->age,
-            'advisory'    => $request->advisory,
-            'section_id'  => $request->section_id !== null ? $request->section_id : $student->section_id,
-        ]);
+//                $student->personalData()->update($request->all());
+//                $student->familyBackground()->update($request->all());
+            }, 5);
 
-        return back();
+            return back();
+
+        } catch (\Exception $e) {
+            //if data failed restart again
+            return back()->withErrors(['Database error, Failed to edit student.']);
+        }
     }
 
     /**

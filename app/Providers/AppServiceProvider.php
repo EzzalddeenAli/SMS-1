@@ -38,8 +38,12 @@ class AppServiceProvider extends ServiceProvider
 
             $attribute = explode('.', $attribute);
 
-
             return in_array($attribute[1] !== null ? $attribute[1] : '', $levels);
+        });
+
+        Validator::extend('gender', function ($attribute, $value) {
+            //check if valid gender
+            return in_array($value, ['male', 'female']);
         });
 
         //Form Builder
