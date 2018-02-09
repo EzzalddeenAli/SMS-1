@@ -122467,7 +122467,10 @@ var editModal = new Vue({
     el: '#edit-modal-body',
     data: {
         message: 'Hello Vue',
-        responses: {}
+        responses: {
+            personal_data: '',
+            family_background: ''
+        }
     },
 
     methods: {
@@ -122750,7 +122753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         formName: String,
-        formData: [String, Number],
+        formData: [String, Number, Array],
         isId: {
             type: Boolean,
             default: false
@@ -122773,7 +122776,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return date.includes(this.formName); //return true if formName has a match in array
         },
         excluded: function excluded() {
-            var excluded = ["advisory", "section_id", "teacher_id", "path", "ext", "deadline"];
+            var excluded = ["advisory", "section_id", "teacher_id", "path", "ext", "deadline", "user_type", "user_id", "personal_data", "family_background", "educational_background"];
             return excluded.includes(this.formName); //return true if formName has a match in array
         }
     }

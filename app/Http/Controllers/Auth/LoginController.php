@@ -83,6 +83,6 @@ class LoginController extends Controller
         return redirect()->back()
             ->withErrors(['invalid' => 'Invalid username or password.'])
             ->withInput($request->except('password'));
-    }
+        }
 
 }

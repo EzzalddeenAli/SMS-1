@@ -8,7 +8,10 @@ let editModal = new Vue({
     el: '#edit-modal-body',
     data: {
         message: 'Hello Vue',
-        responses: {}
+        responses: {
+            personal_data: '',
+            family_background: '',
+        }
     },
 
     methods: {
