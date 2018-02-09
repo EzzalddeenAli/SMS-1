@@ -53,6 +53,7 @@ class ResourceStudentController extends Controller
 
                 $request = request();
                 $student = Student::create([
+                    'lrn'         => $request->lrn,
                     'username'    => $request->username,
                     'password'    => Hash::make($request->password),
                     'first_name'  => $request->first_name,
@@ -82,7 +83,7 @@ class ResourceStudentController extends Controller
                         'name_of_school' => $value['name_of_school'],
                         'year_attended'  => $value['year_attended'],
                         'honors_awards'  => $value['honors_awards'],
-                        'user_id'        => $student->id,
+                        'user_id'        => 0,
                         'user_type'      => 'App\Student',
                     ]);
                 }
@@ -93,7 +94,7 @@ class ResourceStudentController extends Controller
             //if data failed restart again
             return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list'])->withErrors(['Database error, Failed to add student.']);
         }
-        return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list']);
+        return redirect()->route('admin.find.basic', ['user' => 'student', 'func' => 'student-list'])->with('msg', 'Successfully Added Student');
     }
 
     /**
