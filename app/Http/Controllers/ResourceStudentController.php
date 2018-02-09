@@ -116,9 +116,13 @@ class ResourceStudentController extends Controller
      */
     public function edit($username)
     {
-        if (request()->ajax()) {
-            return Student::where('username', $username)->first();
-        }
+//        if (request()->ajax()) {
+            return Student::with([
+                'personalData',
+                'familyBackground',
+                'educationalBackground'
+            ])->where('username', $username)->first();
+//        }
     }
 
     /**

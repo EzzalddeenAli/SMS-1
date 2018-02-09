@@ -21,7 +21,7 @@
     export default {
         props: {
             formName: String,
-            formData: [String, Number],
+            formData: [String, Number, Array],
             isId: {
                 type: Boolean,
                 default: false
@@ -48,7 +48,8 @@
             },
 
             excluded() {
-                let excluded = ["advisory", "section_id", "teacher_id", "path", "ext", "deadline"];
+                let excluded = ["advisory", "section_id", "teacher_id", "path", "ext", "deadline",
+                    "user_type", "user_id", "personal_data", "family_background", "educational_background"];
                 return excluded.includes(this.formName); //return true if formName has a match in array
             }
         },

@@ -16,6 +16,7 @@ class StudentsTableSeeder extends Seeder
         }
 
         $student1 = Student::create([
+            "lrn" => 107769050011,
             "username" => "student1",
             "password" => Hash::make("12345678"),
             "first_name" => "Lorem",
@@ -26,6 +27,7 @@ class StudentsTableSeeder extends Seeder
         ]);
 
         $student2 = Student::create([
+            "lrn" => 107769051001,
             "username" => "student2",
             "password" => Hash::make("12345678"),
             "first_name" => "Merol",
@@ -36,6 +38,7 @@ class StudentsTableSeeder extends Seeder
         ]);
 
         $student3 = Student::create([
+            "lrn" => 107769050001,
             "username" => "student3",
             "password" => Hash::make("12345678"),
             "first_name" => "Hanzel",

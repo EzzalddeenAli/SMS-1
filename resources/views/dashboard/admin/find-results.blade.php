@@ -122,9 +122,69 @@
                             {{ method_field('patch') }}
                             <div class="modal-body">
 
+                                <!-- TAB NAVIGATION -->
                                 <div id="edit-modal-body">
-                                    <modal-edit-form v-for="(item, key) in responses" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
-                                    <modal-select-form :user-type="'student'"></modal-select-form>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="active"><a href="#eTab1" role="tab" data-toggle="tab">Student Data</a></li>
+                                        <li><a href="#eTab2" role="tab" data-toggle="tab">Personal Data</a></li>
+                                        <li><a href="#eTab3" role="tab" data-toggle="tab">Family Background</a></li>
+                                        <li><a href="#eTab4" role="tab" data-toggle="tab">Educational Background</a></li>
+                                    </ul>
+                                    <!-- TAB CONTENT -->
+                                    <div class="tab-content">
+                                        <div class="active tab-pane fade in" id="eTab1">
+
+                                            <modal-edit-form v-for="(item, key) in responses" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+                                            <modal-select-form :user-type="'student'"></modal-select-form>
+
+                                        </div>
+                                        <div class="tab-pane fade" id="eTab2">
+
+                                            <modal-edit-form v-for="(item, key) in responses.personal_data[0]" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="eTab3">
+
+                                        <modal-edit-form v-for="(item, key) in responses.family_background[0]" :form-name="key" :form-data="item" :is-id="checkIfId(key)"></modal-edit-form>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="eTab4">
+                                        @php($levels = ['nursery', 'kinder', 'preparatory'])
+                                        @for($i = 1; $i < 13; $i++ )
+                                            @php(array_push($levels, "grade$i"))
+                                        @endfor
+
+                                        @foreach($levels as $level)
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="level[]" class="control-label">Level</label>
+                                                        <input class="form-control" readonly name="level[{{ $level }}]" value="{{ $level }}" id="level[]" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="name_of_school[]" class="control-label">Name Of School</label>
+                                                        <input class="form-control" name="level[{{ $level }}][name_of_school]" id="name_of_school[]" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="year_attended[]" class="control-label">Year Attended</label>
+                                                        <input class="form-control" name="level[{{ $level }}][year_attended]" id="year_attended[]" type="date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="honors_awards[]" class="control-label">Honors Awards</label>
+                                                        <input class="form-control" name="level[{{ $level }}][honors_awards]" id="honors_awards[]" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
                                 </div>
 
                             </div>
