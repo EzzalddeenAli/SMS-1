@@ -1,4 +1,8 @@
 <?php
+Route::get('sitemap', function() {
+    return public_path('sitemap.xml');
+});
+
 Route::get('/', 'HomeController@index')->name('home.main');
 
 Route::get('/applicant', function () {
