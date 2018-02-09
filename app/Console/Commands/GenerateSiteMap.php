@@ -42,7 +42,7 @@ class GenerateSiteMap extends Command
     {
         SitemapGenerator::create('http://www.jilcstanauan.com')
             ->getSitemap()
-            ->add(Url::create('/login')
+            ->add(Url::create('http://www.jilcstanauan.com/login')
                 ->setLastModificationDate(Carbon::yesterday())
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
                 ->setPriority(0.1))
