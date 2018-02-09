@@ -19,13 +19,13 @@ class CreateFamilyBackgroundsTable extends Migration
             $table->integer('mother_age')->nullable();
             $table->string('mother_nationality')->nullable();
             $table->string('mother_occupation')->nullable();
-            $table->integer('mother_contact')->nullable();
+            $table->unsignedInteger('mother_contact')->nullable();
             $table->string('mother_work_address')->nullable();
             $table->string('father_name')->nullable();
             $table->integer('father_age')->nullable();
             $table->string('father_nationality')->nullable();
             $table->string('father_occupation')->nullable();
-            $table->integer('father_contact')->nullable();
+            $table->unsignedInteger('father_contact')->nullable();
             $table->string('father_work_address')->nullable();
             $table->morphs('user');
         });
