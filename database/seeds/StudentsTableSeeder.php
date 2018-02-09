@@ -52,7 +52,7 @@ class StudentsTableSeeder extends Seeder
             EducationalBackground::create([
                 'level' => $level,
                 'name_of_school' => 'JILCS',
-                'year_attended' => '20'.rand(0,1).rand(0,9).'-'.rand(1,12).'-'.rand(1,30),
+                'year_attended' => '20'.rand(0,1).rand(0,9).'-'.rand(1,12).'-'.rand(1,28),
                 'honors_awards' => 'N/A',
                 'user_id' => $student1->id,
                 'user_type' => 'App\Student',
@@ -61,7 +61,7 @@ class StudentsTableSeeder extends Seeder
             EducationalBackground::create([
                 'level' => $level,
                 'name_of_school' => 'JILCS',
-                'year_attended' => '20'.rand(0,1).rand(0,9).'-'.rand(1,12).'-'.rand(1,30),
+                'year_attended' => '20'.rand(0,1).rand(0,9).'-'.rand(1,12).'-'.rand(1,28),
                 'honors_awards' => 'N/A',
                 'user_id' => $student2->id,
                 'user_type' => 'App\Student',
@@ -70,7 +70,7 @@ class StudentsTableSeeder extends Seeder
             EducationalBackground::create([
                 'level' => $level,
                 'name_of_school' => 'JILCS',
-                'year_attended' => '20'.rand(0,1).rand(0,9).'-'.rand(1,12).'-'.rand(1,30),
+                'year_attended' => '20'.rand(0,1).rand(0,9).'-'.rand(1,12).'-'.rand(1,28),
                 'honors_awards' => 'N/A',
                 'user_id' => $student3->id,
                 'user_type' => 'App\Student',
