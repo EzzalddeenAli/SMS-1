@@ -14,7 +14,7 @@ class ImagesTableSeeder extends Seeder
     {
         //slideshow
         Image::create([
-            'path' => 'images/school/pexels-photo',
+            'path' => 'images/school/jilcs-wallpaper',
             'ext' => 'jpg',
             'type' => 'slideshow',
             'position' => '1'
